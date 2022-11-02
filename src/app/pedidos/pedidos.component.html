@@ -1,0 +1,93 @@
+<div class="container-fluid aside-section">
+  <div class="row flex-nowrap aside-height">
+    <app-aside class="col-md-3 bg-light d-none d-md-block d-flex align-items-end bg-image shadow-sm"></app-aside>
+    <div class="col-md-9 p-5 d-flex justify-content-center">
+      <div class="main-section">
+        <h5>Pedidos</h5>
+        <p>Aqui podrás revisas tus pedidos.</p>
+        <div class="main-section-buttons">
+          <button class="btn btn-dark shadow-sm">Pendientes</button>
+          <button [routerLink]="['/pedidos/finalizados']" class="btn btn-light shadow-sm">Finalizados</button>
+          <button [routerLink]="['/pedidos/recogidos']" class="btn btn-light shadow-sm">Recogidos</button>
+        </div>
+        <div class="d-inline-flex flex-column justify-content-center align-items-center ps-4 mt-4">
+          <p class="fs-1 m-0"><strong>*</strong></p>
+          <p><strong>Pendientes</strong></p>
+        </div>
+        <div class="main-section-buttons mt-3 justify-content-end">
+          <button [routerLink]="['/donar']" class="btn btn-success shadow-sm">Finalizar</button>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
+          <!--INICIO TARJETA DONACION EN CURSO-->
+          <div class="col">
+            <div class="card h-100 text-bg-light mb-3 shadow-sm">
+              <div class="card-header border-0 justify-content-between align-items-center">
+                <div class="cardimg">
+                  <img src="../../assets/img/cocinar.jpg" alt="">
+                </div>
+                <p class="p-0 m-0">Nº 000002</p>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title mt-4">Nombre del plato con un poco de sal</h5>
+                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ratione fugiat aliquam voluptates dolor facilis?</p>
+                <h6 class="card-title">Datos de entrega</h6>
+                <p class="card-text mb-0">Dirección de entrega</p>
+                <p class="card-text">Día y hora de entrega</p>
+                <h6 class="card-title">Notas</h6>
+                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, minima.</p>
+                <h6 class="card-title">Raciones</h6>
+                <p class="card-text">1</p>
+              </div>
+              <div class="card-footer border-0 text-center">
+                <div class="d-flex justify-content-between">
+                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" checked>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" fill="black" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--FIN TARJETA DONACION EN CURSO-->
+          <!--INICIO TARJETA DONACION EN CURSO-->
+          <div class="col">
+            <div class="card h-100 text-bg-light mb-3 shadow-sm">
+              <div class="card-header border-0 justify-content-between align-items-center">
+                <div class="cardimg">
+                  <img src="../../assets/img/cocinar.jpg" alt="">
+                </div>
+                <p class="p-0 m-0">Nº 000001</p>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title mt-4">Nombre del plato con un poco de sal</h5>
+                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ratione fugiat aliquam voluptates dolor facilis?</p>
+                <h6 class="card-title">Datos de entrega</h6>
+                <p class="card-text mb-0">Dirección de entrega</p>
+                <p class="card-text">Día y hora de entrega</p>
+                <h6 class="card-title">Notas</h6>
+                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, minima.</p>
+                <h6 class="card-title">Raciones</h6>
+                <p class="card-text">1</p>
+              </div>
+              <div class="card-footer border-0 text-center">
+                <div class="d-flex justify-content-between">
+                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" checked>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" fill="black" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--FIN TARJETA DONACION EN CURSO-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <app-navsm></app-navsm>
+</footer>
+

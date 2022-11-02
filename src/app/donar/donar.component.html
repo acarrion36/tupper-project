@@ -1,0 +1,68 @@
+<div class="container-fluid aside-section">
+  <div class="row flex-nowrap aside-height">
+    <app-aside class="col-md-3 bg-light d-none d-md-block d-flex align-items-end bg-image shadow-sm"></app-aside>
+    <div class="col-md-9 p-5 d-flex justify-content-center">
+      <div class="main-section">
+        <h5>Donaciones</h5>
+        <p>Cuéntanos que quieres donar, así como donde y cuando vas a entregarlo.</p>
+        <div class="main-section-buttons">
+          <button class="btn btn-dark shadow-sm">Nueva</button>
+          <button [routerLink]="['/donar/en-curso']" class="btn btn-light shadow-sm">En curso</button>
+          <button [routerLink]="['/donar/finalizadas']" class="btn btn-light shadow-sm">Finalizadas</button>
+        </div>
+        <div class="mt-4 alert alert-primary shadow-sm" role="alert">
+          <p>Solo los campos con asterisco (*) son obligatorios. Una vez completada la información necesaria, recuerda pulsar sobre el botón "Publicar" para finalizar el proceso.</p>
+          <p class="mb-0">Si tienes alguna duda no dudes en ponerte en contacto con nosotros.</p>
+        </div>
+        <!--INICIO TARJETA DONACION NUEVA-->
+        <div class="mt-4 p-4 bg-light border shadow-sm">
+          <form class="row g-3">
+            <div class="col-md-12 d-flex flex-wrap justify-content-between align-items-center">
+              <p class="col-form-label"><strong>Información del plato</strong></p>
+              <button class="btn btn-dark disabled" id="btnGuardarDonacion" type="submit">Publicar</button>
+            </div>
+            <div class="col-md-12">
+              <label for="platoNombre" class="form-label">Nombre del plato*</label>
+              <input type="text" class="form-control" id="platoNombre">
+            </div>
+            <div class="col-md-12">
+              <label for="platoIngredientes" class="form-label">Ingredientes*</label>
+              <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Es importante ser lo más preciso posible al describir los ingredientes." id="platoIngredientes" rows="3"></textarea>
+            </div>
+            <div class="col-md-2">
+              <label for="platoRaciones" class="form-label">Raciones*</label>
+              <input type="number" class="form-control" id="platoRaciones" placeholder="">
+            </div>
+            <div class="col-md-5">
+              <label for="platoFoto" class="form-label">Foto del plato</label>
+              <input class="form-control" type="file" id="platoFoto">
+            </div>
+            <div class="col-md-12 d-flex justify-content-between align-items-center">
+              <p class="col-form-label"><strong>Información de la entrega</strong></p>
+            </div>
+            <div class="col-md-12">
+              <label for="entregaDireccion" class="form-label">Direccion postal*</label>
+              <input type="text" class="form-control" id="entregaDireccion">
+            </div>
+            <div class="col-md-6">
+              <label for="entregaDia" class="form-label">Dia*</label>
+              <input type="date" class="form-control" id="entregaDia">
+            </div>
+            <div class="col-md-6">
+              <label for="entregaHora" class="form-label">Hora*</label>
+              <input type="time" class="form-control" id="entregaHora">
+            </div>
+            <div class="col-md-12">
+              <label for="entregaNotas" class="form-label">Notas</label>
+              <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Usa esta campo para anotar cualquier cosa. Por ejemplo, otras franjas de entrega." id="entregaNotas" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <!--FIN TARJETA DONACION NUEVA-->
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <app-navsm></app-navsm>
+</footer>

@@ -1,0 +1,107 @@
+<div class="container-fluid aside-section">
+  <div class="row flex-nowrap aside-height">
+    <app-aside class="col-md-3 bg-light d-none d-md-block d-flex align-items-end bg-image shadow-sm"></app-aside>
+    <div class="col-md-9 p-5 d-flex justify-content-center">
+      <div class="main-section">
+        <h5>Donaciones</h5>
+        <p>Cuéntanos que quieres donar, así como donde y cuando vas a entregarlo.</p>
+        <div class="main-section-buttons">
+          <button [routerLink]="['/donar']" class="btn btn-light shadow-sm">Nueva</button>
+          <button [routerLink]="['/donar/en-curso']" class="btn btn-light shadow-sm">En curso</button>
+          <button class="btn btn-dark">Finalizadas</button>
+        </div>
+        <div class="d-inline-flex flex-column justify-content-center align-items-center ps-4 mt-4">
+          <p class="fs-1 m-0"><strong>*</strong></p>
+          <p><strong>Finalizadas</strong></p>
+        </div>
+        <div class="main-section-buttons mt-3 justify-content-end">
+          <button [routerLink]="['/donar']" class="btn btn-dark shadow-sm">Todas</button>
+          <button [routerLink]="['/donar']" class="btn btn-light shadow-sm">Entregadas</button>
+          <button [routerLink]="['/donar']" class="btn btn-light shadow-sm">Rechazadas</button>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
+          <!--INICIO TARJETA DONACION EN CURSO-->
+          <div class="col">
+            <div class="card h-100 text-bg-light mb-3 shadow-sm">
+              <div class="card-header border-0 justify-content-between align-items-center">
+                <div class="cardimg">
+                  <img src="../../assets/img/cocinar.jpg" alt="">
+                </div>
+                <p class="p-0 m-0">Nº 000003</p>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title mt-4">Nombre del plato con un poco de sal</h5>
+                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ratione fugiat aliquam voluptates dolor facilis?</p>
+                <h6 class="card-title">Datos de entrega</h6>
+                <p class="card-text mb-0">Dirección de entrega</p>
+                <p class="card-text">Día y hora de entrega</p>
+                <h6 class="card-title">Notas</h6>
+                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, minima.</p>
+                <h6 class="card-title">Raciones</h6>
+                <p class="card-text">1</p>
+              </div>
+              <div class="card-footer bg-success border-0 text-center">
+                <small>Entregada</small>
+              </div>
+            </div>
+          </div>
+          <!--FIN TARJETA DONACION EN CURSO-->
+          <!--INICIO TARJETA DONACION EN CURSO-->
+          <div class="col">
+            <div class="card h-100 text-bg-light mb-3 shadow-sm">
+              <div class="card-header border-0 justify-content-between align-items-center">
+                <div class="cardimg">
+                  <img src="../../assets/img/cocinar.jpg" alt="">
+                </div>
+                <p class="p-0 m-0">Nº 000002</p>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title mt-4">Nombre del plato con un poco de sal</h5>
+                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ratione fugiat aliquam voluptates dolor facilis?</p>
+                <h6 class="card-title">Datos de entrega</h6>
+                <p class="card-text mb-0">Dirección de entrega</p>
+                <p class="card-text">Día y hora de entrega</p>
+                <h6 class="card-title">Notas</h6>
+                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, minima.</p>
+                <h6 class="card-title">Raciones</h6>
+                <p class="card-text">1</p>
+              </div>
+              <div class="card-footer bg-success border-0 text-center">
+                <small>Entregada</small>
+              </div>
+            </div>
+          </div>
+          <!--FIN TARJETA DONACION EN CURSO-->
+          <!--INICIO TARJETA DONACION EN CURSO-->
+          <div class="col">
+            <div class="card h-100 text-bg-light mb-3 shadow-sm">
+              <div class="card-header border-0 justify-content-between align-items-center">
+                <div class="cardimg">
+                  <img src="../../assets/img/cocinar.jpg" alt="">
+                </div>
+                <p class="p-0 m-0">Nº 000001</p>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title mt-4">Nombre del plato con un poco de sal</h5>
+                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ratione fugiat aliquam voluptates dolor facilis?</p>
+                <h6 class="card-title">Datos de entrega</h6>
+                <p class="card-text mb-0">Dirección de entrega</p>
+                <p class="card-text">Día y hora de entrega</p>
+                <h6 class="card-title">Notas</h6>
+                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, minima.</p>
+                <h6 class="card-title">Raciones</h6>
+                <p class="card-text">1</p>
+              </div>
+              <div class="card-footer bg-danger border-0 text-center" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Motivo de rechazo: no se especificarón los ingredientes correctamente.">
+                <small>Rechazada</small>
+              </div>
+            </div>
+          </div>
+          <!--FIN TARJETA DONACION EN CURSO-->
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <app-navsm></app-navsm>
+</footer>

@@ -1,0 +1,90 @@
+<div (click)="closeLoginWindow()" class="veil" id="veil"></div>
+<div class="login position-fixed shadow-sm">
+  <form class="p-4" id="loginForm">
+    <!-- MOSTRAR FORMULARIO DE LOGIN -->
+    <div *ngIf="this.mostrarLogin">
+      <svg (click)="closeLoginWindow()" xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-x-lg close" viewBox="0 0 16 16">
+        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+      </svg>
+      <div class="text-center mb-3">
+        <p><strong>Bienvenid@ a ElikaWaste</strong></p>
+      </div>
+      <div class="mb-3">
+        <input type="email" class="form-control" id="loginMail" name="loginMail" placeholder="Correo electrónico" [(ngModel)]="this.loginMail">
+        <div *ngIf="this.alertMail" class="alert alert-danger animate__animated animate__flash" id="alert">{{alertMsg}}</div>
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Contraseña" [(ngModel)]="this.loginPassword">
+        <div *ngIf="this.alertPassword" class="alert alert-danger animate__animated animate__flash">{{alertMsg}}</div>
+      </div>
+      <button (click)="validarSesion()" type="submit" class="btn btn-success" id="loginSubmit" name="loginSubmit"><strong>INICIAR SESIÓN</strong></button>
+      <a (click)="recuperarPassword()" class="dropdown-item mt-3">Recuperar contraseña</a>
+      <a (click)="registro()" class="dropdown-item mt-2">Registrarse</a>
+    </div>
+    <!-- MOSTRAR FORMULARIO DE REGISTRO -->
+    <div *ngIf="this.mostrarRegistro">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-x-lg close" viewBox="0 0 16 16">
+        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+      </svg>
+      <div class="mb-3 text-center">
+        <p><strong>Registrate en ElikaWaste</strong></p>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="registroNombre" name="registroNombre" placeholder="Nombre">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="registroApellidos" name="registroApellidos" placeholder="Apellidos">
+      </div>
+      <div class="mb-3">
+        <input type="email" class="form-control" id="registroMail" name="registroMail" placeholder="Correo electrónico">
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" id="registroPassword" name="registroPassword" placeholder="Contraseña" [(ngModel)]="this.passCheck">
+        <div *ngIf="this.alertPassword" class="alert alert-danger animate__animated animate__flash">{{alertMsg}}</div>
+      </div>
+      <button (click)="registroExistoso()" type="submit" class="btn btn-success" id="registroSubmit" name="registroSubmit"><strong>CREAR UNA CUENTA</strong></button>
+      <div class="dropdown-divider mt-3"></div>
+      <div class="text-center">
+        <svg (click)="iniciarSesion()" xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-arrow-left back" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+      </div>
+    </div>
+    <!-- MOSTRAR REGISTRO EXITOSO -->
+    <div *ngIf="this.mostrarRegistroExitoso">
+      <div class="mb-3 text-center">
+        <p><strong>¡Bienvenid@ a ElikaWaste!</strong></p>
+      </div>
+      <div class="mb-3">
+        <p class="fs-6 text-center">Revisa tu correo electrónico, te hemos enviado un email de confirmación. Tienes 48 horas para confirmar tu cuenta.</p>
+      </div>
+      <a (click)="closeLoginWindow()" [routerLink]="['/perfil']" class="btn btn-success" id="comenzar" name="comenzar"><strong>Ir a mi perfil</strong></a>
+    </div>
+    <!-- MOSTRAR FORMULARIO DE RECUPERACIÓN DE CONTRASEÑA -->
+    <div *ngIf="this.mostrarRecuperacionPassword">
+      <svg (click)="closeLoginWindow()" xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-x-lg close" viewBox="0 0 16 16">
+        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+      </svg>
+      <div class="mb-3 text-center">
+        <p><strong>Recupera tu contraseña</strong></p>
+      </div>
+      <div class="mb-3">
+        <input type="mail" class="form-control" id="recuperarMail" name="recuperarMail" placeholder="Correo electronico" [(ngModel)]="this.recuperarMail">
+        <div *ngIf="this.alertMail" class="alert alert-danger animate__animated animate__flash">{{alertMsg}}</div>
+      </div>
+      <button (click)="validarRecuperacionPass()" type="submit" class="btn btn-success mb-3" id="recuperarPassword" name="recuperarPassword"><strong>RECUPERAR CONTRASEÑA</strong></button>
+      <div class="text-center">
+        <svg (click)="iniciarSesion()" xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-arrow-left back" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+      </div>
+    </div>
+    <!-- MOSTRAR RECUPERACIÓN EXITOSA -->
+    <div *ngIf="this.mostrarRecuperacionExitosa">
+      <div class="mb-3">
+        <p class="fs-6 text-center">Revisa tu correo electrónico, te hemos enviado un email de recuperación.</p>
+      </div>
+      <a (click)="closeLoginWindow()" class="btn btn-success" id="deAcuerdo" name="deAcuerdo"><strong>De acuerdo</strong></a>
+    </div>
+  </form>
+</div>

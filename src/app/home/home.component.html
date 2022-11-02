@@ -1,0 +1,43 @@
+<div class="home-header">
+  <img src="../../assets/img/section_bg.jpg" alt="">
+  <div class="home-header-title">
+    <h1>EMPIEZA A DONAR TU COMIDA</h1>
+    <div>
+      <button *ngIf="!this.loginStatus$" (click)="mostrar()" type="submit" class="btn btn-light" id="loginSubmit" name="loginSubmit"><strong>HACER UNA DONACIÓN</strong></button>
+      <button *ngIf="this.loginStatus$" [routerLink]="['/donar']" type="submit" class="btn btn-light" id="loginSubmit" name="loginSubmit"><strong>HACER UNA DONACIÓN</strong></button>
+      <button [routerLink]="['/buscar']" type="submit" class="btn btn-light" id="loginSubmit" name="loginSubmit"><strong>BUSCAR DONACIONES</strong></button>
+    </div>
+  </div>
+</div>
+<div class="d-flex flex-column align-items-center text-center home-section">
+  <div>
+    <h1>¿POR QUÉ ELIKAWASTE?</h1>
+    <p>En ElikaWaste queremos asegurar que toda la comida se come, no se tira. Cada día, comida cocinada en perfecto estado acaba desperdiciada solo porque no hemos sabido o podido aprovecharla. En ElikaWaste damos la oportunidad de donar toda esta comida.</p>
+  </div>
+  <div class="d-flex justify-content-around flex-wrap align-items-stretch home-section-triple">
+    <div>
+      <img src="../../assets/img/pera.png" width="150px" alt="">
+      <h2>MÁS DE 1/3 DE LA COMIDA SE DESPERDICIA</h2>
+      <p>QUEREMOS CAMBIAR ESTO</p>
+      <button *ngIf="!this.loginStatus$" (click)="mostrar()" class="btn btn-outline-success">INICIAR SESIÓN</button>
+      <button *ngIf="this.loginStatus$" [routerLink]="['/perfil']" class="btn btn-outline-success">IR A MI PERFIL</button>
+    </div>
+    <div>
+      <img src="../../assets/img/kiwi.png" width="150px" alt="">
+      <h2>¿TIENES COMIDA DE SOBRA AL ACABAR EL DÍA?</h2>
+      <p>PONLE SOLUCIÓN</p>
+      <button *ngIf="!this.loginStatus$" (click)="mostrar()" class="btn btn-outline-success">QUIERO DONAR</button>
+      <button *ngIf="this.loginStatus$" [routerLink]="['/donar']" class="btn btn-outline-success">QUIERO DONAR</button>
+    </div>
+    <div>
+      <img src="../../assets/img/aguacate.png" width="150px" alt="">
+      <h2>MÁS DE 1.500 DONACIONES DIARIAS</h2>
+      <p>HAZTE CON LA TUYA</p>
+      <button [routerLink]="['/buscar']" class="btn btn-outline-success">BUSCAR DONACIONES</button>
+    </div>
+  </div>
+</div>
+<footer>
+  <app-footer></app-footer>
+  <app-navsm></app-navsm>
+</footer>

@@ -1,0 +1,460 @@
+// VARIABLES
+$borderRadiusS: 10px;
+$borderRadiusM: 14px;
+$logoWidth: 50px;
+$sectionPaddingTop: $logoWidth + 15;
+
+//VARIABLES: COLORES
+$lightgrey: rgb(235, 235, 235);
+$grey: rgb(177, 177, 177);
+$darkgrey: rgb(87, 87, 87);
+$black: rgb(33, 37, 41);
+$white: rgb(255, 255, 255);
+$green: rgb(21, 115, 71);
+
+// IMPORTS
+// Animaciones css
+@import '..\node_modules\animate.css\animate.css';
+
+// MIXINS
+@mixin pmw {
+  padding: 5% 0%;
+  margin: 0 auto;
+  width: 70%;
+}
+
+@mixin formControl {
+  .form-control {
+    background-color: $lightgrey;
+    border: 1px solid $lightgrey;
+    border-radius: $borderRadiusS;
+    font-size: 14px;
+    color: $darkgrey;
+
+    &:focus {
+      color: $darkgrey;
+      background-color: $lightgrey;
+      border-color: $lightgrey;
+      box-shadow: 0 0 0 0.1rem $grey;
+    }
+  }
+}
+
+// SCSS
+.btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
+  font-size: 14px;
+  padding: 5px 15px;
+  border-radius: $borderRadiusM;
+}
+
+.veil {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9998;
+}
+
+.login {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -70%);
+  background-color: $white;
+  border-radius: $borderRadiusM;
+  width: 90%;
+  max-width: 350px;
+  z-index: 9999;
+
+  .close {
+    position: absolute;
+    right: 20px;
+    top: 26px;
+    color: $grey;
+
+    &:hover {
+      color: $black;
+      cursor: pointer;
+    }
+  }
+
+  .back {
+    position: absolute;
+    left: 20px;
+    top: 26px;
+    color: $grey;
+
+    &:hover {
+      color: $black;
+      cursor: pointer;
+    }
+  }
+
+  .btn-success {
+    width: 100%;
+    border-radius: $borderRadiusS;
+    color: $white;
+  }
+
+  .dropdown-item {
+    cursor: pointer;
+    text-align: center;
+
+    &:hover, &:focus {
+      color: $black;
+      background-color: $white;
+      font-weight: 500;
+    }
+  }
+
+  .alert-danger {
+    margin-top: 4px;
+    padding: 0.3rem 0.75rem;
+    border-radius: $borderRadiusS;
+    font-size: 12px;
+      --bs-alert-border: 0px;
+  }
+
+  .bi-arrow-left {
+    cursor: pointer;
+  }
+
+  @include formControl;
+
+}
+
+// HEADER
+header {
+  .logo img, .logo-img img {
+    height: $logoWidth;
+  }
+
+  .logo-img:hover {
+    animation: swing;
+    animation-duration: 1s;
+  }
+
+  .btn-secondary {
+    border-radius: $borderRadiusS;
+    background-color: none;
+      --bs-btn-bg: none;
+      --bs-btn-border-color: none;
+  }
+}
+
+// SECTION
+section {
+  // SECTION HOME
+  .home-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 700px;
+    overflow: hidden;
+
+      img {
+        width: 100%;
+        opacity: 0.75;
+      }
+
+    .home-header-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: $white;
+      text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      padding: 0 5%;
+      position: absolute;
+
+      h1 {
+        font-size: 7vw;
+        font-weight: bolder;
+        width: 80%;
+      }
+
+      div {
+        display: flex;
+        justify-content: center;
+        column-gap: 15px;
+        row-gap: 5px;
+        flex-wrap: wrap;
+      }
+
+      .btn-light {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+          --bs-btn-border-color: none;
+
+        &:hover{
+          background-color: $black;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .home-section {
+    @include pmw;
+
+    h1 {
+      font-size: 36px;
+    }
+
+    .home-section-triple {
+      width: 100%;
+
+      div {
+        width: 20%;
+        min-width: 250px;
+        min-height: 300px;
+
+        h2 {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  // ASIDE
+  .aside-section {
+    background-color: $lightgrey !important;
+
+    .aside-height {
+      padding-top: $sectionPaddingTop;
+      min-height: 100vh;
+
+      ul {
+        position: fixed;
+        padding-top: 25px;
+        width: 21.8%;
+        height: 90%;
+
+        .nav-item {
+          display: flex;
+          justify-content: space-between;
+          border-radius: $borderRadiusS;
+          transition: 0.5s;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $lightgrey;
+            border-radius: $borderRadiusS;
+            transition: 0.5s;
+          }
+
+          .nav-link {
+            text-align: center;
+            color: $black;
+            font-size: 16px;
+          }
+
+          svg {
+            margin-right: 15px;
+          }
+        }
+
+        .activo {
+          background-color: $lightgrey !important;
+        }
+      }
+    }
+  }
+  // MAIN
+  .main-section {
+    width: 70%;
+    min-width: 530px;
+    background-color: $lightgrey !important;
+
+    .main-section-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 10px;
+      column-gap: 10px;
+    }
+
+    .bg-light {
+      border-radius: $borderRadiusM;
+
+      img {
+        margin-top: 5px;
+        border-radius: $borderRadiusS;
+      }
+
+      .perfil-phone {
+        font-size: 12px;
+        color: $grey;
+      }
+    }
+
+    .alert {
+      border-radius: $borderRadiusM
+    }
+
+    .card {
+      border-radius: $borderRadiusM;
+      font-size: 14px;
+
+      .card-header {
+        display: flex;
+        height: 45px;
+        position: relative;
+        background-color: $lightgrey;
+        border-top-left-radius: $borderRadiusM;
+        border-top-right-radius: $borderRadiusM;
+        font-size: 12px;
+
+        .cardimg {
+          position: relative;
+          width: 65px;
+          height: 65px;
+          overflow: hidden;
+          border-radius: 50%;
+          border: 3px solid $white;
+          top: 22px;
+          left: 0;
+
+          img {
+            width: auto;
+            height: 100%;
+          }
+        }
+      }
+
+      .card-body {
+        padding-bottom: 0;
+      }
+
+      .card-footer {
+        border-bottom-left-radius: $borderRadiusM;
+        border-bottom-right-radius: $borderRadiusM;
+        height: 46px;
+        color: $white;
+        font-size: 16px;
+
+        small {
+          vertical-align: middle;
+        }
+      }
+    }
+
+    @include formControl;
+  }
+}
+
+// FOOTER
+footer {
+  .align-footer {
+    font-weight: bold;
+    color: $white;
+    background-color: $black;
+    row-gap: 20px;
+    @include pmw;
+
+    a {
+      text-decoration: none;
+      color: $white;
+    }
+    div {
+      width: 20%;
+      min-width: 250px;
+    }
+
+    .no-bold {
+      font-weight: 100;
+      margin: 0;
+    }
+
+    .socials {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 15px;
+      color: $grey;
+
+      svg {
+        transition: 0.5s;
+
+        &:hover {
+          color: $white;
+          transition: 0.5s;
+          cursor: pointer;
+        }
+      }
+
+      div {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+  }
+  .nav-bottom {
+    display: flex !important;
+    justify-content: space-evenly;
+    padding: 0 5%;
+
+    .bi {
+      background-color: $lightgrey;
+      color: $darkgrey;
+      padding: 10px;
+      border-radius: $borderRadiusS;
+      cursor: pointer;
+
+      &:hover {
+        padding: 8px;
+        color: $black;
+      }
+
+      &:focus {
+        outline: none !important;
+      }
+    }
+  }
+}
+
+// MEDIA QUERYS
+@media (max-width: 968px) {
+  section {
+    .home-header {
+      .home-header-title {
+        animation: fadeOut;
+        animation-duration: 1s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    .logo-img, .logo-img img {
+      height: 0px;
+      width: 0px;
+    }
+    .col {
+      flex: 0 1 0%;
+    }
+    .row {
+      justify-content: center;
+    }
+  }
+
+  section {
+    .home-header {
+      max-height: 250px;
+      transition: 2s;
+
+      .home-header-title {
+        visibility: hidden;
+      }
+    }
+    .home-section, .aside-section {
+      padding-bottom: 75px;
+    }
+    .main-section {
+      min-width: 100% !important;
+    }
+  }
+}

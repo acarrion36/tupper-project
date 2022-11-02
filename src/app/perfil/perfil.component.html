@@ -1,0 +1,82 @@
+<div class="container-fluid aside-section">
+  <div class="row flex-nowrap aside-height">
+    <app-aside class="col-md-3 bg-light d-none d-md-block d-flex align-items-end bg-image shadow-sm"></app-aside>
+    <div class="col-md-9 p-5 d-flex justify-content-center">
+      <div class="main-section">
+        <h5>Tu perfil</h5>
+        <p>Aquí podrás ver y editar los datos de tu perfil.</p>
+        <div class="main-section-buttons">
+          <button class="btn btn-dark shadow-sm" type="submit">Perfil</button>
+          <button [routerLink]="['/perfil/opiniones']" class="btn btn-light shadow-sm" type="submit">Opiniones</button>
+          <app-logout *ngIf="this.loginStatus$" class="ms-auto"></app-logout>
+        </div>
+        <div *ngIf="!this.personalInfoStatus$" class="mt-4 alert alert-danger shadow-sm" role="alert">
+          <p>Bienvenid@, Nombre Apellidos.</p>
+          <p>Vemos que es tu primera vez por aquí. Antes de poder continuar necesitamos que completes tu información personal. Los campos con asterisco (*) son obligatorios. Una vez completada la información necesaria, podras realizar tus propias donaciones y/o añadir las donaciones de otros a tus pedidos.</p>
+          <p class="mb-0">Si tienes alguna duda no dudes en ponerte en contacto con nosotros.</p>
+        </div>
+        <!--INICIO TARJETA INFORMACIÓN PERSONAL-->
+        <div class="mt-4 p-4 bg-light border shadow-sm">
+            <form class="row g-3" #formCreate = "ngForm">
+              <div class="col-md-12 d-flex justify-content-between align-items-center">
+                <p class="col-form-label"><strong>Información personal</strong></p>
+                <button class="btn btn-dark d-flex justify-content-between align-items-center gap-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip d-block d-md-none" data-bs-title="Guardar" id="btnGuardarInfPer" type="submit">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-save d-block d-md-none" viewBox="0 0 16 16">
+                    <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+                  </svg>
+                  <div (click)="saveInfPer()" class="d-none d-md-block">Guardar</div>
+                </button>
+              </div>
+              <div class="col-md-5">
+                <label for="perfilNombre" class="form-label">Nombre*</label>
+                <input type="text" class="form-control" name="perfilNombre" [(ngModel)]="this.perfilNombre">
+              </div>
+              <div class="col-md-7">
+                <label for="perfilApellidos" class="form-label">Apellidos*</label>
+                <input type="text" class="form-control" name="perfilApellidos" [(ngModel)]="this.perfilApellidos">
+              </div>
+              <div class="col-md-8">
+                <label for="perfilDireccion" class="form-label">Dirección postal*</label>
+                <input type="text" class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Tu dirección postal solo será visible por aquellas personas implicadas en el proceso de donación." name="perfilDireccion" [(ngModel)]="this.perfilDireccion">
+              </div>
+              <div class="col-md-4">
+                <label for="perfilTelefono" class="form-label">Teléfono*</label>
+                <input type="text" class="form-control" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="Tu teléfono solo será visible por aquellas personas implicadas en el proceso de donación." name="perfilTelefono" [(ngModel)]="this.perfilTelefono">
+              </div>
+            </form>
+        </div>
+        <!--FIN TARJETA INFORMACIÓN PERSONAL-->
+        <!--INICIO TARJETA CONFIGURAR PERFIL-->
+        <div class="mt-4 p-4 bg-light border shadow-sm">
+            <form class="row g-3" #formCreate = "ngForm">
+              <div class="col-md-12 d-flex justify-content-between align-items-center">
+                <p class="col-form-label"><strong>Configurar perfil</strong></p>
+                <button class="btn btn-dark d-flex justify-content-between align-items-center gap-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip d-block d-md-none" data-bs-title="Guardar" id="btnGuardarConfPer" type="submit">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-save d-block d-md-none" viewBox="0 0 16 16">
+                    <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+                  </svg>
+                  <div (click)="saveConfPer()"  class="d-none d-md-block">Guardar</div>
+                </button>
+              </div>
+              <div class="col-md-4">
+                <label for="perfilNickname" class="form-label">Nombre en clave</label>
+                <input type="text" class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Configura un nombre en clave si no quieres que nadie sepa cuales son tu nombre y apellidos reales." name="perfilNickname" [(ngModel)]="this.perfilNickname">
+              </div>
+              <div class="col-md-8">
+                <label for="perfilMail" class="form-label">Correo electrónico*</label>
+                <input type="text" class="form-control" name="perfilMail" [(ngModel)]="this.perfilMail">
+              </div>
+              <div class="col-md-7">
+                <label for="perfilFoto" class="form-label">Foto de perfil</label>
+                <input class="form-control" type="file" name="perfilFoto" [(ngModel)]="this.perfilFoto">
+              </div>
+            </form>
+        </div>
+        <!--FIN TARJETA CONFIGURAR PERFIL-->
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <app-navsm></app-navsm>
+</footer>

@@ -1,0 +1,77 @@
+<div class="container-fluid aside-section">
+  <div class="row flex-nowrap aside-height">
+    <app-aside class="col-md-3 bg-light d-none d-md-block d-flex align-items-end bg-image shadow-sm"></app-aside>
+    <div class="col-md-9 p-5 d-flex justify-content-center">
+      <div class="main-section">
+        <h5>Buscar</h5>
+        <p>Aquí podrás ver las donaciones publicadas y añadir las que desees a tu pedido.</p>
+        <div class="main-section-buttons">
+          <button class="btn btn-dark shadow-sm">Todas</button>
+          <button [routerLink]="['/opiniones']" class="btn btn-light shadow-sm">Cerca de mi</button>
+          <div class="d-flex w-25 gap-3 align-items-center justify-content-center">
+            <label for="buscarRadio" class="form-label mb-0">Radio</label>
+            <input type="range" class="form-range" min="0" max="5" step="1" id="buscarRadio">
+          </div>
+        </div>
+        <div class="d-inline-flex flex-column justify-content-center align-items-center ps-4 mt-4">
+          <p class="fs-1 m-0"><strong>*</strong></p>
+          <p><strong>Donaciones</strong></p>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
+          <!--INICIO TARJETA DONACION EN CURSO-->
+          <div class="col">
+            <div class="card h-100 text-bg-light mb-3 shadow-sm">
+              <div class="card-header border-0 justify-content-between align-items-center">
+                <div class="cardimg">
+                  <img src="../../assets/img/cocinar.jpg" alt="">
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title mt-4">Nombre del plato con un poco de sal</h5>
+                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ratione fugiat aliquam voluptates dolor facilis?</p>
+                <h6 class="card-title">Datos de entrega</h6>
+                <p class="card-text mb-0">Dirección de entrega</p>
+                <p class="card-text">Día y hora de entrega</p>
+                <h6 class="card-title">Notas</h6>
+                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, minima.</p>
+                <h6 class="card-title">Raciones</h6>
+                <div class="input-group-lg">
+                  <input (click)="isChecked('inlineRadio1')" class="form-check-input me-2" type="checkbox" name="inlineRadioOptions1" id="inlineRadio1" value="option1">
+                  <input (click)="isChecked('inlineRadio2')" class="form-check-input me-2" type="checkbox" name="inlineRadioOptions2" id="inlineRadio2" value="option2">
+                  <input (click)="isChecked('inlineRadio3')" class="form-check-input me-2" type="checkbox" name="inlineRadioOptions3" id="inlineRadio3" value="option3">
+                </div>
+              </div>
+              <div class="card-footer bg-warning border-0 d-flex justify-content-center align-items-center" id="donationCard1">
+
+                <button *ngIf="this.count>0" class="btn mt-3 mb-1 p-0 border-0 position-relative" type="submit">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" fill="black" class="bi bi-cart3" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                  </svg>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                    {{this.count}}
+                    <span class="visually-hidden">0</span>
+                  </span>
+                </button>
+
+                <button *ngIf="this.count==0" class="btn mt-3 mb-1 p-0 border-0 position-relative disabled" type="submit">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" fill="black" class="bi bi-cart3" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                  </svg>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                    {{this.count}}
+                    <span class="visually-hidden">0</span>
+                  </span>
+                </button>
+
+              </div>
+            </div>
+          </div>
+          <!--FIN TARJETA DONACION EN CURSO-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <app-navsm></app-navsm>
+</footer>
