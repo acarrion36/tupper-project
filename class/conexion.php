@@ -13,7 +13,7 @@ class BaseDatos{
     {
         //------HOSTING ONLINE-----------
         $this->user = "u116520402_elikawaste";
-        $this->host = "elika-waste.learnhowto.space";
+        $this->host = "localhost";
         $this->pass = "12345678Ac";
     }
     public function conectar($selec){
