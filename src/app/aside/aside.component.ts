@@ -11,14 +11,16 @@ export class AsideComponent implements OnInit {
 
   public activo:string=""
   public loginStatus$:any
-  public personalInfoStatus$:any
+  public alertInfo$:any
 
   constructor(private _loginService:LoginService, private _loc: Location) {}
 
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
-    this._loginService.personalInfoStatus$.subscribe((status:boolean) => this.personalInfoStatus$ = status)
+    this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
 
+    console.log(this.alertInfo$)
+    
     switch (this._loc.path()) {
       case "/perfil":
         this.activo = "perfil"

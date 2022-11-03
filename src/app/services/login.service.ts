@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class LoginService {
   private loginWStatus$=new BehaviorSubject<boolean>(false)
   private logoutWStatus$=new BehaviorSubject<boolean>(false)
   private loginUStatus$=new BehaviorSubject<boolean>(false)
-  private personalIStatus$=new BehaviorSubject<boolean>(false)
+  private alertIStatus$=new BehaviorSubject<boolean>(true)
 
   constructor(public _http : HttpClient) { }
 
@@ -30,9 +30,9 @@ export class LoginService {
     return this.loginUStatus$.asObservable()
   }
 
-  // Controla si el usuario ha rellenado todos los datos obligatorios en el perfil
-  get personalInfoStatus$():Observable<boolean> {
-    return this.personalIStatus$.asObservable()
+  // Controla si el usuario ha rellenado la informacion personal obligatoria
+  get alertInfoStatus$():Observable<boolean> {
+    return this.alertIStatus$.asObservable()
   }
 
   setloginWindowStatus(status:boolean):void {
@@ -47,8 +47,17 @@ export class LoginService {
     this.loginUStatus$.next(status)
   }
 
-  setpersonalInfoStatus(status:boolean):void {
-    this.personalIStatus$.next(status)
+  setalertInfoStatus(status:boolean):void {
+    this.alertIStatus$.next(status)
+  }
+
+  readUsers():Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Basic ' + btoa('elika_waste:elika123')
+      })
+    };
+    return this._http.get("https://elika-waste.learnhowto.space/api/api_usuario.php",httpOptions)
   }
 
 }

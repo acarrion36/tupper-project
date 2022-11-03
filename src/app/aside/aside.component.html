@@ -16,7 +16,7 @@
       </li>
     </ng-template>
   </div>
-  <div *ngIf="this.loginStatus$ && this.personalInfoStatus$">
+  <div *ngIf="this.loginStatus$ && !this.alertInfo$">
     <li *ngIf="this.activo=='donar'; else donarNoActivo" [routerLink]="['/donar']" class="nav-item activo">
       <a class="nav-link">Donar</a>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -48,7 +48,7 @@
       </li>
     </ng-template>
   </div>
-  <div *ngIf="this.loginStatus$ && this.personalInfoStatus$">
+  <div *ngIf="this.loginStatus$ && !this.alertInfo$">
     <li *ngIf="this.activo=='pedidos'; else pedidosNoActivo" [routerLink]="['/pedidos']" class="nav-item activo">
       <a class="nav-link">Pedidos</a>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">

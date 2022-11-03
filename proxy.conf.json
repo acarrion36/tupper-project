@@ -1,6 +1,0 @@
-{
-  "/api/*": {
-    "target": "https://elika-waste.learnhowto.space/",
-    "secure": false
-  }
-}
