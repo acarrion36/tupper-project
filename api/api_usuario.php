@@ -1,8 +1,15 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
-header("Content-Type: application/json; charset=utf-8");
+    $res = $app->response;
+
+    $res->headers->set('Content-Type', 'application/json');
+    $res->headers->set('Access-Control-Allow-Origin', '*');
+    $res->headers->set('Access-Control-Allow-Credentials', 'true');
+    $res->headers->set('Access-Control-Max-Age', '60');
+    $res->headers->set('Access-Control-Allow-Headers', 'AccountKey,x-requested-with, Content-Type, origin, authorization, accept, client-security-token, host, date, cookie, cookie2');
+    $res->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+
+    if ( ! $req->isOptions()) {
+        header("Content-Type: application/json; charset=utf-8");
 include_once("../class/class_usuario.php"); //incluimos clase producto
 include_once("../servicio.php"); 
 login();
@@ -39,5 +46,9 @@ switch($_SERVER['REQUEST_METHOD']){
         }
         break;
 
+    }
+    } else {
+        //stops the app, and sends the response
+        return $res;
     }
 ?>

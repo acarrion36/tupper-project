@@ -19,9 +19,6 @@ function login(){
     }
     if($_SERVER['PHP_AUTH_USER'] == 'elika_waste' && $_SERVER['PHP_AUTH_PW'] == 'elika123'){
         header('Content-Type: application/soap+json; charset=utf-8');
-        header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
         return true;
     }else{
         header('WWW-Authenticate: Basic reaml="MiSoap"');
