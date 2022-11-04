@@ -12,7 +12,7 @@ $servicio->configureWSDL("ElikaBD",$nombreespacio); //configurar servicio
 $servicio->schemaTargetNamespace=$nombreespacio; //almacen el espacionombre de destino
 
 function login(){
-
+    header ('Access-Control-Allow-Origin: *');
     if (!isset($_SERVER['PHP_AUTH_USER'])){
         header ('Access-Control-Allow-Origin: *');
         header('WWW-Authenticate: Basic reaml="MiSoap"');
