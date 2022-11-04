@@ -1,4 +1,5 @@
 <?php
+header("HTTP/1.0 200 OK");
             // send some CORS headers so the API can be called from anywhere
             header("Access-Control-Allow-Origin: *");
             header("Content-Type: application/json; charset=UTF-8");
