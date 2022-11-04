@@ -2,6 +2,8 @@
 include_once 'libr/nusoap.php'; //incluyendo al proyecto a la libreria nusoap.
 include_once 'class/conexion.php';//crear objeto de servicio
 
+header ('Access-Control-Allow-Origin: *');
+
 login();
 
 $servicio= new soap_server();
