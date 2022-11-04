@@ -1,5 +1,5 @@
 <?php
-header ('Access-Control-Allow-Origin: *');
+header ('Access-Control-Allow-Origin: http://localhost:4200');
 header("Content-Type: application/json; charset=utf-8");
 
 include_once("../class/class_oferta.php"); //incluimos clase producto
