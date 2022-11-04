@@ -4,7 +4,7 @@ include_once 'class/conexion.php';//crear objeto de servicio
 
 header ('Access-Control-Allow-Origin: *');
 
-//login();
+login();
 
 $servicio= new soap_server();
 $nombreespacio="urn:miserviciowsdl";
