@@ -1,5 +1,5 @@
 <?php
-header("HTTP/1.0 200 OK");
+
 include_once 'libr/nusoap.php'; //incluyendo al proyecto a la libreria nusoap.
 include_once 'class/conexion.php';//crear objeto de servicio
 
