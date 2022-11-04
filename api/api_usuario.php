@@ -4,7 +4,7 @@ header("Content-Type: application/json; charset=utf-8");
 
 include_once("../class/class_usuario.php"); //incluimos clase producto
 include_once("../servicio.php"); 
-login();
+//login();
 
 $_POST=json_decode(file_get_contents('php://input'),true); //decodificar el json
 
