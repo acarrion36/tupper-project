@@ -19,8 +19,6 @@ export class AsideComponent implements OnInit {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
     this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
 
-    console.log(this.alertInfo$)
-    
     switch (this._loc.path()) {
       case "/perfil":
         this.activo = "perfil"

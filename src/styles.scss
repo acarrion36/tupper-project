@@ -147,7 +147,7 @@ header {
 
 // SECTION
 section {
-  // SECTION HOME
+  // HOME
   .home-header {
     display: flex;
     flex-direction: column;
@@ -217,11 +217,11 @@ section {
       }
     }
   }
-  // ASIDE
-  .aside-section {
+  // MAIN
+  .main-section {
     background-color: $lightgrey !important;
 
-    .aside-height {
+    .main-height {
       padding-top: $sectionPaddingTop;
       min-height: 100vh;
 
@@ -261,13 +261,13 @@ section {
       }
     }
   }
-  // MAIN
-  .main-section {
+  // SECTION
+  .section-section {
     width: 70%;
     min-width: 530px;
     background-color: $lightgrey !important;
 
-    .main-section-buttons {
+    .section-section-buttons {
       display: flex;
       flex-wrap: wrap;
       row-gap: 10px;
@@ -414,18 +414,6 @@ footer {
 }
 
 // MEDIA QUERYS
-@media (max-width: 968px) {
-  section {
-    .home-header {
-      .home-header-title {
-        animation: fadeOut;
-        animation-duration: 1s;
-        animation-iteration-count: 1;
-        animation-fill-mode: forwards;
-      }
-    }
-  }
-}
 
 @media (max-width: 768px) {
   header {
@@ -444,17 +432,17 @@ footer {
   section {
     .home-header {
       max-height: 250px;
-      transition: 2s;
 
       .home-header-title {
         visibility: hidden;
       }
     }
-    .home-section, .aside-section {
+    .home-section, .main-section {
       padding-bottom: 75px;
     }
-    .main-section {
+    .section-section {
       min-width: 100% !important;
     }
   }
+
 }

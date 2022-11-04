@@ -1,11 +1,11 @@
-<div class="container-fluid aside-section">
-  <div class="row flex-nowrap aside-height">
+<div class="container-fluid main-section">
+  <div class="row flex-nowrap main-height">
     <app-aside class="col-md-3 bg-light d-none d-md-block d-flex align-items-end bg-image shadow-sm"></app-aside>
     <div class="col-md-9 p-5 d-flex justify-content-center">
-      <div class="main-section">
+      <div class="section-section">
         <h5>Tu perfil</h5>
         <p>Aquí podrás ver y editar los datos de tu perfil.</p>
-        <div class="main-section-buttons">
+        <div class="section-section-buttons">
           <button class="btn btn-dark shadow-sm" type="submit">Perfil</button>
           <button [routerLink]="['/perfil/opiniones']" class="btn btn-light shadow-sm" type="submit">Opiniones</button>
           <app-logout *ngIf="this.loginStatus$" class="ms-auto"></app-logout>

@@ -54,6 +54,7 @@ export class LoginService {
   readUsers():Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({
+        'Content-Type': 'application/json',
         'Authorization': 'Basic ' + btoa('elika_waste:elika123')
       })
     };
