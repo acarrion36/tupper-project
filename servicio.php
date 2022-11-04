@@ -26,8 +26,6 @@ function login(){
         exit;
     }
     if($_SERVER['PHP_AUTH_USER'] == 'elika_waste' && $_SERVER['PHP_AUTH_PW'] == 'elika123'){
-        header ('Access-Control-Allow-Origin: *');
-        header("Content-Type: application/json; charset=utf-8");;
         return true;
     }else{
         header ('Access-Control-Allow-Origin: *');
