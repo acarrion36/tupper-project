@@ -1,6 +1,4 @@
 <?php
-header ('Access-Control-Allow-Origin: *');
-header("Content-Type: application/json; charset=utf-8");
 
 include_once("../class/class_usuario.php"); //incluimos clase producto
 include_once("../servicio.php"); 
