@@ -55,10 +55,10 @@ export class LoginService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa('elika_waste:elika123')
+        'Authorization': 'Basic ' + btoa('elika_waste:Elika123!')
       })
     };
-    return this._http.get("https://elika-waste.learnhowto.space/api/api_usuario.php",httpOptions)
+    return this._http.get("http://elika-waste.learnhowto.space/api/api_usuario.php",httpOptions)
   }
 
 }

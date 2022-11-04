@@ -1,11 +1,11 @@
-<div class="container-fluid aside-section">
-  <div class="row flex-nowrap aside-height">
+<div class="container-fluid main-section">
+  <div class="row flex-nowrap main-height">
     <app-aside class="col-md-3 bg-light d-none d-md-block d-flex align-items-end bg-image shadow-sm"></app-aside>
     <div class="col-md-9 p-5 d-flex justify-content-center">
-      <div class="main-section">
+      <div class="section-section">
         <h5>Donaciones</h5>
         <p>Cuéntanos que quieres donar, así como donde y cuando vas a entregarlo.</p>
-        <div class="main-section-buttons">
+        <div class="section-section-buttons">
           <button [routerLink]="['/donar']" class="btn btn-light shadow-sm">Nueva</button>
           <button class="btn btn-dark shadow-sm">En curso</button>
           <button [routerLink]="['/donar/finalizadas']" class="btn btn-light shadow-sm">Finalizadas</button>
@@ -14,7 +14,7 @@
           <p class="fs-1 m-0"><strong>*</strong></p>
           <p><strong>En curso</strong></p>
         </div>
-        <div class="main-section-buttons mt-3 justify-content-end">
+        <div class="section-section-buttons mt-3 justify-content-end">
           <button [routerLink]="['/donar']" class="btn btn-dark shadow-sm">Todas</button>
           <button [routerLink]="['/donar']" class="btn btn-light shadow-sm">Por publicar</button>
           <button [routerLink]="['/donar']" class="btn btn-light shadow-sm">Por entregar</button>

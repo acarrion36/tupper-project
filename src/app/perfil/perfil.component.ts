@@ -31,7 +31,7 @@ export class PerfilComponent implements OnInit {
 
   // OnInit
   ngOnInit():void {
-    //this.read()
+    this.read()
     // Suscripción a loginService | Escuchamos el estado del login y de la información personal
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
     this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
