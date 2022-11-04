@@ -19,7 +19,6 @@ function login(){
     }
 
     if($_SERVER['PHP_AUTH_USER'] == 'elika_waste' && $_SERVER['PHP_AUTH_PW'] == 'elika123'){
-        header('WWW-Authenticate: Basic reaml="MiSoap"');
             // send some CORS headers so the API can be called from anywhere
         return true;
     }else{
