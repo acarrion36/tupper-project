@@ -12,7 +12,7 @@ $servicio->configureWSDL("ElikaBD",$nombreespacio); //configurar servicio
 $servicio->schemaTargetNamespace=$nombreespacio; //almacen el espacionombre de destino
 
 function login(){
-    
+    header("HTTP/1.0 200 OK");
 
   
     if (!isset($_SERVER['PHP_AUTH_USER'])){
