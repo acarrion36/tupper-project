@@ -4,14 +4,14 @@ include_once 'class/conexion.php';//crear objeto de servicio
 
 header ('Access-Control-Allow-Origin: *');
 
-login();
+//login();
 
 $servicio= new soap_server();
 $nombreespacio="urn:miserviciowsdl";
 $servicio->configureWSDL("ElikaBD",$nombreespacio); //configurar servicio
 $servicio->schemaTargetNamespace=$nombreespacio; //almacen el espacionombre de destino
 
-function login(){
+//function login(){
   
     if (!isset($_SERVER['PHP_AUTH_USER'])){
         header ('Access-Control-Allow-Origin: *');
