@@ -15,7 +15,6 @@ function login(){
 
   
     if (!isset($_SERVER['PHP_AUTH_USER'])){
-        header ('Access-Control-Allow-Origin: *');
         header('WWW-Authenticate: Basic reaml="MiSoap"');
         header('HTTP/1.0 401 Unautorized');
         exit;
@@ -29,7 +28,6 @@ function login(){
         header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
         return true;
     }else{
-        header ('Access-Control-Allow-Origin: *');
         header('WWW-Authenticate: Basic reaml="MiSoap"');
         header('HTTP/1.0 401 Unautorized');
         exit;
