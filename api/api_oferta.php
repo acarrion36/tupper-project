@@ -1,5 +1,5 @@
 <?php
-
+header("HTTP/1.0 200 OK");
 include_once("../class/class_oferta.php"); //incluimos clase producto
 include_once("../servicio.php"); 
 login();

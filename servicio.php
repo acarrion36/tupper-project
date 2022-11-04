@@ -1,5 +1,4 @@
 <?php
-header("HTTP/1.0 200 OK");
 include_once 'libr/nusoap.php'; //incluyendo al proyecto a la libreria nusoap.
 include_once 'class/conexion.php';//crear objeto de servicio
 
@@ -12,8 +11,6 @@ $servicio->configureWSDL("ElikaBD",$nombreespacio); //configurar servicio
 $servicio->schemaTargetNamespace=$nombreespacio; //almacen el espacionombre de destino
 
 function login(){
-    header("HTTP/1.0 200 OK");
-
   
     if (!isset($_SERVER['PHP_AUTH_USER'])){
         header('WWW-Authenticate: Basic reaml="MiSoap"');
