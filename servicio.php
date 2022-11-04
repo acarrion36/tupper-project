@@ -14,7 +14,14 @@ function login(){
   
     if (!isset($_SERVER['PHP_AUTH_USER'])){
         header('WWW-Authenticate: Basic reaml="MiSoap"');
-        header("HTTP/1.0 200 OK");
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method == "OPTIONS") {
+            header('Access-Control-Allow-Origin: *');
+            header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
+            header("HTTP/1.1 200 OK");
+            die();
+        }
+        header('HTTP/1.0 401 Unautorized');
         exit;
     }
 
