@@ -11,7 +11,6 @@ login();
 
 $_POST=json_decode(file_get_contents('php://input'),true); //decodificar el json
 
-
 switch($_SERVER['REQUEST_METHOD']){
     case 'POST':
         if (isset($_POST['nombre'])&&isset($_POST['descripcion'])&&isset($_POST['id_usuario'])&&isset($_POST['raciones'])&&isset($_POST['h_recogida'])&&isset($_POST['f_recogida'])){
