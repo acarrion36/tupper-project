@@ -14,7 +14,11 @@ $_POST=json_decode(file_get_contents('php://input'),true); //decodificar el json
 
 switch($_SERVER['REQUEST_METHOD']){
     case 'POST':
-
+        if (isset($_POST['nombre'])&&isset($_POST['descripcion'])&&isset($_POST['id_usuario'])&&isset($_POST['raciones'])&&isset($_POST['h_recogida'])&&isset($_POST['f_recogida'])){
+            oferta::guardarMenu($_POST['nombre'],$_POST['descripcion'],$_POST['alergenos'],$_POST['notas'],$_POST['id_usuario'],$_POST['direccion'],$_POST['cp'],$_POST['anotacion'],$_POST['raciones'],$_POST['h_recogida'],$_POST['f_recogida']);
+        }else{
+            echo 'faltan datos basicos';
+        }
          break;
     case 'GET':
             //todos

@@ -3,6 +3,9 @@ include("conexion.php");
 $bd = new BaseDatos();
 //------HOSTING ONLINE-----------
 $conexion= $bd->conectar("u116520402_elikawaste");
+//------LOCAL HOST-----------
+//$conexion= $bd->conectar("elika_waste");
+
 class usuario{
 
     private $id_usuario;
@@ -34,7 +37,14 @@ class usuario{
         $sql = "INSERT INTO usuario (nombre,apellido1,apellido2,nombre_usuario,email,pass,direccion,cp) 
         VALUES ('$this->nombre','$this->apellido1','$this->apellido2','$this->nombre_usuario','$this->email','$this->pass','$this->direccion','$this->cp')";
         $bd->insertar($sql);
-        echo "usuario añadido correctamente";
+        $sql="SELECT * FROM usuario WHERE nombre_usuario = '$this->nombre_usuario'";
+        $resultado=$bd->seleccionar($sql);
+
+        while ($usu = mysqli_fetch_assoc($resultado)) {
+             $data[]=$usu;
+        }
+        $var= json_encode($data);
+        echo $var;
     }
 
     public static function obtenerUsuario($id){

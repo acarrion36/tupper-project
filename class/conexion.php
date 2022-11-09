@@ -11,10 +11,15 @@ class BaseDatos{
     
     public function __construct()
     {
-        //------HOSTING ONLINE-----------
+        /*------HOSTING ONLINE-----------*/
         $this->user = "u116520402_elikawaste";
         $this->host = "localhost";
         $this->pass = "12345678Ac";
+        
+        /*------LOCAL HOST-----------
+        $this->user = "root";
+        $this->host = "localhost";
+        $this->pass = "";*/
     }
     public function conectar($selec){
         //$this->conexion =(new mysqli("127.0.0.1", "root", "", "login"))  or die (mysql_error());

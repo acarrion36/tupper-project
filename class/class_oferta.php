@@ -3,6 +3,9 @@ include("conexion.php");
 $bd = new BaseDatos();
 //------HOSTING ONLINE-----------
 $conexion= $bd->conectar("u116520402_elikawaste");
+//------LOCAL HOST-----------
+//$conexion= $bd->conectar("elika_waste");
+
 class oferta{
 
     private $id_oferta;
@@ -32,7 +35,27 @@ class oferta{
 
     }
 
+    public static function guardarMenu($nombre,$descripcion,$alergenos,$notas,$id_usuario,$direccion,$cp,$anotacion,$raciones,$h_recogida,$f_recogida){
+        global $bd;
+        $sql = "INSERT INTO menu (nombre,descripcion,alergenos,notas) 
+        VALUES ('$nombre','$descripcion','$alergenos','$notas')";
+        $bd->insertar($sql);
+        $sql="SELECT id_menu FROM menu ORDER BY id_menu DESC LIMIT 1";
+        $resultado=$bd->seleccionar($sql);
+        $men = mysqli_fetch_assoc($resultado);
+        $im = $men['id_menu'];
+        $sql = "INSERT INTO oferta (id_usuario,id_menu,direccion,cp,anotacion,raciones,h_recogida,f_recogida,estado) 
+        VALUES ('$id_usuario','$im','$direccion','$cp','$anotacion','$raciones','$h_recogida','$f_recogida',1)";
+        $bd->insertar($sql);
+        $sql="SELECT * FROM oferta ORDER BY id_oferta DESC LIMIT 1";
+        $resultado=$bd->seleccionar($sql);
 
+        while ($of = mysqli_fetch_assoc($resultado)) {
+             $data[]=$of;
+        }
+        $var= json_encode($data);
+        echo $var;
+    }
     public static function obtenerOfertas(){
 
         global $bd;
