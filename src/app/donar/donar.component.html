@@ -26,8 +26,16 @@
               <input type="text" class="form-control" id="platoNombre">
             </div>
             <div class="col-md-12">
-              <label for="platoIngredientes" class="form-label">Ingredientes*</label>
-              <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Es importante ser lo más preciso posible al describir los ingredientes." id="platoIngredientes" rows="3"></textarea>
+              <label for="platoDescripcion" class="form-label">Descripcion*</label>
+              <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Es importante ser lo más preciso posible al describir el plato." id="platoDescripcion" rows="3"></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="platoAlergenos" class="form-label">Alergenos</label>
+              <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" id="platoAlergenos" rows="3"></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="platoDescripcion" class="form-label">Notas</label>
+              <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="right" id="platoDescripcion" rows="3"></textarea>
             </div>
             <div class="col-md-2">
               <label for="platoRaciones" class="form-label">Raciones*</label>
@@ -40,9 +48,13 @@
             <div class="col-md-12 d-flex justify-content-between align-items-center">
               <p class="col-form-label"><strong>Información de la entrega</strong></p>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-10">
               <label for="entregaDireccion" class="form-label">Direccion postal*</label>
               <input type="text" class="form-control" id="entregaDireccion">
+            </div>
+            <div class="col-md-2">
+              <label for="entregaCP" class="form-label">C.P.*</label>
+              <input type="text" class="form-control" id="entregaCP">
             </div>
             <div class="col-md-6">
               <label for="entregaDia" class="form-label">Dia*</label>

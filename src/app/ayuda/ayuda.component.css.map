@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "ayuda.component.scss"
-    ],
-    "names": [],
-    "file": "ayuda.component.css"
-}
+{"version":3,"sources":[],"names":[],"mappings":"","file":"ayuda.component.css"}

@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "buscar.component.scss"
-    ],
-    "names": [],
-    "file": "buscar.component.css"
-}
+{"version":3,"sources":[],"names":[],"mappings":"","file":"buscar.component.css"}

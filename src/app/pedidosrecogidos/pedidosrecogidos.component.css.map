@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "pedidosrecogidos.component.scss"
-    ],
-    "names": [],
-    "file": "pedidosrecogidos.component.css"
-}
+{"version":3,"sources":[],"names":[],"mappings":"","file":"pedidosrecogidos.component.css"}

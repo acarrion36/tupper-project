@@ -13,8 +13,8 @@ declare var bootstrap:any;
 export class PerfilComponent implements OnInit {
 
   // Variables
-  public perfilNombre:string=""
-  public perfilApellidos:string=""
+  public perfilNombre:string="Pedro"
+  public perfilApellidos:string="Pardo"
   public perfilDireccion:string=""
   public perfilTelefono:string=""
   public perfilNickname:string=""
