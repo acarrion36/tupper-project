@@ -13,25 +13,23 @@ declare var bootstrap:any;
 export class PerfilComponent implements OnInit {
 
   // Variables
-  public perfilNombre:string="Pedro"
-  public perfilApellidos:string="Pardo"
+  public perfilNombre:string=""
+  public perfilApellidos:string=""
   public perfilDireccion:string=""
   public perfilTelefono:string=""
-  public perfilNickname:string="Kete"
-  public perfilMail:string="a@a.com"
+  public perfilNickname:string=""
+  public perfilMail:string=""
   public perfilFoto:string=""
   public loginStatus$:any
   public alertInfo$:any
   public saveInfPerBtn:boolean=false
   public saveCnfPerBtn:boolean=false
-  public usersData:any
 
   // Constructor | _loginService: Controla si esta logueado | router: Navegación
   constructor(private _loginService:LoginService, private router:Router) {}
 
   // OnInit
   ngOnInit():void {
-    this.read()
     // Suscripción a loginService | Escuchamos el estado del login y de la información personal
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
     this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
@@ -88,18 +86,6 @@ export class PerfilComponent implements OnInit {
     if(this.perfilNombre && this.perfilApellidos && this.perfilDireccion && this.perfilTelefono){
       this._loginService.setalertInfoStatus(false)
     }
-  }
-
-  read():void{
-    this._loginService.readUsers().subscribe({
-      next : data => {
-        console.log("Read", data);
-        this.usersData = data;
-      },
-      error : error => {
-        console.log("Read error", error);
-      }
-    });
   }
 
 }

@@ -11,11 +11,11 @@
       </div>
       <div class="mb-3">
         <input type="email" class="form-control" id="loginMail" name="loginMail" placeholder="Correo electrónico" [(ngModel)]="this.loginMail">
-        <div *ngIf="this.alertMail" class="alert alert-danger animate__animated animate__flash" id="alert">{{alertMsg}}</div>
+        <div *ngIf="this.alertMail" class="alert alert-danger" id="alert">{{alertMsg}}</div>
       </div>
       <div class="mb-3">
         <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Contraseña" [(ngModel)]="this.loginPassword">
-        <div *ngIf="this.alertPassword" class="alert alert-danger animate__animated animate__flash">{{alertMsg}}</div>
+        <div *ngIf="this.alertPassword" class="alert alert-danger">{{alertMsg}}</div>
       </div>
       <button (click)="validarSesion()" type="submit" class="btn btn-success" id="loginSubmit" name="loginSubmit"><strong>INICIAR SESIÓN</strong></button>
       <a (click)="recuperarPassword()" class="dropdown-item mt-3">Recuperar contraseña</a>
@@ -23,24 +23,33 @@
     </div>
     <!-- MOSTRAR FORMULARIO DE REGISTRO -->
     <div *ngIf="this.mostrarRegistro">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-x-lg close" viewBox="0 0 16 16">
+      <svg (click)="closeLoginWindow()" xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-x-lg close" viewBox="0 0 16 16">
         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
       </svg>
       <div class="mb-3 text-center">
         <p><strong>Registrate en ElikaWaste</strong></p>
       </div>
       <div class="mb-3">
-        <input type="text" class="form-control" id="registroNombre" name="registroNombre" placeholder="Nombre">
+        <input type="text" class="form-control" id="registroNombre" name="registroNombre" placeholder="Nombre" [(ngModel)]="this.registroNombre">
+        <div *ngIf="this.alertNombre" class="alert alert-danger">{{alertMsg}}</div>
+      </div>
+      <div class="mb-3 d-flex gap-3">
+        <div class="d-flex flex-column">
+          <input type="text" class="form-control" id="registroApellido1" name="registroApellido1" placeholder="Primer apellido" [(ngModel)]="this.registroApellido1">
+          <div *ngIf="this.alertApellido1" class="alert alert-danger">{{alertMsg}}</div>
+        </div>
+        <div class="d-flex flex-column">
+          <input type="text" class="form-control" id="registroApellido2" name="registroApellido2" placeholder="Segundo apellido" [(ngModel)]="this.registroApellido2">
+          <div *ngIf="this.alertApellido2" class="alert alert-danger">{{alertMsg}}</div>
+        </div>
       </div>
       <div class="mb-3">
-        <input type="text" class="form-control" id="registroApellidos" name="registroApellidos" placeholder="Apellidos">
+        <input type="email" class="form-control" id="registroMail" name="registroMail" placeholder="Correo electrónico" [(ngModel)]="this.registroMail">
+        <div *ngIf="this.alertMail" class="alert alert-danger">{{alertMailMsg}}</div>
       </div>
       <div class="mb-3">
-        <input type="email" class="form-control" id="registroMail" name="registroMail" placeholder="Correo electrónico">
-      </div>
-      <div class="mb-3">
-        <input type="password" class="form-control" id="registroPassword" name="registroPassword" placeholder="Contraseña" [(ngModel)]="this.passCheck">
-        <div *ngIf="this.alertPassword" class="alert alert-danger animate__animated animate__flash">{{alertMsg}}</div>
+        <input type="password" class="form-control" id="registroPassword" name="registroPassword" placeholder="Contraseña" [(ngModel)]="this.registroPassword">
+        <div *ngIf="this.alertPassword" class="alert alert-danger">{{alertPasswordMsg}}</div>
       </div>
       <button (click)="registroExistoso()" type="submit" class="btn btn-success" id="registroSubmit" name="registroSubmit"><strong>CREAR UNA CUENTA</strong></button>
       <div class="dropdown-divider mt-3"></div>
@@ -70,7 +79,7 @@
       </div>
       <div class="mb-3">
         <input type="mail" class="form-control" id="recuperarMail" name="recuperarMail" placeholder="Correo electronico" [(ngModel)]="this.recuperarMail">
-        <div *ngIf="this.alertMail" class="alert alert-danger animate__animated animate__flash">{{alertMsg}}</div>
+        <div *ngIf="this.alertMail" class="alert alert-danger">{{alertMsg}}</div>
       </div>
       <button (click)="validarRecuperacionPass()" type="submit" class="btn btn-success mb-3" id="recuperarPassword" name="recuperarPassword"><strong>RECUPERAR CONTRASEÑA</strong></button>
       <div class="text-center">

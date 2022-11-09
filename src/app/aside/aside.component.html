@@ -1,83 +1,85 @@
-<ul class="nav flex-column align-items-end gap-2 pt-5">
-  <!--INICIO ASIDE PERFIL-->
-  <li *ngIf="this.loginStatus$">
-    <div *ngIf="this.activo=='perfil'; else perfilNoActivo" [routerLink]="['/perfil']" class="nav-item activo">
-      <a class="nav-link">Mi perfil</a>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
-        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
-      </svg>
-    </div>
-    <ng-template #perfilNoActivo>
-      <div [routerLink]="['/perfil']" class="nav-item">
+<div class="d-flex justify-content-end pe-4">
+  <ul class="nav flex-column align-items-end gap-2 pt-5">
+    <!--INICIO ASIDE PERFIL-->
+    <li *ngIf="this.loginStatus$">
+      <div *ngIf="this.activo=='perfil'; else perfilNoActivo" [routerLink]="['/perfil']" class="nav-item activo">
         <a class="nav-link">Mi perfil</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
           <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
         </svg>
       </div>
-    </ng-template>
-  </li>
-  <li *ngIf="this.loginStatus$ && !this.alertInfo$">
-    <div *ngIf="this.activo=='donar'; else donarNoActivo" [routerLink]="['/donar']" class="nav-item activo">
-      <a class="nav-link">Donar</a>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-      </svg>
-    </div>
-    <ng-template #donarNoActivo>
-      <div [routerLink]="['/donar']" class="nav-item">
+      <ng-template #perfilNoActivo>
+        <div [routerLink]="['/perfil']" class="nav-item">
+          <a class="nav-link">Mi perfil</a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+          </svg>
+        </div>
+      </ng-template>
+    </li>
+    <li *ngIf="this.loginStatus$ && !this.alertInfo$">
+      <div *ngIf="this.activo=='donar'; else donarNoActivo" [routerLink]="['/donar']" class="nav-item activo">
         <a class="nav-link">Donar</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
         </svg>
       </div>
-    </ng-template>
-  </li>
-  <li>
-    <div *ngIf="this.activo=='buscar'; else buscarNoActivo" [routerLink]="['/buscar']" class="nav-item activo">
-      <a class="nav-link">Buscar</a>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-      </svg>
-    </div>
-    <ng-template #buscarNoActivo>
-      <div [routerLink]="['/buscar']" class="nav-item">
+      <ng-template #donarNoActivo>
+        <div [routerLink]="['/donar']" class="nav-item">
+          <a class="nav-link">Donar</a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+          </svg>
+        </div>
+      </ng-template>
+    </li>
+    <li>
+      <div *ngIf="this.activo=='buscar'; else buscarNoActivo" [routerLink]="['/buscar']" class="nav-item activo">
         <a class="nav-link">Buscar</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
       </div>
-    </ng-template>
-  </li>
-  <li *ngIf="this.loginStatus$ && !this.alertInfo$">
-    <div *ngIf="this.activo=='pedidos'; else pedidosNoActivo" [routerLink]="['/pedidos']" class="nav-item activo">
-      <a class="nav-link">Pedidos</a>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-    </div>
-    <ng-template #pedidosNoActivo>
-      <div [routerLink]="['/pedidos']" class="nav-item">
+      <ng-template #buscarNoActivo>
+        <div [routerLink]="['/buscar']" class="nav-item">
+          <a class="nav-link">Buscar</a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </div>
+      </ng-template>
+    </li>
+    <li *ngIf="this.loginStatus$ && !this.alertInfo$">
+      <div *ngIf="this.activo=='pedidos'; else pedidosNoActivo" [routerLink]="['/pedidos']" class="nav-item activo">
         <a class="nav-link">Pedidos</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
           <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
         </svg>
       </div>
-    </ng-template>
-  </li>
-  <li class="mt-auto mb-4">
-    <div *ngIf="this.activo=='ayuda'; else ayudaNoActivo" [routerLink]="['/ayuda']" class="nav-item activo me-auto">
-      <a class="nav-link">Ayuda</a>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-question-lg" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"/>
-      </svg>
-    </div>
-    <ng-template #ayudaNoActivo>
-      <div [routerLink]="['/ayuda']" class="nav-item">
+      <ng-template #pedidosNoActivo>
+        <div [routerLink]="['/pedidos']" class="nav-item">
+          <a class="nav-link">Pedidos</a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </svg>
+        </div>
+      </ng-template>
+    </li>
+    <li class="mt-auto mb-4">
+      <div *ngIf="this.activo=='ayuda'; else ayudaNoActivo" [routerLink]="['/ayuda']" class="nav-item activo me-auto">
         <a class="nav-link">Ayuda</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-question-lg" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"/>
         </svg>
       </div>
-    </ng-template>
-  </li>
-</ul>
+      <ng-template #ayudaNoActivo>
+        <div [routerLink]="['/ayuda']" class="nav-item">
+          <a class="nav-link">Ayuda</a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-question-lg" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"/>
+          </svg>
+        </div>
+      </ng-template>
+    </li>
+  </ul>
+</div>

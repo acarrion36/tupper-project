@@ -66,7 +66,7 @@ $green: rgb(21, 115, 71);
   background-color: $white;
   border-radius: $borderRadiusM;
   width: 90%;
-  max-width: 350px;
+  max-width: 400px;
   z-index: 9999;
 
   .close {
@@ -108,6 +108,10 @@ $green: rgb(21, 115, 71);
       background-color: $white;
       font-weight: 500;
     }
+  }
+
+  .alert {
+    --bs-alert-margin-bottom: 0;
   }
 
   .alert-danger {
@@ -227,8 +231,6 @@ section {
 
       ul {
         position: fixed;
-        padding-top: 25px;
-        width: 21.8%;
         height: 90%;
 
         .nav-item {
@@ -289,7 +291,7 @@ section {
     }
 
     .alert {
-      border-radius: $borderRadiusM
+      border-radius: $borderRadiusM;
     }
 
     .card {
