@@ -37,7 +37,7 @@ class usuario{
         $sql = "INSERT INTO usuario (nombre,apellido1,apellido2,nombre_usuario,email,pass,direccion,cp) 
         VALUES ('$this->nombre','$this->apellido1','$this->apellido2','$this->nombre_usuario','$this->email','$this->pass','$this->direccion','$this->cp')";
         $bd->insertar($sql);
-        $sql="SELECT * FROM usuario WHERE nombre_usuario = '$this->email'";
+        $sql="SELECT * FROM usuario WHERE email = '$this->email'";
         $resultado=$bd->seleccionar($sql);
 
         while ($usu = mysqli_fetch_assoc($resultado)) {
