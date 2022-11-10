@@ -71,6 +71,24 @@ class usuario{
         }
     }
 
+    public static function obtenerUsuarioPorEmail($emx){
+        global $bd;
+        $data=[];
+            $sql="SELECT * FROM usuario WHERE email = '$emx'";
+            $resultado=$bd->seleccionar($sql);
+            
+             if(mysqli_num_rows($resultado) == 0) { 
+                echo 0;
+             } else { 
+                while ($usu = mysqli_fetch_assoc($resultado)) {
+                    $data[]=$usu;
+                }
+                $var= json_encode($data);
+                echo $var;     
+             }  
+           
+    }
+
     public static function modificarUsuario($id_usuario,$nombre,$apellido1,$apellido2,$nombre_usuario,$email,$pass,$direccion,$cp){
         global $bd;
         $sql="UPDATE usuario SET nombre='$nombre',apellido1='$apellido1',apellido2='$apellido2',nombre_usuario='$nombre_usuario',email='$email',pass='$pass',direccion='$direccion',cp='$cp' where id_usuario='".$id_usuario."'";
