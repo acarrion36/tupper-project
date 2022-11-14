@@ -9,16 +9,16 @@ import { LoginService } from '../services/login.service';
 
 export class HeaderComponent implements OnInit {
 
-  public loginStatus$:any
+  public loginStatus:any
 
   constructor(private _loginService:LoginService) {}
 
   ngOnInit(): void {
-    this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
+    this.loginStatus=this._loginService.getLoginStatus()
   }
 
   mostrar():void {
-    if(this.loginStatus$) {
+    if(this.loginStatus) {
       this._loginService.setloginWindowStatus(false)
       this._loginService.setlogoutWindowStatus(true)
     } else {

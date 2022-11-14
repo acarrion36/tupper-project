@@ -120,6 +120,8 @@ $green: rgb(21, 115, 71);
     border-radius: $borderRadiusS;
     font-size: 12px;
       --bs-alert-border: 0px;
+    animation: flash;
+    animation-duration: 1s;
   }
 
   .bi-arrow-left {

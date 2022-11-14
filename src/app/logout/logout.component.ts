@@ -14,14 +14,13 @@ export class LogoutComponent implements OnInit {
   // Constructor | _loginService: Controla si esta logueado | router: Navegación | _cookie: Trabajar con Cookies
   constructor(private _loginService:LoginService, public router: Router, private _cookie:CookieService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  // Cerrar sesión de usuario | Seteamos el componente logout, el estado del login y la cookie de login a false, redirigimos a la página de inicio
+  // Cerrar sesión de usuario | Seteamos el componente logout a false, borramos cookies y redirigimos a la página de inicio
   cerrarSesion():void {
     this._loginService.setlogoutWindowStatus(false)
-    this._loginService.setloginStatus(false)
-    this._cookie.set("loginStatus","false",{expires:365})
+    this._cookie.delete("token");
+    this._cookie.delete("loginStatus")
     this.router.navigate(['/'])
   }
 

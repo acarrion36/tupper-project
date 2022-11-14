@@ -11,7 +11,8 @@
           <app-logout *ngIf="this.loginStatus$" class="ms-auto"></app-logout>
         </div>
         <div *ngIf="this.alertInfo$" class="mt-4 alert alert-danger shadow-sm" role="alert">
-          <p>Antes de poder continuar necesitamos que completes tu información personal. Los campos con asterisco son obligatorios. Una vez completada la información necesaria, podras realizar tus propias donaciones y/o añadir las donaciones de otros a tus pedidos.</p>
+          <p>Antes de poder continuar necesitamos que completes tu información personal.</p>
+          <p>La dirección postal será la que se use de manera predeterminada en todas tus entregas, aunque podrás personalizarla individualmente en cada entrega. Una vez completada la información necesaria, podras realizar tus propias donaciones y/o añadir las donaciones de otras personas a tus pedidos.</p>
           <p class="mb-0">Si tienes alguna duda no dudes en ponerte en contacto con nosotros.</p>
         </div>
         <!--INICIO TARJETA INFORMACIÓN PERSONAL-->
@@ -32,21 +33,21 @@
                   <div class="d-none d-md-block">Guardar</div>
                 </button>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-4">
                 <label for="perfilNombre" class="form-label">Nombre*</label>
                 <input (input)="changeInfPerBtn()" type="text" class="form-control" name="perfilNombre" [(ngModel)]="this.perfilNombre">
               </div>
-              <div class="col-md-7">
-                <label for="perfilApellidos" class="form-label">Apellidos*</label>
-                <input (input)="changeInfPerBtn()" type="text" class="form-control" name="perfilApellidos" [(ngModel)]="this.perfilApellidos">
-              </div>
-              <div class="col-md-8">
-                <label for="perfilDireccion" class="form-label">Dirección postal*</label>
-                <input (input)="changeInfPerBtn()" type="text" class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Tu dirección postal solo será visible por aquellas personas implicadas en el proceso de donación." name="perfilDireccion" [(ngModel)]="this.perfilDireccion">
+              <div class="col-md-4">
+                <label for="perfilApellido1" class="form-label">Primer apellido*</label>
+                <input (input)="changeInfPerBtn()" type="text" class="form-control" name="perfilApellido1" [(ngModel)]="this.perfilApellido1">
               </div>
               <div class="col-md-4">
-                <label for="perfilTelefono" class="form-label">Teléfono*</label>
-                <input (input)="changeInfPerBtn()" type="text" class="form-control" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="Tu teléfono solo será visible por aquellas personas implicadas en el proceso de donación." name="perfilTelefono" [(ngModel)]="this.perfilTelefono">
+                <label for="perfilApellido2" class="form-label">Segundo apellido*</label>
+                <input (input)="changeInfPerBtn()" type="text" class="form-control" name="perfilApellido2" [(ngModel)]="this.perfilApellido2">
+              </div>
+              <div class="col-md-12">
+                <label for="perfilDireccion" class="form-label">Dirección postal*</label>
+                <input (input)="changeInfPerBtn()" type="text" class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Tu dirección postal solo será visible por aquellas personas implicadas en el proceso de donación." name="perfilDireccion" [(ngModel)]="this.perfilDireccion">
               </div>
             </form>
         </div>
@@ -71,7 +72,7 @@
               </div>
               <div class="col-md-4">
                 <label for="perfilNickname" class="form-label">Nombre en clave</label>
-                <input (input)="changeCnfPerBtn()" type="text" class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Configura un nombre en clave si no quieres que nadie sepa cuales son tu nombre y apellidos reales." name="perfilNickname" [(ngModel)]="this.perfilNickname">
+                <input (input)="changeCnfPerBtn()" type="text" class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Configura un nombre en clave si no quieres que se muestre tu nombre real." name="perfilNickname" [(ngModel)]="this.perfilNickname">
               </div>
               <div class="col-md-8">
                 <label for="perfilMail" class="form-label">Correo electrónico*</label>

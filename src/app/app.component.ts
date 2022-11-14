@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './services/login.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +14,7 @@ export class AppComponent implements OnInit {
   public loginWindowStatus$=this._loginService.loginWindowStatus$
 
   // Constructor | _loginService: Controla si esta logueado | router: Navegación | _cookie: Trabajar con Cookies
-  constructor(private _loginService:LoginService, private router: Router, private _cookie:CookieService) { }
+  constructor(private _loginService:LoginService, private router: Router) { }
 
   // OnInit | Scroll to top por defecto y checkeo del estado de la sesión de usuario
   ngOnInit(): void {
@@ -26,13 +25,6 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0)
     });
-
-    // Checkeamos si la cookie existe | Si existe y es true, seteamos el estado del login a true, sino seteamos el estado del login a false
-    if(this._cookie.check("loginStatus") && this._cookie.get("loginStatus")==="true") {
-        this._loginService.setloginStatus(true)
-    } else {
-      this._cookie.set("loginStatus","false",{expires:365})
-    }
   }
 
 }

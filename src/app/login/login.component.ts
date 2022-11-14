@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from '../services/login.service';
-import { RegistroService } from '../services/registro.service';
 import { User } from '../models/User';
 
 @Component({
@@ -14,7 +13,7 @@ import { User } from '../models/User';
 export class LoginComponent implements OnInit {
 
   // Variables | Modelo User
-  public createUser:User;
+  public createUser:User = new User('','','','','','','','')
   public usersData:any
 
   // Variables | Login
@@ -29,7 +28,6 @@ export class LoginComponent implements OnInit {
   public alertMail:boolean=false
   public alertPassword:boolean=false
   public alertMsg:string=""
-  public loginStatus$:any
 
   // Variables | Registro
   public registroNombre:string=""
@@ -43,18 +41,11 @@ export class LoginComponent implements OnInit {
   public alertPasswordMsg:string=""
   public alertMailMsg:string=""
 
-  // Constructor | _loginService: Controla si esta logueado | _registroService: Servicio de registro de nuevo usuario | router: Navegación | _cookie: Trabajar con Cookies
-  constructor(private _loginService:LoginService, private _registroService:RegistroService, public router: Router, private _cookie:CookieService) {
-    // Inicializamos el objeto User
-    this.createUser = new User('','','','','','','','')
-  }
+  // Constructor | _loginService: Controla si esta logueado | router: Navegación | _cookie: Trabajar con Cookies
+  constructor(private _loginService:LoginService, public router: Router, private _cookie:CookieService) {}
 
   // OnInit | Nos suscribimos al servicio de login y escuchamos el estado de login del usuario
-  ngOnInit(): void {
-    this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
-    // Llamada al metodo read
-    this.read()
-  }
+  ngOnInit(): void {}
 
   // Formulario de inicio de sesión | Mostramos los campos de inicio de sesión y ocultamos el resto
   iniciarSesion():void {
@@ -69,31 +60,44 @@ export class LoginComponent implements OnInit {
 
   // Validar credenciales al pinchar sobre "INICIAR SESIÓN"
   validarSesion():void {
-    if(this.loginMail=="") {
+    if(!this.loginMail) {
       this.alertMail=true
       this.alertPassword=false
       this.alertMsg="Introduce tu correo electronico."
-    } else if(this.checkMail(this.loginMail)) {
-      if(this.loginPassword=="") {
-        this.alertPassword=true
-        this.alertMail=false
-        this.alertMsg="Escribe tu contraseña."
-      } else if(this.loginPassword=="1234") {
-        // Si se validan los datos, seteamos el estado a true, cerramos la ventana de login, seteamos la cookie y redirigimos al perfil
-        this._loginService.setloginStatus(true)
-        this._loginService.setloginWindowStatus(false)
-        this._cookie.set("loginStatus",this.loginStatus$,{expires:365})
-        this.router.navigate(['perfil'])
-      } else {
-        this.alertPassword=true
-        this.alertMail=false
-        this.alertMsg="Contraseña incorrecta."
-        this.loginPassword=""
-      }
+    } else if(this.validateMail(this.loginMail)) {
+      this._loginService.readUserByMail(this.loginMail).subscribe({
+        next:data => {
+          if(data===0){
+            this.alertMail=true
+            this.alertPassword=false
+            this.alertMsg="Correo electrónico no dado de alta."
+          } else {
+            if(!this.loginPassword) {
+              this.alertPassword=true
+              this.alertMail=false
+              this.alertMsg="Escribe tu contraseña."
+            } else if(this.loginPassword===data[0].pass) {
+              // Si se validan los datos, cerramos la ventana de login, seteamos las cookies y redirigimos al perfil
+              this._loginService.setloginWindowStatus(false)
+              this._loginService.setToken(btoa(data[0].email))
+              this._loginService.setLoginStatus("true")
+              this.router.navigate(['perfil'])
+            } else {
+              this.alertPassword=true
+              this.alertMail=false
+              this.alertMsg="Contraseña incorrecta."
+              this.loginPassword=""
+            }
+          }
+        },
+        error:error => {
+          console.log("Create error", error)
+        }
+      })
     } else {
       this.alertMail=true
       this.alertPassword=false
-      this.alertMsg="Correo electrónico no dado de alta."
+      this.alertMsg="Formato de correo electrónico no válido."
     }
   }
 
@@ -128,20 +132,27 @@ export class LoginComponent implements OnInit {
     if(!this.registroMail) {
       this.alertMail=true
       this.alertMailMsg="Campo obligatorio."
+    } else if(this.validateMail(this.registroMail)) {
+      this._loginService.readUserByMail(this.registroMail).subscribe({
+        next:data => {
+          if(data!=0){
+            this.alertMail=true
+            this.alertMailMsg="Correo electrónico ya dado de alta."
+          } else {
+            this.alertMail=false
+          }
+        },
+        error:error => {
+          console.log("Create error", error)
+        }
+      })
     } else {
-      this.alertMail=false
-      if(!this.validateMail(this.registroMail)){
-        this.alertMail=true
-        this.alertMailMsg="Correo electrónico no válido."
-      } else if(this.checkMail(this.registroMail)) {
-        this.alertMail=true
-        this.alertMailMsg="Correo electrónico ya dado de alta."
-      }
+      this.alertMail=true
+      this.alertMailMsg="Formato de correo electrónico no válido."
     }
     if(!this.registroPassword) {
       this.alertPassword=true
       this.alertPasswordMsg="Campo obligatorio."
-      // Llamada al metodo checkPassword | Se pasa la contraseña escrita por el usuario como parámetro
     } else if(!this.validatePassword(this.registroPassword)){
       this.alertPassword=true
       this.alertPasswordMsg="La contraseña debe tener entre 6 y 20 carácteres. Al menos un numero, una letra mayuscula y una letra minuscula. Por ejemplo, Elika123."
@@ -151,17 +162,16 @@ export class LoginComponent implements OnInit {
     if(!this.alertNombre&&!this.alertApellido1&&!this.alertApellido2&&!this.alertMail&&!this.alertPassword) {
       this.mostrarRegistro=false
       this.mostrarRegistroExitoso=true
-      this._loginService.setloginStatus(true)
-      this._cookie.set("loginStatus",this.loginStatus$,{expires:365})
-      this.createUser = new User(this.registroApellido1,this.registroApellido2,'','',this.registroMail,this.registroNombre,'',this.registroPassword)
-      this._registroService.newAccount(this.createUser).subscribe({
+      this._loginService.setLoginStatus("true")
+      this._loginService.register(new User(this.registroApellido1,this.registroApellido2,'','',this.registroMail,this.registroNombre,'',this.registroPassword)).subscribe({
         next:data => {
-          console.log("Create", data);
+          console.log("Create", data)
+          this._loginService.setToken(btoa(data[0].email))
         },
         error:error => {
-          console.log("Create error", error);
+          console.log("Create error", error)
         }
-      });
+      })
     }
   }
 
@@ -223,19 +233,6 @@ export class LoginComponent implements OnInit {
       this.registroPassword=""
       return false
     }
-  }
-
-  // Leer los usuarios registrados
-  read():void {
-    this._loginService.readUsers().subscribe({
-      next : data => {
-        console.log("Read", data);
-        this.usersData = data;
-      },
-      error : error => {
-        console.log("Read error", error);
-      }
-    });
   }
 
 }

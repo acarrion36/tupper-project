@@ -16,7 +16,7 @@ export class AsideComponent implements OnInit {
   constructor(private _loginService:LoginService, private _loc: Location) {}
 
   ngOnInit(): void {
-    this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
+    this.loginStatus$=this._loginService.getLoginStatus()
     this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
 
     switch (this._loc.path()) {
