@@ -67,7 +67,7 @@
       <div class="mb-3">
         <p class="fs-6 text-center">Revisa tu correo electrónico, te hemos enviado un email de confirmación. Tienes 48 horas para confirmar tu cuenta.</p>
       </div>
-      <a (click)="closeLoginWindow()" [routerLink]="['/perfil']" class="btn btn-success" id="comenzar" name="comenzar"><strong>Ir a mi perfil</strong></a>
+      <button (click)="closeLoginWindow()" [routerLink]="['/perfil']" type="submit" class="btn btn-success" id="comenzar" name="comenzar"><strong>Ir a mi perfil</strong></button>
     </div>
     <!-- MOSTRAR FORMULARIO DE RECUPERACIÓN DE CONTRASEÑA -->
     <div *ngIf="this.mostrarRecuperacionPassword">

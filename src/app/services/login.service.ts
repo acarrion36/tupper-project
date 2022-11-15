@@ -71,19 +71,7 @@ export class LoginService {
     this._cookie.set("token",token,{expires:365})
   }
 
-  getLoginStatus() {
-    return atob(this._cookie.get("loginStatus"))
-  }
-
-  setLoginStatus(status:string){
-    this._cookie.set("loginStatus",btoa(status),{expires:365})
-  }
-
   // HTTP
-
-  register(user:any):Observable<any>{
-    return this._http.post("http://elika-waste.learnhowto.space/api/api_usuario.php",user,httpOptions)
-  }
 
   readUsers():Observable<any> {
     return this._http.get("http://elika-waste.learnhowto.space/api/api_usuario.php",httpOptions)
@@ -101,6 +89,14 @@ export class LoginService {
   readUserLogged():Observable<any> {
     const token = {emx:atob(this.getToken())}
     return this._http.post('http://elika-waste.learnhowto.space/api/api_usuario.php',token,httpOptions)
+  }
+
+  register(user:any):Observable<any>{
+    return this._http.post("http://elika-waste.learnhowto.space/api/api_usuario.php",user,httpOptions)
+  }
+
+  update(id:any,user:any):Observable<any> {
+    return this._http.put("http://elika-waste.learnhowto.space/api/api_usuario.php?id="+id,user,httpOptions)
   }
 
 }

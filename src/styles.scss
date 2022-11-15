@@ -40,7 +40,28 @@ $green: rgb(21, 115, 71);
   }
 }
 
+@mixin alertDanger {
+  .alert {
+    --bs-alert-margin-bottom: 0;
+  }
+
+  .alert-danger {
+    margin-top: 4px;
+    padding: 0.3rem 0.75rem;
+    border-radius: $borderRadiusS;
+    font-size: 12px;
+      --bs-alert-border: 0px;
+    animation: flash;
+    animation-duration: 1s;
+  }
+}
+
 // SCSS
+
+a {
+  color: $black;
+}
+
 .btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
@@ -110,19 +131,7 @@ $green: rgb(21, 115, 71);
     }
   }
 
-  .alert {
-    --bs-alert-margin-bottom: 0;
-  }
-
-  .alert-danger {
-    margin-top: 4px;
-    padding: 0.3rem 0.75rem;
-    border-radius: $borderRadiusS;
-    font-size: 12px;
-      --bs-alert-border: 0px;
-    animation: flash;
-    animation-duration: 1s;
-  }
+  @include alertDanger;
 
   .bi-arrow-left {
     cursor: pointer;
@@ -136,6 +145,10 @@ $green: rgb(21, 115, 71);
 header {
   .logo img, .logo-img img {
     height: $logoWidth;
+  }
+
+  .logo:hover {
+    cursor: pointer;
   }
 
   .logo-img:hover {
@@ -292,7 +305,9 @@ section {
       }
     }
 
-    .alert {
+    @include alertDanger;
+
+    .alert-info {
       border-radius: $borderRadiusM;
     }
 

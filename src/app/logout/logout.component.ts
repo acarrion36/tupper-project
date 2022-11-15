@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-logout',
@@ -11,17 +11,17 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class LogoutComponent implements OnInit {
 
-  // Constructor | _loginService: Controla si esta logueado | router: Navegación | _cookie: Trabajar con Cookies
-  constructor(private _loginService:LoginService, public router: Router, private _cookie:CookieService) {}
+  // Constructor | router: Navegación | _cookie: Trabajar con Cookies
+  constructor(public router: Router, private _cookie:CookieService, private _loginService:LoginService, ) {}
 
   ngOnInit(): void {}
 
-  // Cerrar sesión de usuario | Seteamos el componente logout a false, borramos cookies y redirigimos a la página de inicio
+  // Cerrar sesión de usuario | Borramos cookies y redirigimos a la página de inicio
   cerrarSesion():void {
-    this._loginService.setlogoutWindowStatus(false)
     this._cookie.delete("token");
-    this._cookie.delete("loginStatus")
     this.router.navigate(['/'])
+    this._loginService.setloginStatus(false)
+    this._loginService.setalertInfoStatus(true)
   }
 
 }

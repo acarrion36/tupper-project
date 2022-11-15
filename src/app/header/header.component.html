@@ -7,10 +7,10 @@
       <img [routerLink]="['/']" src="../assets/img/logo.png" alt="elikaWaste">
     </div>
     <div class="col align-self-center">
-      <button *ngIf="!this.loginStatus" (click)="mostrar()" type="button" id="dropdownLogin" class="btn btn-secondary">
+      <button *ngIf="!this.loginStatus$" (click)="mostrar()" type="button" id="dropdownLogin" class="btn btn-secondary">
         <img src="../assets/img/dropdown.png" width="40px" alt="menu">
       </button>
-      <button *ngIf="this.loginStatus" [routerLink]="['/perfil']" type="button" id="dropdownLogin" class="btn btn-secondary">
+      <button *ngIf="this.loginStatus$" [routerLink]="['/perfil']" type="button" id="dropdownLogin" class="btn btn-secondary">
         <img src="../assets/img/dropdown.png" width="40px" alt="menu">
       </button>
     </div>

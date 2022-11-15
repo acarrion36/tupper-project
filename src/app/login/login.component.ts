@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from '../services/login.service';
 import { User } from '../models/User';
 
@@ -17,6 +16,7 @@ export class LoginComponent implements OnInit {
   public usersData:any
 
   // Variables | Login
+  public loginStatus$:any
   public mostrarLogin:boolean=true
   public mostrarRegistro:boolean=false
   public mostrarRegistroExitoso:boolean=false
@@ -41,11 +41,13 @@ export class LoginComponent implements OnInit {
   public alertPasswordMsg:string=""
   public alertMailMsg:string=""
 
-  // Constructor | _loginService: Controla si esta logueado | router: Navegación | _cookie: Trabajar con Cookies
-  constructor(private _loginService:LoginService, public router: Router, private _cookie:CookieService) {}
+  // Constructor | _loginService: Controla si esta logueado | router: Navegación
+  constructor(private _loginService:LoginService, public router: Router) {}
 
   // OnInit | Nos suscribimos al servicio de login y escuchamos el estado de login del usuario
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
+  }
 
   // Formulario de inicio de sesión | Mostramos los campos de inicio de sesión y ocultamos el resto
   iniciarSesion():void {
@@ -80,7 +82,7 @@ export class LoginComponent implements OnInit {
               // Si se validan los datos, cerramos la ventana de login, seteamos las cookies y redirigimos al perfil
               this._loginService.setloginWindowStatus(false)
               this._loginService.setToken(btoa(data[0].email))
-              this._loginService.setLoginStatus("true")
+              this._loginService.setloginStatus(true)
               this.router.navigate(['perfil'])
             } else {
               this.alertPassword=true
@@ -109,7 +111,7 @@ export class LoginComponent implements OnInit {
     this.alertPassword=false
   }
 
-  // Validar formulario de registro
+  // Validar formulario de registro al pinchar en "CREAR UNA CUENTA"
   registroExistoso():void {
     if(!this.registroNombre) {
       this.alertNombre=true
@@ -160,18 +162,17 @@ export class LoginComponent implements OnInit {
       this.alertPassword=false
     }
     if(!this.alertNombre&&!this.alertApellido1&&!this.alertApellido2&&!this.alertMail&&!this.alertPassword) {
-      this.mostrarRegistro=false
-      this.mostrarRegistroExitoso=true
-      this._loginService.setLoginStatus("true")
       this._loginService.register(new User(this.registroApellido1,this.registroApellido2,'','',this.registroMail,this.registroNombre,'',this.registroPassword)).subscribe({
         next:data => {
-          console.log("Create", data)
           this._loginService.setToken(btoa(data[0].email))
         },
         error:error => {
           console.log("Create error", error)
         }
       })
+      this.mostrarRegistro=false
+      this.mostrarRegistroExitoso=true
+      this._loginService.setloginStatus(true)
     }
   }
 
