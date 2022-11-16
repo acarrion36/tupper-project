@@ -9,14 +9,18 @@ import { LoginService } from '../services/login.service';
 
 export class HeaderComponent implements OnInit {
 
+  // Variables
   public loginStatus$:any
 
+  // Constructor | _loginService: Controla si esta logueado
   constructor(private _loginService:LoginService) {}
 
+  // OnInit | Checkeo del estado de la sesión de usuario
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
   }
 
+  // Metodo | Mostrar el componente de login
   mostrar():void {
     if(this.loginStatus$) {
       this._loginService.setloginWindowStatus(false)

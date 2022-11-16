@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './services/login.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { LoginService } from './services/login.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -12,14 +12,14 @@ import { CookieService } from 'ngx-cookie-service';
 export class AppComponent implements OnInit {
 
   // Variables
-  public loginWindowStatus$=this._loginService.loginWindowStatus$
+  public loginWindowStatus$:any
 
   // Constructor | _loginService: Controla si esta logueado | router: Navegación
   constructor(private _loginService:LoginService, private router: Router, private _cookies:CookieService) { }
 
-  // OnInit | Scroll to top por defecto y checkeo del estado de la sesión de usuario
+  // OnInit | Checkeo del estado de la sesión de usuario, scroll to top por defecto al cambiar de vista y checkeo de cookies
   ngOnInit():void {
-    // Scroll a la parte superior de la página al navegar a una ruta nueva
+    this._loginService.loginWindowStatus$.subscribe((status:boolean) => this.loginWindowStatus$ = status)
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
           return;

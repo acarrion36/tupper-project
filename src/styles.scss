@@ -5,7 +5,7 @@ $logoWidth: 50px;
 $sectionPaddingTop: $logoWidth + 15;
 
 //VARIABLES: COLORES
-$lightgrey: rgb(235, 235, 235);
+$lightgrey: #ebebeb;
 $grey: rgb(177, 177, 177);
 $darkgrey: rgb(87, 87, 87);
 $black: rgb(33, 37, 41);
@@ -56,8 +56,49 @@ $green: rgb(21, 115, 71);
   }
 }
 
-// SCSS
+@mixin checkmark {
+  svg {
+    width: 30px;
+  }
 
+  .path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    &.circle {
+      animation: dash 1.3s ease-in forwards;
+    }
+    &.line {
+      stroke-dashoffset: 1000;
+      animation: dash 1.3s .35s ease-in forwards;
+    }
+    &.check {
+      stroke-dashoffset: -100;
+      animation: dash-check 0.9s .35s ease-in forwards;
+      animation-delay: 0.5s;
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 1000;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes dash-check {
+    0% {
+      stroke-dashoffset: -100;
+    }
+    100% {
+      stroke-dashoffset: 900;
+    }
+  }
+
+}
+
+// SCSS
 a {
   color: $black;
 }
@@ -284,11 +325,62 @@ section {
     min-width: 530px;
     background-color: $lightgrey !important;
 
+    @include checkmark;
+
     .section-section-buttons {
       display: flex;
       flex-wrap: wrap;
       row-gap: 10px;
       column-gap: 10px;
+    }
+
+    .unregister {
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 14px;
+      &:hover{
+        color: $black;
+        font-weight: 500;
+      }
+    }
+
+    .modal {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -70%);
+      border-radius: $borderRadiusM;
+      height: fit-content;
+      width: 90%;
+      max-width: 400px;
+
+      .bi-x-lg {
+        cursor: pointer;
+        color: $grey;
+        &:hover {
+          color: $black;
+        }
+      }
+
+      .modal-content {
+        padding: 8px;
+        margin: 0;
+        border-radius: $borderRadiusM;
+
+        .modal-header, .modal-footer {
+          border-bottom: 0;
+          border-top: 0;
+          display: flex;
+          justify-content: center;
+        }
+        .modal-header {
+          justify-content: space-between !important;
+          .btn-close{
+            margin: 0;
+            color: $darkgrey;
+          }
+        }
+      }
     }
 
     .bg-light {

@@ -11,10 +11,10 @@ import { LoginService } from '../services/login.service';
 
 export class LogoutComponent implements OnInit {
 
-  // Constructor | router: Navegación | _cookie: Trabajar con Cookies
+  // Constructor | router: Navegación | _cookie: Trabajar con Cookies | _loginService: Estado de login
   constructor(public router: Router, private _cookie:CookieService, private _loginService:LoginService, ) {}
 
-  ngOnInit(): void {}
+  ngOnInit():void {}
 
   // Cerrar sesión de usuario | Borramos cookies y redirigimos a la página de inicio
   cerrarSesion():void {

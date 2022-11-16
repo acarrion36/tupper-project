@@ -99,4 +99,8 @@ export class LoginService {
     return this._http.put("http://elika-waste.learnhowto.space/api/api_usuario.php?id="+id,user,httpOptions)
   }
 
+  delete(id:any):Observable<any> {
+    return this._http.delete("http://elika-waste.learnhowto.space/api/api_usuario.php?id="+id,httpOptions)
+  }
+
 }

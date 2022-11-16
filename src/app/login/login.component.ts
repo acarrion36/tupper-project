@@ -62,24 +62,30 @@ export class LoginComponent implements OnInit {
 
   // Validar credenciales al pinchar sobre "INICIAR SESIÓN"
   validarSesion():void {
+    // Control de campo vacio
     if(!this.loginMail) {
       this.alertMail=true
       this.alertPassword=false
       this.alertMsg="Introduce tu correo electronico."
+      // Validar formato
     } else if(this.validateMail(this.loginMail)) {
+      // POST de usuario por mail
       this._loginService.readUserByMail(this.loginMail).subscribe({
         next:data => {
+          // Si el back devuelve 0, el correo no esta dado de alta
           if(data===0){
             this.alertMail=true
             this.alertPassword=false
             this.alertMsg="Correo electrónico no dado de alta."
           } else {
+            // Control de campo vacio
             if(!this.loginPassword) {
               this.alertPassword=true
               this.alertMail=false
               this.alertMsg="Escribe tu contraseña."
+              // Si la pass es correcta...
             } else if(this.loginPassword===data[0].pass) {
-              // Si se validan los datos, cerramos la ventana de login, seteamos las cookies y redirigimos al perfil
+              //...se validan los datos, cerramos la ventana de login, seteamos las cookies y redirigimos al perfil
               this._loginService.setloginWindowStatus(false)
               this._loginService.setToken(btoa(data[0].email))
               this._loginService.setloginStatus(true)
@@ -113,61 +119,66 @@ export class LoginComponent implements OnInit {
 
   // Validar formulario de registro al pinchar en "CREAR UNA CUENTA"
   registroExistoso():void {
+    // Control de campo vacio
     if(!this.registroNombre) {
       this.alertNombre=true
       this.alertMsg="Campo obligatorio."
     } else {
       this.alertNombre=false
     }
+    // Control de campo vacio
     if(!this.registroApellido1) {
       this.alertApellido1=true
       this.alertMsg="Campo obligatorio."
     } else {
       this.alertApellido1=false
     }
+    // Control de campo vacio
     if(!this.registroApellido2) {
       this.alertApellido2=true
       this.alertMsg="Campo obligatorio."
     } else {
       this.alertApellido2=false
     }
+    // Control de campo vacio
     if(!this.registroMail) {
       this.alertMail=true
       this.alertMailMsg="Campo obligatorio."
+      // Validar formato
     } else if(this.validateMail(this.registroMail)) {
+      // GET por mail de usuario
       this._loginService.readUserByMail(this.registroMail).subscribe({
         next:data => {
+          // Si el back devuelve distinto de 0, el usuario esta dado de alta
           if(data!=0){
             this.alertMail=true
             this.alertMailMsg="Correo electrónico ya dado de alta."
           } else {
             this.alertMail=false
           }
-        },
-        error:error => {
-          console.log("Create error", error)
         }
       })
     } else {
       this.alertMail=true
       this.alertMailMsg="Formato de correo electrónico no válido."
     }
+    // Control de campo vacio
     if(!this.registroPassword) {
       this.alertPassword=true
       this.alertPasswordMsg="Campo obligatorio."
+      // Validar formato
     } else if(!this.validatePassword(this.registroPassword)){
       this.alertPassword=true
       this.alertPasswordMsg="La contraseña debe tener entre 6 y 20 carácteres. Al menos un numero, una letra mayuscula y una letra minuscula. Por ejemplo, Elika123."
     } else {
       this.alertPassword=false
     }
+    // Si todos los campos son validos (alarmas 0)...
     if(!this.alertNombre&&!this.alertApellido1&&!this.alertApellido2&&!this.alertMail&&!this.alertPassword) {
+      // ...POST de usuario registrado
       this._loginService.register(new User(this.registroApellido1,this.registroApellido2,'','',this.registroMail,this.registroNombre,'',this.registroPassword)).subscribe({
         next:data => {
           this._loginService.setToken(btoa(data[0].email))
-        },
-        error:error => {
-          console.log("Create error", error)
         }
       })
       this.mostrarRegistro=false
@@ -184,17 +195,30 @@ export class LoginComponent implements OnInit {
     this.alertPassword=false
   }
 
-  // Validar recuperación de contraseña
+  // Validar recuperación de contraseña ++PENDIENTE++
   validarRecuperacionPass():void {
-    if(this.recuperarMail == "") {
+    if(this.recuperarMail=="") {
       this.alertMail=true
       this.alertMsg="Introduce tu correo electronico."
-    } else if(this.recuperarMail == "entecillo@gmail.com") {
-        this.mostrarRecuperacionPassword=false
-        this.mostrarRecuperacionExitosa=true
+      // Control de campo vacio
+    } else if(this.validateMail(this.recuperarMail)) {
+      this.alertMail=false
+      // GET por mail de usuario
+      this._loginService.readUserByMail(this.recuperarMail).subscribe({
+        next:data => {
+          // Si el back devuelve distinto de 0, el usuario esta dado de alta
+          if(data!=0){
+            this.mostrarRecuperacionPassword=false
+            this.mostrarRecuperacionExitosa=true
+          } else {
+            this.alertMail=true
+            this.alertMsg="El correo no existe."
+          }
+        }
+      })
     } else {
       this.alertMail=true
-      this.alertMsg="El correo no existe o no es válido."
+      this.alertMsg="Formato de correo electrónico no válido."
     }
   }
 

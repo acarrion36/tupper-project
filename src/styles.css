@@ -1,4 +1,8 @@
 @import '..\node_modules\animate.css\animate.css';
+a {
+  color: rgb(33, 37, 41);
+}
+
 .btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
@@ -79,16 +83,16 @@
   cursor: pointer;
 }
 .login .form-control {
-  background-color: rgb(235, 235, 235);
-  border: 1px solid rgb(235, 235, 235);
+  background-color: #ebebeb;
+  border: 1px solid #ebebeb;
   border-radius: 10px;
   font-size: 14px;
   color: rgb(87, 87, 87);
 }
 .login .form-control:focus {
   color: rgb(87, 87, 87);
-  background-color: rgb(235, 235, 235);
-  border-color: rgb(235, 235, 235);
+  background-color: #ebebeb;
+  border-color: #ebebeb;
   box-shadow: 0 0 0 0.1rem rgb(177, 177, 177);
 }
 
@@ -173,7 +177,7 @@ section .home-section .home-section-triple div h2 {
   font-size: 20px;
 }
 section .main-section {
-  background-color: rgb(235, 235, 235) !important;
+  background-color: #ebebeb !important;
 }
 section .main-section .main-height {
   padding-top: 65px;
@@ -191,7 +195,7 @@ section .main-section .main-height ul .nav-item {
   cursor: pointer;
 }
 section .main-section .main-height ul .nav-item:hover {
-  background-color: rgb(235, 235, 235);
+  background-color: #ebebeb;
   border-radius: 10px;
   transition: 0.5s;
 }
@@ -204,12 +208,67 @@ section .main-section .main-height ul .nav-item svg {
   margin-right: 15px;
 }
 section .main-section .main-height ul .activo {
-  background-color: rgb(235, 235, 235) !important;
+  background-color: #ebebeb !important;
 }
 section .section-section {
   width: 70%;
   min-width: 530px;
-  background-color: rgb(235, 235, 235) !important;
+  background-color: #ebebeb !important;
+}
+section .section-section svg {
+  width: 30px;
+}
+section .section-section .path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+section .section-section .path.circle {
+  -webkit-animation: dash 1.3s ease-in forwards;
+          animation: dash 1.3s ease-in forwards;
+}
+section .section-section .path.line {
+  stroke-dashoffset: 1000;
+  -webkit-animation: dash 1.3s 0.35s ease-in forwards;
+          animation: dash 1.3s 0.35s ease-in forwards;
+}
+section .section-section .path.check {
+  stroke-dashoffset: -100;
+  -webkit-animation: dash-check 0.9s 0.35s ease-in forwards;
+          animation: dash-check 0.9s 0.35s ease-in forwards;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
 }
 section .section-section .section-section-buttons {
   display: flex;
@@ -217,6 +276,52 @@ section .section-section .section-section-buttons {
   row-gap: 10px;
   -moz-column-gap: 10px;
        column-gap: 10px;
+}
+section .section-section .unregister {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+}
+section .section-section .unregister:hover {
+  color: rgb(33, 37, 41);
+  font-weight: 500;
+}
+section .section-section .modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -70%);
+  border-radius: 14px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 90%;
+  max-width: 400px;
+}
+section .section-section .modal .bi-x-lg {
+  cursor: pointer;
+  color: rgb(177, 177, 177);
+}
+section .section-section .modal .bi-x-lg:hover {
+  color: rgb(33, 37, 41);
+}
+section .section-section .modal .modal-content {
+  padding: 8px;
+  margin: 0;
+  border-radius: 14px;
+}
+section .section-section .modal .modal-content .modal-header, section .section-section .modal .modal-content .modal-footer {
+  border-bottom: 0;
+  border-top: 0;
+  display: flex;
+  justify-content: center;
+}
+section .section-section .modal .modal-content .modal-header {
+  justify-content: space-between !important;
+}
+section .section-section .modal .modal-content .modal-header .btn-close {
+  margin: 0;
+  color: rgb(87, 87, 87);
 }
 section .section-section .bg-light {
   border-radius: 14px;
@@ -254,7 +359,7 @@ section .section-section .card .card-header {
   display: flex;
   height: 45px;
   position: relative;
-  background-color: rgb(235, 235, 235);
+  background-color: #ebebeb;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
   font-size: 12px;
@@ -287,16 +392,16 @@ section .section-section .card .card-footer small {
   vertical-align: middle;
 }
 section .section-section .form-control {
-  background-color: rgb(235, 235, 235);
-  border: 1px solid rgb(235, 235, 235);
+  background-color: #ebebeb;
+  border: 1px solid #ebebeb;
   border-radius: 10px;
   font-size: 14px;
   color: rgb(87, 87, 87);
 }
 section .section-section .form-control:focus {
   color: rgb(87, 87, 87);
-  background-color: rgb(235, 235, 235);
-  border-color: rgb(235, 235, 235);
+  background-color: #ebebeb;
+  border-color: #ebebeb;
   box-shadow: 0 0 0 0.1rem rgb(177, 177, 177);
 }
 
@@ -346,7 +451,7 @@ footer .nav-bottom {
   padding: 0 5%;
 }
 footer .nav-bottom .bi {
-  background-color: rgb(235, 235, 235);
+  background-color: #ebebeb;
   color: rgb(87, 87, 87);
   padding: 10px;
   border-radius: 10px;
