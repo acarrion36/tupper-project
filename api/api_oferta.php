@@ -20,7 +20,12 @@ switch($_SERVER['REQUEST_METHOD']){
         }
          break;
     case 'GET':
-            //todos
+            if (isset($_GET['idu'])){
+                oferta::obtenerOfertas($_GET['idu']);  
+            }else{
+                oferta::obtenerOfertas(0);
+            }
+    
             oferta::obtenerOfertas();//ESTATICO  
         break;
 

@@ -56,20 +56,26 @@ class oferta{
         $var= json_encode($data);
         echo $var;
     }
-    public static function obtenerOfertas(){
-
+    public static function obtenerOfertas($idu){
         global $bd;
         $data=[];
-        $sql="SELECT * FROM oferta";
-        $resultado=$bd->seleccionar($sql);
+        if($idu==0){ 
+            $sql="SELECT * FROM oferta";
+            $resultado=$bd->seleccionar($sql);
+                while ($ofer = mysqli_fetch_assoc($resultado)) {
+                    $data[]=$ofer;
+                }
+            $var= json_encode($data);
 
-        while ($ofer = mysqli_fetch_assoc($resultado)) {
-             $data[]=$ofer;
+            echo $var;
+        }else{
+                $sql="SELECT oferta.*, menu.* FROM oferta inner join menu on oferta.id_menu = menu.id_menu where oferta.id_oferta='".$idu."'";
+                $resultado=$bd->seleccionar($sql);
+                while ($usu = mysqli_fetch_assoc($resultado)) {
+                        $data[]=$usu;
+                    }
+                $var= json_encode($data);
+                echo $var;
+            }
         }
-        $var= json_encode($data);
-
-        echo $var;
-
-    }
-
 }
