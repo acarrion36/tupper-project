@@ -25,8 +25,6 @@ switch($_SERVER['REQUEST_METHOD']){
             }else{
                 oferta::obtenerOfertas(0);
             }
-    
-            oferta::obtenerOfertas();//ESTATICO  
         break;
 
     case 'PUT':
