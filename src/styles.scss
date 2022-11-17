@@ -57,7 +57,7 @@ $green: rgb(21, 115, 71);
 }
 
 @mixin checkmark {
-  svg {
+  .checksvg {
     width: 30px;
   }
 
@@ -65,16 +65,16 @@ $green: rgb(21, 115, 71);
     stroke-dasharray: 1000;
     stroke-dashoffset: 0;
     &.circle {
-      animation: dash 1.3s ease-in forwards;
+      animation: dash 0.7s ease-in forwards;
     }
     &.line {
       stroke-dashoffset: 1000;
-      animation: dash 1.3s .35s ease-in forwards;
+      animation: dash 0.7s .35s ease-in forwards;
     }
     &.check {
       stroke-dashoffset: -100;
       animation: dash-check 0.9s .35s ease-in forwards;
-      animation-delay: 0.5s;
+      animation-delay: 0.7s;
     }
   }
 
@@ -95,12 +95,15 @@ $green: rgb(21, 115, 71);
       stroke-dashoffset: 900;
     }
   }
-
 }
 
 // SCSS
 a {
   color: $black;
+}
+
+.fs-7 {
+  font-size: .75rem !important;
 }
 
 .btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
@@ -344,6 +347,10 @@ section {
       }
     }
 
+    .alergeno {
+      min-width: 130px;
+    }
+
     .modal {
       position: absolute;
       left: 50%;
@@ -399,7 +406,7 @@ section {
 
     @include alertDanger;
 
-    .alert-info {
+    .alert-info, .alert-primary {
       border-radius: $borderRadiusM;
     }
 

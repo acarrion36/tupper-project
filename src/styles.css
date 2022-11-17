@@ -3,6 +3,10 @@ a {
   color: rgb(33, 37, 41);
 }
 
+.fs-7 {
+  font-size: 0.75rem !important;
+}
+
 .btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
@@ -215,7 +219,7 @@ section .section-section {
   min-width: 530px;
   background-color: #ebebeb !important;
 }
-section .section-section svg {
+section .section-section .checksvg {
   width: 30px;
 }
 section .section-section .path {
@@ -223,20 +227,20 @@ section .section-section .path {
   stroke-dashoffset: 0;
 }
 section .section-section .path.circle {
-  -webkit-animation: dash 1.3s ease-in forwards;
-          animation: dash 1.3s ease-in forwards;
+  -webkit-animation: dash 0.7s ease-in forwards;
+          animation: dash 0.7s ease-in forwards;
 }
 section .section-section .path.line {
   stroke-dashoffset: 1000;
-  -webkit-animation: dash 1.3s 0.35s ease-in forwards;
-          animation: dash 1.3s 0.35s ease-in forwards;
+  -webkit-animation: dash 0.7s 0.35s ease-in forwards;
+          animation: dash 0.7s 0.35s ease-in forwards;
 }
 section .section-section .path.check {
   stroke-dashoffset: -100;
   -webkit-animation: dash-check 0.9s 0.35s ease-in forwards;
           animation: dash-check 0.9s 0.35s ease-in forwards;
-  -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
+  -webkit-animation-delay: 0.7s;
+          animation-delay: 0.7s;
 }
 @-webkit-keyframes dash {
   0% {
@@ -285,6 +289,9 @@ section .section-section .unregister {
 section .section-section .unregister:hover {
   color: rgb(33, 37, 41);
   font-weight: 500;
+}
+section .section-section .alergeno {
+  min-width: 130px;
 }
 section .section-section .modal {
   position: absolute;
@@ -348,7 +355,7 @@ section .section-section .alert-danger {
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
 }
-section .section-section .alert-info {
+section .section-section .alert-info, section .section-section .alert-primary {
   border-radius: 14px;
 }
 section .section-section .card {

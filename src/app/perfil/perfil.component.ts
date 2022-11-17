@@ -59,35 +59,36 @@ export class PerfilComponent implements OnInit {
   readUserLogged():void {
     this._loginService.readUserLogged().subscribe({
       next : data => {
-        this.userData=data
-        // Rellenar los input
-        this.perfilNombre=data[0].nombre
-        this.perfilApellido1=data[0].apellido1
-        this.perfilApellido2=data[0].apellido2
-        this.perfilDireccion=data[0].direccion
-        this.perfilNickname=data[0].nombre_usuario
-        this.perfilMail=data[0].email
-        if(data[0].cp==0){
-          this.perfilCP=null
+        if(data!=0) {
+          this.userData=data
+          // Rellenar los input
+          this.perfilNombre=data[0].nombre
+          this.perfilApellido1=data[0].apellido1
+          this.perfilApellido2=data[0].apellido2
+          this.perfilDireccion=data[0].direccion
+          this.perfilNickname=data[0].nombre_usuario
+          this.perfilMail=data[0].email
+          if(data[0].cp==0){
+            this.perfilCP=null
+          } else {
+            this.perfilCP="0"+data[0].cp
+          }
+          if(data[0].nombre_usuario) {
+            this.userName=data[0].nombre_usuario
+          } else {
+            this.userName=data[0].nombre
+          }
+          // Controlar el mensaje de alerta si no esta rellenados direccion y CP
+          if(data[0].direccion!='' && data[0].cp!=null){
+            this._loginService.setalertInfoStatus(false)
+          } else {
+            this.alertInfo$=true
+          }
         } else {
-          this.perfilCP="0"+data[0].cp
+          this.logout()
         }
-        if(data[0].nombre_usuario) {
-          this.userName=data[0].nombre_usuario
-        } else {
-          this.userName=data[0].nombre
-        }
-        // Controlar el mensaje de alerta si no esta rellenados direccion y CP
-        if(data[0].direccion!='' && data[0].cp!=null){
-          this._loginService.setalertInfoStatus(false)
-        } else {
-          this.alertInfo$=true
-        }
-      },
-      error : error => {
-        console.log("Read error", error);
       }
-    });
+    })
   }
 
   // Inicializr bootstrap tooltip
@@ -100,7 +101,7 @@ export class PerfilComponent implements OnInit {
 
   // Controlar nombre de usuario público
   visibleNickname():void{
-    if(!this.perfilNickname) {
+    if(!this.perfilNickname && this.userData) {
       this.userName=this.userData[0].nombre
     } else {
       this.userName=this.perfilNickname
@@ -171,6 +172,13 @@ export class PerfilComponent implements OnInit {
   // DELETE de usuario
   unregister():void {
     this._loginService.delete(this.userData[0].id_usuario).subscribe()
+    this.logout()
+  }
+
+  // Cerrar sesion, borrar cookies y redirigir a la pagina de inicio
+  logout():void {
+    this._cookie.delete("token")
+    this._loginService.setloginStatus(false)
     this.router.navigate(['/'])
   }
 

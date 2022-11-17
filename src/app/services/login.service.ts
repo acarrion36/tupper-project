@@ -63,6 +63,7 @@ export class LoginService {
   }
 
   // COOKIES
+
   getToken() {
     return this._cookie.get("token")
   }

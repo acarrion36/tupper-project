@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -20,14 +20,14 @@ export class AppComponent implements OnInit {
   // OnInit | Checkeo del estado de la sesión de usuario, scroll to top por defecto al cambiar de vista y checkeo de cookies
   ngOnInit():void {
     this._loginService.loginWindowStatus$.subscribe((status:boolean) => this.loginWindowStatus$ = status)
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-          return;
-      }
-      window.scrollTo(0, 0)
-    });
     if(this._cookies.check("token")) {
-      this._loginService.setloginStatus(true)
+      this._loginService.readUserLogged().subscribe({
+        next : data => {
+          if(data!=0) {
+            this._loginService.setloginStatus(true)
+          }
+        }
+      })
     }
   }
 

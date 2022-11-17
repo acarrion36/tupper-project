@@ -155,6 +155,18 @@ export class LoginComponent implements OnInit {
             this.alertMailMsg="Correo electrónico ya dado de alta."
           } else {
             this.alertMail=false
+            // Si todos los campos son validos (alarmas 0)...
+            if(!this.alertNombre&&!this.alertApellido1&&!this.alertApellido2&&!this.alertMail&&!this.alertPassword) {
+              // ...POST de usuario registrado
+              this._loginService.register(new User(this.registroApellido1,this.registroApellido2,'','',this.registroMail,this.registroNombre,'',this.registroPassword)).subscribe({
+                next:data => {
+                  this._loginService.setToken(btoa(data[0].email))
+                }
+              })
+              this.mostrarRegistro=false
+              this.mostrarRegistroExitoso=true
+              this._loginService.setloginStatus(true)
+            }
           }
         }
       })
@@ -172,18 +184,6 @@ export class LoginComponent implements OnInit {
       this.alertPasswordMsg="La contraseña debe tener entre 6 y 20 carácteres. Al menos un numero, una letra mayuscula y una letra minuscula. Por ejemplo, Elika123."
     } else {
       this.alertPassword=false
-    }
-    // Si todos los campos son validos (alarmas 0)...
-    if(!this.alertNombre&&!this.alertApellido1&&!this.alertApellido2&&!this.alertMail&&!this.alertPassword) {
-      // ...POST de usuario registrado
-      this._loginService.register(new User(this.registroApellido1,this.registroApellido2,'','',this.registroMail,this.registroNombre,'',this.registroPassword)).subscribe({
-        next:data => {
-          this._loginService.setToken(btoa(data[0].email))
-        }
-      })
-      this.mostrarRegistro=false
-      this.mostrarRegistroExitoso=true
-      this._loginService.setloginStatus(true)
     }
   }
 
