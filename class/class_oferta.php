@@ -69,7 +69,7 @@ class oferta{
 
             echo $var;
         }else{
-                $sql="SELECT oferta.*, menu.* FROM oferta inner join menu on oferta.id_menu = menu.id_menu where oferta.id_oferta='".$idu."'";
+                $sql="SELECT oferta.*, menu.* FROM oferta inner join menu on oferta.id_menu = menu.id_menu where oferta.id_usuario='".$idu."'";
                 $resultado=$bd->seleccionar($sql);
                 while ($usu = mysqli_fetch_assoc($resultado)) {
                         $data[]=$usu;
