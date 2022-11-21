@@ -1,0 +1,18 @@
+<div class="container-fluid text-center fixed-top pt-2 pb-2 bg-dark shadow-sm">
+  <div class="row">
+    <div class="col align-self-center logo-img">
+      <img [routerLink]="['/']" src="../assets/img/tapper.png" alt="logo elikaWaste">
+    </div>
+    <div class="col align-self-center logo">
+      <img [routerLink]="['/']" src="../assets/img/logo.png" alt="elikaWaste">
+    </div>
+    <div class="col align-self-center">
+      <button *ngIf="!this.loginStatus$" (click)="mostrar()" type="button" id="dropdownLogin" class="btn btn-secondary">
+        <img src="../assets/img/dropdown.png" width="40px" alt="menu">
+      </button>
+      <button *ngIf="this.loginStatus$" [routerLink]="['/perfil']" type="button" id="dropdownLogin" class="btn btn-secondary">
+        <img src="../assets/img/dropdown.png" width="40px" alt="menu">
+      </button>
+    </div>
+  </div>
+</div>

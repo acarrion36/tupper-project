@@ -1,0 +1,179 @@
+<div class="container-fluid main-section">
+  <div class="row flex-nowrap main-height">
+    <app-aside class="col-md-3 bg-light d-none d-md-block d-flex align-items-end bg-image shadow-sm"></app-aside>
+    <div class="col-md-9 p-5 d-flex justify-content-center">
+      <div class="section-section">
+        <h5>Donaciones</h5>
+        <p>Cuéntanos que quieres donar, así como donde y cuando vas a entregarlo.</p>
+        <div class="section-section-buttons">
+          <button class="btn btn-dark shadow-sm">Nueva</button>
+          <button [routerLink]="['/donar/en-curso']" class="btn btn-light shadow-sm">En curso</button>
+          <button [routerLink]="['/donar/finalizadas']" class="btn btn-light shadow-sm">Finalizadas</button>
+        </div>
+        <!--INICIO TARJETA DONACION NUEVA-->
+        <div class="mt-4 p-4 bg-light border shadow-sm">
+          <form class="row g-3" id="donationForm" #formDonation="ngForm">
+            <div class="col-md-12 d-flex flex-wrap justify-content-start">
+              <p class="col-form-label"><strong>Información del plato</strong></p>
+            </div>
+            <div class="col-md-12">
+              <label for="platoNombre" class="form-label">Nombre del plato*</label>
+              <input type="text" class="form-control" id="platoNombre" name="platoNombre" [(ngModel)]="this.nombrePlato">
+              <div *ngIf="this.alertNombrePlato" class="alert alert-danger">Campo obligatorio.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="platoDescripcion" class="form-label">Descripcion*</label>
+              <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Es importante ser lo más preciso posible al describir el plato." id="platoDescripcion" name="platoDescripcion" rows="3" [(ngModel)]="this.descripcionPlato"></textarea>
+              <div *ngIf="this.alertDescripcionPlato" class="alert alert-danger">Campo obligatorio.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="platoDescripcion" class="form-label">Notas adicionales</label>
+              <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="right" id="platoDescripcion" name="platoDescripcion" rows="3" [(ngModel)]="this.notasPlato"></textarea>
+            </div>
+            <div class="col-md-12">
+              <label for="platoAlergenos" class="form-label">Alérgenos</label>
+              <div class="d-flex flex-wrap mb-2">
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('gluten')" class="form-check-input" type="checkbox" id="gluten" name="gluten" value="gluten">
+                  <label class="form-check-label" for="gluten"><img class="m-0" src="../../assets/img/alergenos/Gluten.png" alt="gluten" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Glúten</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('crustaceos')" class="form-check-input" type="checkbox" id="crustaceos" name="crustaceos" value="crustaceos">
+                  <label class="form-check-label" for="crustaceos"><img class="m-0" src="../../assets/img/alergenos/Crustaceos.png" alt="crustaceos" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Crustaceos</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('huevos')" class="form-check-input" type="checkbox" id="huevos" name="huevos" value="huevos">
+                  <label class="form-check-label" for="huevos"><img class="m-0" src="../../assets/img/alergenos/Huevos.png" alt="huevos" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Huevos</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('pescado')" class="form-check-input" type="checkbox" id="pescado" name="pescado" value="pescado">
+                  <label class="form-check-label" for="pescado"><img class="m-0" src="../../assets/img/alergenos/Pescado.png" alt="pescado" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Pescado</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('cacahuetes')" class="form-check-input" type="checkbox" id="cacahuetes" name="cacahuetes" value="cacahuetes">
+                  <label class="form-check-label" for="cacahuetes"><img class="m-0" src="../../assets/img/alergenos/Cacahuetes.png" alt="cacahuetes" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Cacahuetes</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('soja')" class="form-check-input" type="checkbox" id="soja" name="soja" value="soja">
+                  <label class="form-check-label" for="soja"><img class="m-0" src="../../assets/img/alergenos/Soja.png" alt="soja" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Soja</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('lacteos')" class="form-check-input" type="checkbox" id="lacteos" name="lacteos" value="lacteos">
+                  <label class="form-check-label" for="lacteos"><img class="m-0" src="../../assets/img/alergenos/Lácteos.png" alt="lacteos" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Lácteos</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('frutoscascara')" class="form-check-input" type="checkbox" id="frutoscascara" name="frutoscascara" value="frutoscascara">
+                  <label class="form-check-label" for="frutoscascara"><img class="m-0" src="../../assets/img/alergenos/Frutos secos.png" alt="frutoscascara" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Frutos secos</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('apio')" class="form-check-input" type="checkbox" id="apio" name="apio" value="apio">
+                  <label class="form-check-label" for="apio"><img class="m-0" src="../../assets/img/alergenos/Apio.png" alt="apio" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Apio</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('mostaza')" class="form-check-input" type="checkbox" id="mostaza" name="mostaza" value="mostaza">
+                  <label class="form-check-label" for="mostaza"><img class="m-0" src="../../assets/img/alergenos/Mostaza.png" alt="mostaza" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Mostaza</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('granossesamo')" class="form-check-input" type="checkbox" id="granossesamo" name="granossesamo" value="granossesamo">
+                  <label class="form-check-label" for="granossesamo"><img class="m-0" src="../../assets/img/alergenos/Sésamo.png" alt="granossesamo" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Sésamo</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('dioxido')" class="form-check-input" type="checkbox" id="dioxido" name="dioxido" value="dioxido">
+                  <label class="form-check-label" for="dioxido"><img class="m-0" src="../../assets/img/alergenos/Sulfitos.png" alt="dioxido" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Sulfitos</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('moluscos')" class="form-check-input" type="checkbox" id="moluscos" name="moluscos" value="moluscos">
+                  <label class="form-check-label" for="moluscos"><img class="m-0" src="../../assets/img/alergenos/Moluscos.png" alt="moluscos" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Moluscos</span>
+                </div>
+                <div class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+                  <input (click)="isChecked('altramuces')" class="form-check-input" type="checkbox" id="altramuces" name="altramuces" value="altramuces">
+                  <label class="form-check-label" for="altramuces"><img class="m-0" src="../../assets/img/alergenos/Altramuz.png" alt="altramuces" width="30px"></label>
+                  <span class="m-0 p-0 fs-7">Altramuces</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <label for="platoRaciones" class="form-label">Raciones*</label>
+              <input (change)="checkRation()" type="number" class="form-control" id="platoRaciones" name="platoRaciones" [(ngModel)]="this.racionesPlato">
+            </div>
+            <div class="col-md-5">
+              <label for="platoFoto" class="form-label">Foto del plato</label>
+              <input class="form-control" type="file" id="platoFoto" name="platoFoto" [(ngModel)]="this.fotoPlato">
+            </div>
+            <div class="col-md-12 d-flex justify-content-between align-items-center">
+              <p class="col-form-label"><strong>Información de la entrega</strong></p>
+            </div>
+            <div class="col-md-9">
+              <label for="entregaDireccion" class="form-label">Direccion de entrega*</label>
+              <input type="text" class="form-control" id="entregaDireccion" name="entregaDireccion" [(ngModel)]="this.direccionEntrega">
+              <div *ngIf="this.alertDireccionEntrega" class="alert alert-danger">Campo obligatorio.</div>
+            </div>
+            <div class="col-md-3">
+              <label for="entregaCP" class="form-label">C.P.*</label>
+              <input type="text" class="form-control" id="entregaCP" name="entregaCP" placeholder="Ej: 01234" [(ngModel)]="this.cpEntrega">
+              <div *ngIf="this.alertCPEntrega" class="alert alert-danger">{{this.alertMsg}}</div>
+            </div>
+            <div class="col-md-6">
+              <label for="entregaDia" class="form-label">Dia*</label>
+              <input type="date" class="form-control" id="entregaDia" name="entregaDia" [(ngModel)]="this.fechaEntrega">
+              <div *ngIf="this.alertFechaEntrega" class="alert alert-danger">Campo obligatorio.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="entregaHora" class="form-label">Hora*</label>
+              <input type="time" class="form-control" id="entregaHora" name="entregaHora" [(ngModel)]="this.horaEntrega">
+              <div *ngIf="this.alertHoraEntrega" class="alert alert-danger">Campo obligatorio.</div>
+            </div>
+            <div class="col-md-12">
+              <label for="entregaNotas" class="form-label">Notas</label>
+              <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Usa esta campo para anotar cualquier cosa. Por ejemplo, otras franjas de entrega." id="entregaNotas" name="entregaNotas" rows="3" [(ngModel)]="this.notasEntrega"></textarea>
+            </div>
+            <div class="col-md-12 d-flex justify-content-end">
+              <div class="d-flex align-items-center gap-4">
+                <button (click)="publicar()" class="btn btn-dark" id="btnGuardarDonacion" type="submit">Publicar</button>
+              </div>
+              <!-- Modal -->
+              <div (click)="closeModal(formDonation)" *ngIf="this.showModal" class="veil" id="veil"></div>
+              <div *ngIf="this.showModal" class="modal text-center show" style="display: block;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="green" viewBox="0 0 16 16" class="bi bi-check-circle p-1">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+                      </svg>
+                      <h1 class="modal-title fs-5">Publicar donación</h1>
+                      <svg (click)="closeModal(formDonation)" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="30px" data-bs-dismiss="modal" aria-label="Close" viewBox="0 0 16 16" class="bi bi-x-lg close p-1">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+                      </svg>
+                    </div>
+                    <div class="modal-body">¡Perfecto! La donación Nº{{this.idDonacion}} se ha publicado correctamente. Gracias por tu aportación.</div>
+                    <div class="modal-footer">
+                      <button [routerLink]="['/donar/en-curso']" type="button" class="btn btn-success">Donaciones en curso</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!--FIN TARJETA DONACION NUEVA-->
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <app-navsm></app-navsm>
+</footer>

@@ -1,0 +1,9 @@
+<nav>
+  <app-login *ngIf="this.loginWindowStatus$" id="appLogin"></app-login>
+</nav>
+<header>
+  <app-header></app-header>
+</header>
+<section>
+  <router-outlet></router-outlet>
+</section>
