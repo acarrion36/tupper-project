@@ -20,8 +20,16 @@ export class DonarService {
 
   constructor(private _http:HttpClient) { }
 
+  readDonationsByIdu(idu:any):Observable<any>{
+    return this._http.get("http://elika-waste.learnhowto.space/api/api_oferta.php?idu="+idu,httpOptions)
+  }
+
   register(donation:any):Observable<any>{
     return this._http.post("http://elika-waste.learnhowto.space/api/api_oferta.php",donation,httpOptions)
+  }
+
+  delete(id:any):Observable<any>{
+    return this._http.post("http://elika-waste.learnhowto.space/api/api_oferta.php?idu="+id,httpOptions)
   }
 
 }

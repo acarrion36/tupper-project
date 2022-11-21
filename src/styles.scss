@@ -6,7 +6,7 @@ $sectionPaddingTop: $logoWidth + 15;
 
 //VARIABLES: COLORES
 $lightgrey: #ebebeb;
-$grey: rgb(177, 177, 177);
+$grey: rgb(233, 233, 233);
 $darkgrey: rgb(87, 87, 87);
 $black: rgb(33, 37, 41);
 $white: rgb(255, 255, 255);
@@ -103,8 +103,10 @@ a {
 }
 
 .fs-7 {
-  font-size: .75rem !important;
+  font-size: .80rem !important;
 }
+
+
 
 .btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
@@ -282,7 +284,7 @@ section {
   }
   // MAIN
   .main-section {
-    background-color: $lightgrey !important;
+    background-color: $grey !important;
 
     .main-height {
       padding-top: $sectionPaddingTop;
@@ -326,7 +328,7 @@ section {
   .section-section {
     width: 70%;
     min-width: 530px;
-    background-color: $lightgrey !important;
+    background-color: $grey !important;
 
     @include checkmark;
 
@@ -352,7 +354,6 @@ section {
     }
 
     .modal {
-      position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -70%);
@@ -360,6 +361,7 @@ section {
       height: fit-content;
       width: 90%;
       max-width: 400px;
+      z-index: 9999;
 
       .bi-x-lg {
         cursor: pointer;
@@ -414,6 +416,18 @@ section {
       border-radius: $borderRadiusM;
       font-size: 14px;
 
+      .form-check-input:disabled {
+        pointer-events: none;
+        filter: none;
+        opacity: 1;
+        background-color: $green;
+        border: 0;
+      }
+
+      .card-text {
+        margin-bottom: 8px;
+      }
+
       .card-header {
         display: flex;
         height: 45px;
@@ -425,11 +439,11 @@ section {
 
         .cardimg {
           position: relative;
-          width: 65px;
-          height: 65px;
+          width: 70px;
+          height: 70px;
           overflow: hidden;
           border-radius: 50%;
-          border: 3px solid $white;
+          border: 5px solid $white;
           top: 22px;
           left: 0;
 
@@ -447,7 +461,6 @@ section {
       .card-footer {
         border-bottom-left-radius: $borderRadiusM;
         border-bottom-right-radius: $borderRadiusM;
-        height: 46px;
         color: $white;
         font-size: 16px;
 

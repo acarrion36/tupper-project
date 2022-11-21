@@ -11,90 +11,90 @@
           <button [routerLink]="['/donar/finalizadas']" class="btn btn-light shadow-sm">Finalizadas</button>
         </div>
         <div class="d-inline-flex flex-column justify-content-center align-items-center ps-4 mt-4">
-          <p class="fs-1 m-0"><strong>*</strong></p>
+          <p class="fs-1 m-0"><strong>{{this.donacionesEnCurso}}</strong></p>
           <p><strong>En curso</strong></p>
-        </div>
-        <div class="section-section-buttons mt-3 justify-content-end">
-          <button [routerLink]="['/donar']" class="btn btn-dark shadow-sm">Todas</button>
-          <button [routerLink]="['/donar']" class="btn btn-light shadow-sm">Por publicar</button>
-          <button [routerLink]="['/donar']" class="btn btn-light shadow-sm">Por entregar</button>
-          <button [routerLink]="['/donar']" class="btn btn-light shadow-sm">Publicadas</button>
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
           <!--INICIO TARJETA DONACION EN CURSO-->
-          <div class="col">
+          <div *ngFor="let d of this.donaciones; index as i" class="col">
             <div class="card h-100 text-bg-light mb-3 shadow-sm">
               <div class="card-header border-0 justify-content-between align-items-center">
                 <div class="cardimg">
                   <img src="../../assets/img/cocinar.jpg" alt="">
                 </div>
-                <p class="p-0 m-0">Nº 000003</p>
+                <p class="p-0 m-0">Donación Nº{{d.id_oferta}}</p>
               </div>
               <div class="card-body">
-                <h5 class="card-title mt-4">Nombre del plato con un poco de sal</h5>
-                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ratione fugiat aliquam voluptates dolor facilis?</p>
-                <h6 class="card-title">Datos de entrega</h6>
-                <p class="card-text mb-0">Dirección de entrega</p>
-                <p class="card-text">Día y hora de entrega</p>
-                <h6 class="card-title">Notas</h6>
-                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, minima.</p>
-                <h6 class="card-title">Raciones</h6>
-                <p class="card-text">1</p>
-              </div>
-              <div class="card-footer bg-primary border-0 text-center" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Estamos revisando que todo este en orden. En breves momentos publicaremos esta donación.">
-                <small>Pendiente de publicación</small>
-              </div>
-            </div>
-          </div>
-          <!--FIN TARJETA DONACION EN CURSO-->
-          <!--INICIO TARJETA DONACION EN CURSO-->
-          <div class="col">
-            <div class="card h-100 text-bg-light mb-3 shadow-sm">
-              <div class="card-header border-0 justify-content-between align-items-center">
-                <div class="cardimg">
-                  <img src="../../assets/img/cocinar.jpg" alt="">
+                <h5 class="card-title mt-4">{{d.nombre}}</h5>
+                <p class="card-text">{{d.descripcion}}</p>
+                <div *ngIf="d.notas!=''">
+                  <figcaption class="blockquote-footer mt-2">{{d.notas}}</figcaption>
                 </div>
-                <p class="p-0 m-0">Nº 000002</p>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title mt-4">Nombre del plato con un poco de sal</h5>
-                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ratione fugiat aliquam voluptates dolor facilis?</p>
-                <h6 class="card-title">Datos de entrega</h6>
-                <p class="card-text mb-0">Dirección de entrega</p>
-                <p class="card-text">Día y hora de entrega</p>
-                <h6 class="card-title">Notas</h6>
-                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, minima.</p>
-                <h6 class="card-title">Raciones</h6>
-                <p class="card-text">1</p>
-              </div>
-              <div class="card-footer bg-warning border-0 text-center">
-                <small>Pendiente de entrega</small>
-              </div>
-            </div>
-          </div>
-          <!--FIN TARJETA DONACION EN CURSO-->
-          <!--INICIO TARJETA DONACION EN CURSO-->
-          <div class="col">
-            <div class="card h-100 text-bg-light mb-3 shadow-sm">
-              <div class="card-header border-0 justify-content-between align-items-center">
-                <div class="cardimg">
-                  <img src="../../assets/img/cocinar.jpg" alt="">
+                <h6 class="card-title">Alérgenos</h6>
+                <div class="d-flex flex-wrap alergenos gap-2">
+                  <div *ngFor="let a of this.alergenosPlato[i]">
+                    <div [ngSwitch]="a">
+                      <p *ngSwitchCase="'huevos'">
+                        <img title="Huevos" src="../../assets/img/alergenos/Huevos.png" width="30px" height="30px" alt="huevos">
+                      </p>
+                      <p *ngSwitchCase="'gluten'">
+                        <img title="Gluten" src="../../assets/img/alergenos/Gluten.png" width="30px" height="30px" alt="gluten">
+                      </p>
+                      <p *ngSwitchCase="'crustaceos'">
+                        <img title="Crustaceos" src="../../assets/img/alergenos/Crustaceos.png" width="30px" height="30px" alt="crustaceos">
+                      </p>
+                      <p *ngSwitchCase="'pescado'">
+                        <img title="Pescado" src="../../assets/img/alergenos/Pescado.png" width="30px" height="30px" alt="pescado">
+                      </p>
+                      <p *ngSwitchCase="'cacahuetes'">
+                        <img title="Cacahuetes" src="../../assets/img/alergenos/Cacahuetes.png" width="30px" height="30px" alt="cacahuetes">
+                      </p>
+                      <p *ngSwitchCase="'soja'">
+                        <img title="Soja" src="../../assets/img/alergenos/Soja.png" width="30px" height="30px" alt="soja">
+                      </p>
+                      <p *ngSwitchCase="'lacteos'">
+                        <img title="Lácteos" src="../../assets/img/alergenos/Lácteos.png" width="30px" height="30px" alt="lacteos">
+                      </p>
+                      <p *ngSwitchCase="'frutoscascara'">
+                        <img title="Frutos Secos" src="../../assets/img/alergenos/Frutos secos.png" width="30px" height="30px" alt="frutossecos">
+                      </p>
+                      <p *ngSwitchCase="'apio'">
+                        <img title="Apio" src="../../assets/img/alergenos/Apio.png" width="30px" height="30px" alt="apio">
+                      </p>
+                      <p *ngSwitchCase="'mostaza'">
+                        <img title="Mostaza" src="../../assets/img/alergenos/Mostaza.png" width="30px" height="30px" alt="mostaza">
+                      </p>
+                      <p *ngSwitchCase="'granossesamo'">
+                        <img title="Sésamo" src="../../assets/img/alergenos/Sésamo.png" width="30px" height="30px" alt="sesamo">
+                      </p>
+                      <p *ngSwitchCase="'dioxido'">
+                        <img title="Sulfitos" src="../../assets/img/alergenos/Sulfitos.png" width="30px" height="30px" alt="sulfitos">
+                      </p>
+                      <p *ngSwitchCase="'moluscos'">
+                        <img title="Moluscos" src="../../assets/img/alergenos/Moluscos.png" width="30px" height="30px" alt="moluscos">
+                      </p>
+                      <p *ngSwitchCase="'altramuces'">
+                        <img title="Altramuces" src="../../assets/img/alergenos/Altramuz.png" width="30px" height="30px" alt="altramuces">
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <p class="p-0 m-0">Nº 000001</p>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title mt-4">Nombre del plato con un poco de sal</h5>
-                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ratione fugiat aliquam voluptates dolor facilis?</p>
                 <h6 class="card-title">Datos de entrega</h6>
-                <p class="card-text mb-0">Dirección de entrega</p>
-                <p class="card-text">Día y hora de entrega</p>
-                <h6 class="card-title">Notas</h6>
-                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, minima.</p>
-                <h6 class="card-title">Raciones</h6>
-                <p class="card-text">1</p>
+                <p class="card-text mb-1">{{d.direccion}}, 0{{d.cp}}</p>
+                <p class="card-text">{{d.f_recogida}} a las {{d.h_recogida}}</p>
+                <div *ngIf="d.anotacion!=''">
+                  <figcaption class="blockquote-footer mt-2">{{d.anotacion}}</figcaption>
+                </div>
               </div>
-              <div class="card-footer bg-success border-0 text-center">
-                <small>Publicada</small>
+              <div class="card-footer text-bg-light border-0">
+                <h6 class="card-title">Raciones</h6>
+                <div class="d-flex">
+                  <div *ngFor="let r of this.racionesPlato[i]; index as u">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="{{d.id_oferta+'-'+u}}" disabled>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -4,7 +4,11 @@ a {
 }
 
 .fs-7 {
-  font-size: 0.75rem !important;
+  font-size: 0.8rem !important;
+}
+
+.alergenos {
+  height: 40px;
 }
 
 .btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
@@ -294,7 +298,6 @@ section .section-section .alergeno {
   min-width: 130px;
 }
 section .section-section .modal {
-  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -70%);
@@ -304,6 +307,7 @@ section .section-section .modal {
   height: fit-content;
   width: 90%;
   max-width: 400px;
+  z-index: 9999;
 }
 section .section-section .modal .bi-x-lg {
   cursor: pointer;
@@ -362,6 +366,16 @@ section .section-section .card {
   border-radius: 14px;
   font-size: 14px;
 }
+section .section-section .card .form-check-input:disabled {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.5;
+  background-color: green;
+  border: 0;
+}
+section .section-section .card .card-text {
+  margin-bottom: 8px;
+}
 section .section-section .card .card-header {
   display: flex;
   height: 45px;
@@ -371,17 +385,17 @@ section .section-section .card .card-header {
   border-top-right-radius: 14px;
   font-size: 12px;
 }
-section .section-section .card .card-header .cardimg {
+section .section-section .card .card-header .card-img {
   position: relative;
-  width: 65px;
-  height: 65px;
+  width: 70px;
+  height: 70px;
   overflow: hidden;
   border-radius: 50%;
-  border: 3px solid rgb(255, 255, 255);
+  border: 5px solid rgb(255, 255, 255);
   top: 22px;
   left: 0;
 }
-section .section-section .card .card-header .cardimg img {
+section .section-section .card .card-header .card-img img {
   width: auto;
   height: 100%;
 }

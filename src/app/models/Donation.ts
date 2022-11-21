@@ -9,7 +9,7 @@ export class Donation {
       public direccion:string,
       public cp:string,
       public anotacion:string,
-      public raciones:string,
+      public raciones:number,
       public h_recogida:string,
       public f_recogida:string
   ){}
