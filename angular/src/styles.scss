@@ -349,8 +349,16 @@ section {
       }
     }
 
-    .alergeno {
+    .alergeno { // son los alergenos que se muestran en el formulario de nuevo donación
       min-width: 130px;
+    }
+
+    .alergenos {  // son los alergenos que se muestran en las donaciones en curso/finalizadas
+      height: 25px;
+
+      img {
+        width: 25px;
+      }
     }
 
     .modal {
@@ -420,7 +428,7 @@ section {
         pointer-events: none;
         filter: none;
         opacity: 1;
-        background-color: $green;
+        background-color: green;
         border: 0;
       }
 
