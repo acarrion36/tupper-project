@@ -13,56 +13,101 @@
             <input type="range" class="form-range" min="0" max="5" step="1" id="buscarRadio">
           </div>
         </div>
-        <div class="d-inline-flex flex-column justify-content-center align-items-center ps-4 mt-4">
-          <p class="fs-1 m-0"><strong>*</strong></p>
-          <p><strong>Donaciones</strong></p>
+        <div class="d-flex justify-content-between align-items-center ps-4 pe-4 mt-4">
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <p class="fs-1 m-0"><strong>{{this.donacionesTotales}}</strong></p>
+            <p><strong>Donaciones</strong></p>
+          </div>
+          <button (click)="envioCarrito()" class="btn p-0 border-0 position-relative" [ngClass]="this.count===0 ? 'disabled':'activo'" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" fill="black" class="bi bi-cart3" viewBox="0 0 16 16">
+              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+              <span>{{this.count}}</span>
+            </span>
+          </button>
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
           <!--INICIO TARJETA DONACION EN CURSO-->
-          <div class="col">
-            <div class="card h-100 text-bg-light mb-3 shadow-sm">
+          <div *ngFor="let d of this.donaciones; index as i" class="col">
+            <div class="card h-100 text-bg-light mb-3 shadow-sm" id="{{d.id_oferta}}">
               <div class="card-header border-0 justify-content-between align-items-center">
                 <div class="cardimg">
                   <img src="../../assets/img/cocinar.jpg" alt="">
                 </div>
+                <p class="p-0 m-0">Donación Nº{{d.id_oferta}}</p>
               </div>
               <div class="card-body">
-                <h5 class="card-title mt-4">Nombre del plato con un poco de sal</h5>
-                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum ratione fugiat aliquam voluptates dolor facilis?</p>
+                <h5 class="card-title mt-4">{{d.nombre}}</h5>
+                <p class="card-text">{{d.descripcion}}</p>
+                <div *ngIf="d.notas!=''">
+                  <figcaption class="blockquote-footer ms-2 mt-2 mb-2">{{d.notas}}</figcaption>
+                </div>
+                <h6 class="card-title">Alérgenos</h6>
+                <div class="d-flex flex-wrap mb-2 gap-1">
+                  <div *ngFor="let a of this.alergenosPlato[i]" class="alergenos">
+                    <div [ngSwitch]="a">
+                      <p *ngSwitchCase="'huevos'">
+                        <img title="Huevos" src="../../assets/img/alergenos/Huevos.png" alt="huevos">
+                      </p>
+                      <p *ngSwitchCase="'gluten'">
+                        <img title="Gluten" src="../../assets/img/alergenos/Gluten.png" alt="gluten">
+                      </p>
+                      <p *ngSwitchCase="'crustaceos'">
+                        <img title="Crustaceos" src="../../assets/img/alergenos/Crustaceos.png" alt="crustaceos">
+                      </p>
+                      <p *ngSwitchCase="'pescado'">
+                        <img title="Pescado" src="../../assets/img/alergenos/Pescado.png" alt="pescado">
+                      </p>
+                      <p *ngSwitchCase="'cacahuetes'">
+                        <img title="Cacahuetes" src="../../assets/img/alergenos/Cacahuetes.png" alt="cacahuetes">
+                      </p>
+                      <p *ngSwitchCase="'soja'">
+                        <img title="Soja" src="../../assets/img/alergenos/Soja.png" alt="soja">
+                      </p>
+                      <p *ngSwitchCase="'lacteos'">
+                        <img title="Lácteos" src="../../assets/img/alergenos/Lácteos.png" alt="lacteos">
+                      </p>
+                      <p *ngSwitchCase="'frutoscascara'">
+                        <img title="Frutos Secos" src="../../assets/img/alergenos/Frutos secos.png" alt="frutossecos">
+                      </p>
+                      <p *ngSwitchCase="'apio'">
+                        <img title="Apio" src="../../assets/img/alergenos/Apio.png" alt="apio">
+                      </p>
+                      <p *ngSwitchCase="'mostaza'">
+                        <img title="Mostaza" src="../../assets/img/alergenos/Mostaza.png" alt="mostaza">
+                      </p>
+                      <p *ngSwitchCase="'granossesamo'">
+                        <img title="Sésamo" src="../../assets/img/alergenos/Sésamo.png" alt="sesamo">
+                      </p>
+                      <p *ngSwitchCase="'dioxido'">
+                        <img title="Sulfitos" src="../../assets/img/alergenos/Sulfitos.png" alt="sulfitos">
+                      </p>
+                      <p *ngSwitchCase="'moluscos'">
+                        <img title="Moluscos" src="../../assets/img/alergenos/Moluscos.png" alt="moluscos">
+                      </p>
+                      <p *ngSwitchCase="'altramuces'">
+                        <img title="Altramuces" src="../../assets/img/alergenos/Altramuz.png" alt="altramuces">
+                      </p>
+                    </div>
+                  </div>
+                </div>
                 <h6 class="card-title">Datos de entrega</h6>
-                <p class="card-text mb-0">Dirección de entrega</p>
-                <p class="card-text">Día y hora de entrega</p>
-                <h6 class="card-title">Notas</h6>
-                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, minima.</p>
-                <h6 class="card-title">Raciones</h6>
-                <div class="input-group-lg">
-                  <input (click)="isChecked('inlineRadio1')" class="form-check-input me-2" type="checkbox" name="inlineRadioOptions1" id="inlineRadio1" value="option1">
-                  <input (click)="isChecked('inlineRadio2')" class="form-check-input me-2" type="checkbox" name="inlineRadioOptions2" id="inlineRadio2" value="option2">
-                  <input (click)="isChecked('inlineRadio3')" class="form-check-input me-2" type="checkbox" name="inlineRadioOptions3" id="inlineRadio3" value="option3">
+                <p class="card-text mb-1">{{d.direccion}}, 0{{d.cp}}</p>
+                <p class="card-text">{{d.f_recogida}} a las {{d.h_recogida}}</p>
+                <div *ngIf="d.anotacion!=''">
+                  <figcaption class="blockquote-footer ms-2 mt-2 mb-2">{{d.anotacion}}</figcaption>
                 </div>
               </div>
-              <div class="card-footer bg-warning border-0 d-flex justify-content-center align-items-center" id="donationCard1">
-
-                <button *ngIf="this.count>0" class="btn mt-3 mb-1 p-0 border-0 position-relative" type="submit">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" fill="black" class="bi bi-cart3" viewBox="0 0 16 16">
-                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                  </svg>
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                    {{this.count}}
-                    <span class="visually-hidden">0</span>
-                  </span>
-                </button>
-
-                <button *ngIf="this.count==0" class="btn mt-3 mb-1 p-0 border-0 position-relative disabled" type="submit">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" fill="black" class="bi bi-cart3" viewBox="0 0 16 16">
-                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                  </svg>
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                    {{this.count}}
-                    <span class="visually-hidden">0</span>
-                  </span>
-                </button>
-
+              <div class="card-footer text-bg-light border-0 pb-3 pt-0">
+                <h6 class="card-title">Raciones</h6>
+                <div class="d-flex flex-wrap gap-2">
+                  <div *ngFor="let r of this.racionesPlato[i]; index as u">
+                    <div class="input-group-lg">
+                      <input (click)="isChecked('id'+d.id_oferta+':'+u)" class="form-check-input" type="checkbox" id="id{{d.id_oferta}}:{{u}}" value="{{d.id_oferta}}">
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

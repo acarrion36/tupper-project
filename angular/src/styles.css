@@ -281,6 +281,9 @@ section .section-section .section-section-buttons {
   -moz-column-gap: 10px;
        column-gap: 10px;
 }
+section .section-section .translate-middle {
+  transform: translate(-70%, -30%) !important;
+}
 section .section-section .unregister {
   cursor: pointer;
   text-decoration: none;

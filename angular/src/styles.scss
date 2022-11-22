@@ -340,6 +340,10 @@ section {
       column-gap: 10px;
     }
 
+    .translate-middle {
+      transform: translate(-70%,-30%)!important;
+    }
+
     .unregister {
       cursor: pointer;
       text-decoration: none;
