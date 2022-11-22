@@ -18,18 +18,20 @@ const httpOptions = {
 
 export class DonarService {
 
+  private url$:string="http://elika-waste.learnhowto.space/php/api/api_oferta.php"
+
   constructor(private _http:HttpClient) { }
 
   readDonationsByIdu(idu:any):Observable<any>{
-    return this._http.get("http://elika-waste.learnhowto.space/api/api_oferta.php?idu="+idu,httpOptions)
+    return this._http.get(this.url$+"?idu="+idu,httpOptions)
   }
 
   register(donation:any):Observable<any>{
-    return this._http.post("http://elika-waste.learnhowto.space/api/api_oferta.php",donation,httpOptions)
+    return this._http.post(this.url$,donation,httpOptions)
   }
 
   delete(id:any):Observable<any>{
-    return this._http.post("http://elika-waste.learnhowto.space/api/api_oferta.php?idu="+id,httpOptions)
+    return this._http.post(this.url$+"?idu="+id,httpOptions)
   }
 
 }
