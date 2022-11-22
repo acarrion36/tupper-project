@@ -67,7 +67,6 @@ export class DonarencursoComponent implements OnInit {
   readDonationsByIdu(idu:any):void {
     this._donarService.readDonationsByIdu(idu).subscribe({
       next : data => {
-        console.log(data)
         this.donaciones=data.reverse()
         this.donacionesEnCurso=data.length
         for (let index = 0; index < data.length; index++) {
