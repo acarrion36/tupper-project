@@ -7,10 +7,6 @@ a {
   font-size: 0.8rem !important;
 }
 
-.alergenos {
-  height: 40px;
-}
-
 .btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
@@ -43,7 +39,7 @@ a {
   position: absolute;
   right: 20px;
   top: 26px;
-  color: rgb(177, 177, 177);
+  color: rgb(233, 233, 233);
 }
 .login .close:hover {
   color: rgb(33, 37, 41);
@@ -53,7 +49,7 @@ a {
   position: absolute;
   left: 20px;
   top: 26px;
-  color: rgb(177, 177, 177);
+  color: rgb(233, 233, 233);
 }
 .login .back:hover {
   color: rgb(33, 37, 41);
@@ -101,7 +97,7 @@ a {
   color: rgb(87, 87, 87);
   background-color: #ebebeb;
   border-color: #ebebeb;
-  box-shadow: 0 0 0 0.1rem rgb(177, 177, 177);
+  box-shadow: 0 0 0 0.1rem rgb(233, 233, 233);
 }
 
 header .logo img, header .logo-img img {
@@ -185,7 +181,7 @@ section .home-section .home-section-triple div h2 {
   font-size: 20px;
 }
 section .main-section {
-  background-color: #ebebeb !important;
+  background-color: rgb(233, 233, 233) !important;
 }
 section .main-section .main-height {
   padding-top: 65px;
@@ -221,7 +217,7 @@ section .main-section .main-height ul .activo {
 section .section-section {
   width: 70%;
   min-width: 530px;
-  background-color: #ebebeb !important;
+  background-color: rgb(233, 233, 233) !important;
 }
 section .section-section .checksvg {
   width: 30px;
@@ -297,6 +293,12 @@ section .section-section .unregister:hover {
 section .section-section .alergeno {
   min-width: 130px;
 }
+section .section-section .alergenos {
+  height: 25px;
+}
+section .section-section .alergenos img {
+  width: 25px;
+}
 section .section-section .modal {
   left: 50%;
   top: 50%;
@@ -311,7 +313,7 @@ section .section-section .modal {
 }
 section .section-section .modal .bi-x-lg {
   cursor: pointer;
-  color: rgb(177, 177, 177);
+  color: rgb(233, 233, 233);
 }
 section .section-section .modal .bi-x-lg:hover {
   color: rgb(33, 37, 41);
@@ -343,7 +345,7 @@ section .section-section .bg-light img {
 }
 section .section-section .bg-light .perfil-phone {
   font-size: 12px;
-  color: rgb(177, 177, 177);
+  color: rgb(233, 233, 233);
 }
 section .section-section .alert {
   --bs-alert-margin-bottom: 0;
@@ -366,13 +368,6 @@ section .section-section .card {
   border-radius: 14px;
   font-size: 14px;
 }
-section .section-section .card .form-check-input:disabled {
-  pointer-events: none;
-  filter: none;
-  opacity: 0.5;
-  background-color: green;
-  border: 0;
-}
 section .section-section .card .card-text {
   margin-bottom: 8px;
 }
@@ -385,7 +380,7 @@ section .section-section .card .card-header {
   border-top-right-radius: 14px;
   font-size: 12px;
 }
-section .section-section .card .card-header .card-img {
+section .section-section .card .card-header .cardimg {
   position: relative;
   width: 70px;
   height: 70px;
@@ -395,7 +390,7 @@ section .section-section .card .card-header .card-img {
   top: 22px;
   left: 0;
 }
-section .section-section .card .card-header .card-img img {
+section .section-section .card .card-header .cardimg img {
   width: auto;
   height: 100%;
 }
@@ -405,12 +400,17 @@ section .section-section .card .card-body {
 section .section-section .card .card-footer {
   border-bottom-left-radius: 14px;
   border-bottom-right-radius: 14px;
-  height: 46px;
   color: rgb(255, 255, 255);
   font-size: 16px;
 }
 section .section-section .card .card-footer small {
   vertical-align: middle;
+}
+section .section-section .card .card-footer .racion {
+  width: 16px;
+  height: 16px;
+  background-color: rgb(59, 187, 70);
+  border-radius: 4px;
 }
 section .section-section .form-control {
   background-color: #ebebeb;
@@ -423,7 +423,7 @@ section .section-section .form-control:focus {
   color: rgb(87, 87, 87);
   background-color: #ebebeb;
   border-color: #ebebeb;
-  box-shadow: 0 0 0 0.1rem rgb(177, 177, 177);
+  box-shadow: 0 0 0 0.1rem rgb(233, 233, 233);
 }
 
 footer .align-footer {
@@ -452,7 +452,7 @@ footer .align-footer .socials {
   flex-direction: column;
   align-items: center;
   row-gap: 15px;
-  color: rgb(177, 177, 177);
+  color: rgb(233, 233, 233);
 }
 footer .align-footer .socials svg {
   transition: 0.5s;

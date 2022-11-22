@@ -11,6 +11,7 @@ $darkgrey: rgb(87, 87, 87);
 $black: rgb(33, 37, 41);
 $white: rgb(255, 255, 255);
 $green: rgb(21, 115, 71);
+$lightgreen: rgb(59, 187, 70);
 
 // IMPORTS
 // Animaciones css
@@ -424,14 +425,6 @@ section {
       border-radius: $borderRadiusM;
       font-size: 14px;
 
-      .form-check-input:disabled {
-        pointer-events: none;
-        filter: none;
-        opacity: 1;
-        background-color: green;
-        border: 0;
-      }
-
       .card-text {
         margin-bottom: 8px;
       }
@@ -474,6 +467,13 @@ section {
 
         small {
           vertical-align: middle;
+        }
+
+        .racion{
+          width: 16px;
+          height: 16px;
+          background-color: $lightgreen;
+          border-radius: 4px;
         }
       }
     }

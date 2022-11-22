@@ -86,11 +86,11 @@
                   <figcaption class="blockquote-footer ms-2 mt-2 mb-2">{{d.anotacion}}</figcaption>
                 </div>
               </div>
-              <div class="card-footer text-bg-light border-0">
+              <div class="card-footer text-bg-light border-0 pb-3 pt-0">
                 <h6 class="card-title">Raciones</h6>
-                <div class="d-flex">
+                <div class="d-flex flex-wrap gap-2">
                   <div *ngFor="let r of this.racionesPlato[i]; index as u">
-                    <img title="Publicada" src="../../assets/img/tapper.png" alt="racion" width="25">
+                    <div class="racion"></div>
                   </div>
                 </div>
               </div>
