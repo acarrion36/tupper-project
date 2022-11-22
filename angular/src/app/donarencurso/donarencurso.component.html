@@ -28,53 +28,53 @@
                 <h5 class="card-title mt-4">{{d.nombre}}</h5>
                 <p class="card-text">{{d.descripcion}}</p>
                 <div *ngIf="d.notas!=''">
-                  <figcaption class="blockquote-footer mt-2">{{d.notas}}</figcaption>
+                  <figcaption class="blockquote-footer ms-2 mt-2 mb-2">{{d.notas}}</figcaption>
                 </div>
                 <h6 class="card-title">Alérgenos</h6>
-                <div class="d-flex flex-wrap alergenos gap-2">
-                  <div *ngFor="let a of this.alergenosPlato[i]">
+                <div class="d-flex flex-wrap mb-2 gap-1">
+                  <div *ngFor="let a of this.alergenosPlato[i]" class="alergenos">
                     <div [ngSwitch]="a">
                       <p *ngSwitchCase="'huevos'">
-                        <img title="Huevos" src="../../assets/img/alergenos/Huevos.png" width="30px" height="30px" alt="huevos">
+                        <img title="Huevos" src="../../assets/img/alergenos/Huevos.png" alt="huevos">
                       </p>
                       <p *ngSwitchCase="'gluten'">
-                        <img title="Gluten" src="../../assets/img/alergenos/Gluten.png" width="30px" height="30px" alt="gluten">
+                        <img title="Gluten" src="../../assets/img/alergenos/Gluten.png" alt="gluten">
                       </p>
                       <p *ngSwitchCase="'crustaceos'">
-                        <img title="Crustaceos" src="../../assets/img/alergenos/Crustaceos.png" width="30px" height="30px" alt="crustaceos">
+                        <img title="Crustaceos" src="../../assets/img/alergenos/Crustaceos.png" alt="crustaceos">
                       </p>
                       <p *ngSwitchCase="'pescado'">
-                        <img title="Pescado" src="../../assets/img/alergenos/Pescado.png" width="30px" height="30px" alt="pescado">
+                        <img title="Pescado" src="../../assets/img/alergenos/Pescado.png" alt="pescado">
                       </p>
                       <p *ngSwitchCase="'cacahuetes'">
-                        <img title="Cacahuetes" src="../../assets/img/alergenos/Cacahuetes.png" width="30px" height="30px" alt="cacahuetes">
+                        <img title="Cacahuetes" src="../../assets/img/alergenos/Cacahuetes.png" alt="cacahuetes">
                       </p>
                       <p *ngSwitchCase="'soja'">
-                        <img title="Soja" src="../../assets/img/alergenos/Soja.png" width="30px" height="30px" alt="soja">
+                        <img title="Soja" src="../../assets/img/alergenos/Soja.png" alt="soja">
                       </p>
                       <p *ngSwitchCase="'lacteos'">
-                        <img title="Lácteos" src="../../assets/img/alergenos/Lácteos.png" width="30px" height="30px" alt="lacteos">
+                        <img title="Lácteos" src="../../assets/img/alergenos/Lácteos.png" alt="lacteos">
                       </p>
                       <p *ngSwitchCase="'frutoscascara'">
-                        <img title="Frutos Secos" src="../../assets/img/alergenos/Frutos secos.png" width="30px" height="30px" alt="frutossecos">
+                        <img title="Frutos Secos" src="../../assets/img/alergenos/Frutos secos.png" alt="frutossecos">
                       </p>
                       <p *ngSwitchCase="'apio'">
-                        <img title="Apio" src="../../assets/img/alergenos/Apio.png" width="30px" height="30px" alt="apio">
+                        <img title="Apio" src="../../assets/img/alergenos/Apio.png" alt="apio">
                       </p>
                       <p *ngSwitchCase="'mostaza'">
-                        <img title="Mostaza" src="../../assets/img/alergenos/Mostaza.png" width="30px" height="30px" alt="mostaza">
+                        <img title="Mostaza" src="../../assets/img/alergenos/Mostaza.png" alt="mostaza">
                       </p>
                       <p *ngSwitchCase="'granossesamo'">
-                        <img title="Sésamo" src="../../assets/img/alergenos/Sésamo.png" width="30px" height="30px" alt="sesamo">
+                        <img title="Sésamo" src="../../assets/img/alergenos/Sésamo.png" alt="sesamo">
                       </p>
                       <p *ngSwitchCase="'dioxido'">
-                        <img title="Sulfitos" src="../../assets/img/alergenos/Sulfitos.png" width="30px" height="30px" alt="sulfitos">
+                        <img title="Sulfitos" src="../../assets/img/alergenos/Sulfitos.png" alt="sulfitos">
                       </p>
                       <p *ngSwitchCase="'moluscos'">
-                        <img title="Moluscos" src="../../assets/img/alergenos/Moluscos.png" width="30px" height="30px" alt="moluscos">
+                        <img title="Moluscos" src="../../assets/img/alergenos/Moluscos.png" alt="moluscos">
                       </p>
                       <p *ngSwitchCase="'altramuces'">
-                        <img title="Altramuces" src="../../assets/img/alergenos/Altramuz.png" width="30px" height="30px" alt="altramuces">
+                        <img title="Altramuces" src="../../assets/img/alergenos/Altramuz.png" alt="altramuces">
                       </p>
                     </div>
                   </div>
@@ -83,16 +83,14 @@
                 <p class="card-text mb-1">{{d.direccion}}, 0{{d.cp}}</p>
                 <p class="card-text">{{d.f_recogida}} a las {{d.h_recogida}}</p>
                 <div *ngIf="d.anotacion!=''">
-                  <figcaption class="blockquote-footer mt-2">{{d.anotacion}}</figcaption>
+                  <figcaption class="blockquote-footer ms-2 mt-2 mb-2">{{d.anotacion}}</figcaption>
                 </div>
               </div>
               <div class="card-footer text-bg-light border-0">
                 <h6 class="card-title">Raciones</h6>
                 <div class="d-flex">
                   <div *ngFor="let r of this.racionesPlato[i]; index as u">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="{{d.id_oferta+'-'+u}}" disabled>
-                    </div>
+                    <img title="Publicada" src="../../assets/img/tapper.png" alt="racion" width="25">
                   </div>
                 </div>
               </div>
