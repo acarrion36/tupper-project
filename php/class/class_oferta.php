@@ -78,4 +78,15 @@ class oferta{
                 echo $var;
             }
         }
+       
+        public static function eliminarOferta($id){
+            global $bd;
+            $sql=" SET FOREIGN_KEY_CHECKS = 0";
+            $bd->eliminar($sql);
+            $sql="DELETE FROM oferta where id_oferta='$id'";
+            $bd->eliminar($sql);
+            $sql=" SET FOREIGN_KEY_CHECKS = 1";
+            $bd->eliminar($sql);
+        }
+
 }
