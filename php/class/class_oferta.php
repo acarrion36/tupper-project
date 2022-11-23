@@ -89,4 +89,12 @@ class oferta{
             $bd->eliminar($sql);
         }
 
+        public static function modificarOferta($id_oferta,$direccion,$cp,$anotacion,$raciones,$h_recogida,$f_recogida,$id_menu,$nombre,$descripcion,$alergenos,$notas){
+            global $bd;
+            $sql="UPDATE oferta SET direccion='$direccion',cp='$cp',anotacion='$anotacion',raciones='$raciones',h_recogida='$h_recogida',f_recogida='$f_recogida' where id_oferta='".$id_oferta."'";
+            $resultado=$bd->update($sql);
+            $sql="UPDATE menu SET nombre='$nombre',descripcion='$descripcion',alergenos='$alergenos',notas='$notas' where id_menu='".$id_menu."'";
+            $resultado=$bd->update($sql);
+        }
+
 }
