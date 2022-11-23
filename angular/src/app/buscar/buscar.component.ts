@@ -25,6 +25,7 @@ export class BuscarComponent implements OnInit {
   public alergenosPlato:any=[]
   public racionesPlato:any=[]
   public carrito:any=[]
+  public carritoCerrado:any=[]
 
   constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) {}
 
@@ -36,7 +37,7 @@ export class BuscarComponent implements OnInit {
   }
 
   readAllDonations():void {
-    this._donarService.readDonationsByIdu(138).subscribe({
+    this._donarService.readAllDonations().subscribe({
       next : data => {
         this.donaciones=data.reverse()
         this.donacionesTotales=data.length
@@ -85,10 +86,14 @@ export class BuscarComponent implements OnInit {
   }
 
   envioCarrito():void {
-    const resultado:any = {}
+    const resultado:any=[]
     for (const el of this.carrito) resultado[el] = resultado[el] + 1 || 1
-    this.carrito=resultado
-    console.log(this.carrito)
+    for (let index = 0; index < resultado.length; index++) {
+      if(resultado[index]!=null){
+        console.log("Hay " + resultado[index] + " raciones del pedido numero " + index)
+        this.carritoCerrado.push({"id": index, "cdt": resultado[index]})
+      }
+    }
   }
 
 }
