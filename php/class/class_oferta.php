@@ -60,7 +60,7 @@ class oferta{
         global $bd;
         $data=[];
         if($idu==0){ 
-            $sql="SELECT * FROM oferta";
+            $sql="SELECT oferta.*, menu.* FROM oferta inner join menu on oferta.id_menu = menu.id_menu";
             $resultado=$bd->seleccionar($sql);
                 while ($ofer = mysqli_fetch_assoc($resultado)) {
                     $data[]=$ofer;
