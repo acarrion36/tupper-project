@@ -19,6 +19,7 @@ const httpOptions = {
 
 export class LoginService {
 
+  private url$:string="http://elika-waste.learnhowto.space/php/api/api_usuario.php"
   private loginWStatus$=new BehaviorSubject<boolean>(false)
   private logoutWStatus$=new BehaviorSubject<boolean>(false)
   private loginUStatus$=new BehaviorSubject<boolean>(false)
@@ -75,33 +76,34 @@ export class LoginService {
   // HTTP
 
   readUsers():Observable<any> {
-    return this._http.get("http://elika-waste.learnhowto.space/api/api_usuario.php",httpOptions)
+    return this._http.get(this.url$,httpOptions)
   }
 
-  readUserByID(id:any):Observable<any> {
-    return this._http.get("http://elika-waste.learnhowto.space/api/api_usuario.php?id="+id,httpOptions)
-  }
+    readUserByID(id:any):Observable<any> {
+      return this._http.get(this.url$+"?id="+id,httpOptions)
+    }
 
-  readUserByMail(loginMail:any):Observable<any> {
-    const mail = {emx:loginMail}
-    return this._http.post("http://elika-waste.learnhowto.space/api/api_usuario.php",mail,httpOptions)
-  }
+    readUserByMail(loginMail:any):Observable<any> {
+      const mail = {emx:loginMail}
+      return this._http.post(this.url$,mail,httpOptions)
+    }
 
-  readUserLogged():Observable<any> {
-    const token = {emx:atob(this.getToken())}
-    return this._http.post('http://elika-waste.learnhowto.space/api/api_usuario.php',token,httpOptions)
-  }
+    readUserLogged():Observable<any> {
+      const token = {emx:atob(this.getToken())}
+      return this._http.post(this.url$,token,httpOptions)
+    }
 
   register(user:any):Observable<any>{
-    return this._http.post("http://elika-waste.learnhowto.space/api/api_usuario.php",user,httpOptions)
+    return this._http.post(this.url$,user,httpOptions)
   }
 
   update(id:any,user:any):Observable<any> {
-    return this._http.put("http://elika-waste.learnhowto.space/api/api_usuario.php?id="+id,user,httpOptions)
+    return this._http.put(this.url$+"?id="+id,user,httpOptions)
   }
 
   delete(id:any):Observable<any> {
-    return this._http.delete("http://elika-waste.learnhowto.space/api/api_usuario.php?id="+id,httpOptions)
+    return this._http.delete(this.url$+"?id="+id,httpOptions)
   }
 
 }
+
