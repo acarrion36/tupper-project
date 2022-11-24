@@ -29,7 +29,7 @@ class demanda{
     }
 
     public static function guardarDemanda($id_usuario,$id_oferta,$n_raciones,$donacion,$cantidad_d,$anotacion){    
-
+        echo "hola";
         global $bd;
         $sql = "INSERT INTO demanda (id_usuario,id_oferta,n_raciones,donacion,cantidad_d,anotacion) 
         VALUES ('$id_usuario','$id_oferta','$n_raciones','$donacion','$cantidad_d','$anotacion')";
