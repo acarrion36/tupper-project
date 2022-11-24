@@ -7,6 +7,7 @@ $sectionPaddingTop: $logoWidth + 15;
 //VARIABLES: COLORES
 $lightgrey: #ebebeb;
 $grey: rgb(233, 233, 233);
+$greyer: rgb(214, 214, 214);
 $darkgrey: rgb(87, 87, 87);
 $black: rgb(33, 37, 41);
 $white: rgb(255, 255, 255);
@@ -441,6 +442,7 @@ section {
     .card {
       border-radius: $borderRadiusM;
       font-size: 14px;
+      background-color: $white;
 
       .card-text {
         margin-bottom: 8px;
@@ -451,9 +453,9 @@ section {
         display: flex;
         height: 45px;
         position: relative;
-        background-color: $lightgrey;
-        border-top-left-radius: $borderRadiusM;
-        border-top-right-radius: $borderRadiusM;
+        background-color: $greyer;
+        border-top-left-radius: $borderRadiusS;
+        border-top-right-radius: $borderRadiusS;
         font-size: 12px;
 
         .cardimg {
@@ -480,8 +482,8 @@ section {
       .card-footer {
         border-bottom-left-radius: $borderRadiusM;
         border-bottom-right-radius: $borderRadiusM;
-        color: $white;
         font-size: 16px;
+        background-color: $white;
 
         small {
           vertical-align: middle;

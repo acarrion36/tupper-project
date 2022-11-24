@@ -52,14 +52,12 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
           <!--INICIO TARJETA DONACION EN CURSO-->
           <div *ngFor="let d of this.donaciones; index as i" class="col">
-            <div class="card h-100 text-bg-light mb-3 shadow-sm" id="{{d.id_oferta}}">
+            <div class="card h-100 mb-3 shadow-sm" id="{{d.id_oferta}}">
               <div class="card-header border-0 justify-content-between align-items-center">
                 <div class="cardimg">
                   <img src="../../assets/img/cocinar.jpg" alt="">
                 </div>
-                <div class="d-flex flex-column align-items-end">
-                  <p class="p-0 m-0">Donación Nº{{d.id_oferta}}</p>
-                </div>
+                <p class="p-0 m-0">Donación Nº{{d.id_oferta}}</p>
               </div>
               <div class="card-body">
                 <h5 class="card-title mt-4 mb-1">{{d.nombre}}</h5>
@@ -116,14 +114,14 @@
                     </div>
                   </div>
                 </div>
-                <h6 class="card-title mb-0">Datos de entrega</h6>
+                <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
                 <p class="card-text mb-0">{{d.direccion}}, 0{{d.cp}}</p>
                 <p class="card-text mb-1">{{d.f_recogida}} a las {{d.h_recogida}}</p>
                 <div *ngIf="d.anotacion!=''">
                   <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{d.anotacion}}</figcaption>
                 </div>
               </div>
-              <div class="card-footer text-bg-light border-0 pb-3 pt-0">
+              <div class="card-footer border-0 pb-3 pt-0">
                 <h6 class="card-title">Raciones</h6>
                 <div class="d-flex flex-wrap gap-2">
                   <div *ngFor="let r of this.racionesPlato[i]; index as u">

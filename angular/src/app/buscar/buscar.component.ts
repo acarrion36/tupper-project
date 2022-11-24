@@ -24,7 +24,6 @@ export class BuscarComponent implements OnInit {
   public donacionesTotales:number=0
   public alergenosPlato:any=[]
   public racionesPlato:any=[]
-  public donantes:any=[]
   public carrito:any=[]
   public carritoCerrado:any=[]
   public showModal:boolean=false
@@ -41,26 +40,16 @@ export class BuscarComponent implements OnInit {
   readAllDonations():void {
     this._donarService.readAllDonations().subscribe({
       next : data => {
+        console.log(data)
         this.donaciones=data.reverse()
         this.donacionesTotales=data.length
         for (let index = 0; index < this.donaciones.length; index++) {
           this.alergenosPlato.push(JSON.parse(this.donaciones[index].alergenos))
           this.racionesPlato.push(Array(parseInt(this.donaciones[index].raciones)).fill(1))
-          this._loginService.readUserByID(this.donaciones[index].id_usuario).subscribe({
-            next : data => {
-              if(data[0].nombre_usuario!="") {
-                this.donantes.push(data[0].nombre_usuario)
-              } else {
-                this.donantes.push(data[0].nombre)
-              }
-            }
-          })
         }
       }
     })
-    console.log(this.donantes)
   }
-
 
   // Inicializr bootstrap tooltip
   tooltipInit():void {
@@ -107,6 +96,7 @@ export class BuscarComponent implements OnInit {
       }
     }
     this.showModal=true
+    console.log(this.carritoCerrado)
   }
 
   // Cerrar ventana modal
