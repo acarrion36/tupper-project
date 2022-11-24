@@ -22,9 +22,13 @@ export class DonarService {
 
   constructor(private _http:HttpClient) { }
 
-  readDonationsByIdu(idu:any):Observable<any>{
-    return this._http.get(this.url$+"?idu="+idu,httpOptions)
+  readAllDonations():Observable<any>{
+    return this._http.get(this.url$,httpOptions)
   }
+
+    readDonationsByIdu(idu:any):Observable<any>{
+      return this._http.get(this.url$+"?idu="+idu,httpOptions)
+    }
 
   register(donation:any):Observable<any>{
     return this._http.post(this.url$,donation,httpOptions)
