@@ -28,7 +28,7 @@ class demanda{
 
     }
 
-    public static function guardarMenu($id_usuario,$id_oferta,$n_raciones,$donacion,$cantidad_d,$anotacion){    
+    public static function guardarDemanda($id_usuario,$id_oferta,$n_raciones,$donacion,$cantidad_d,$anotacion){    
 
         global $bd;
         $sql = "INSERT INTO menu (id_usuario,id_oferta,n_raciones,donacion,cantidad_d,anotacion) 
