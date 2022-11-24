@@ -31,7 +31,7 @@ class demanda{
     public static function guardarDemanda($id_usuario,$id_oferta,$n_raciones,$donacion,$cantidad_d,$anotacion){    
 
         global $bd;
-        $sql = "INSERT INTO menu (id_usuario,id_oferta,n_raciones,donacion,cantidad_d,anotacion) 
+        $sql = "INSERT INTO demanda (id_usuario,id_oferta,n_raciones,donacion,cantidad_d,anotacion) 
         VALUES ('$id_usuario','$id_oferta','$n_raciones','$donacion','$cantidad_d','$anotacion')";
         $bd->insertar($sql);
 
