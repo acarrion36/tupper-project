@@ -57,6 +57,18 @@ class demanda{
                 echo $var;
             }
         }
+        public static function obtenerDemandaO($ido){
+            global $bd;
+            $data=[];
+                $sql="SELECT * FROM demanda WHERE id_oferta='".$ido."'";
+                $resultado=$bd->seleccionar($sql);
+                    while ($ofer = mysqli_fetch_assoc($resultado)) {
+                        $data[]=$ofer;
+                    }
+                $var= json_encode($data);
+                echo $var;
+
+            }
         public static function eliminarDemanda($id){
             global $bd;
             $sql=" SET FOREIGN_KEY_CHECKS = 0";

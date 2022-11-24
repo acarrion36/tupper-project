@@ -23,12 +23,15 @@ switch($_SERVER['REQUEST_METHOD']){
             }
          break;
     case 'GET':  
-          if (isset($_GET['idd'])){
-               demanda::obtenerDemanda($_GET['idd']);  
+          if (isset($_GET['ido'])){
+               demanda::obtenerDemandaO($_GET['ido']);
           }else{
-               demanda::obtenerDemanda(0);
+               if (isset($_GET['idd'])){
+                    demanda::obtenerDemanda($_GET['idd']);  
+               }else{
+                    demanda::obtenerDemanda(0);
+               }
           }
-            
          break;
 
     case 'PUT':
