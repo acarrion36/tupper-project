@@ -18,7 +18,7 @@
             <p class="fs-1 m-0"><strong>{{this.donacionesTotales}}</strong></p>
             <p><strong>Donaciones</strong></p>
           </div>
-          <button (click)="envioCarrito()" class="btn p-0 border-0 position-relative carrito" [ngClass]="this.count===0 ? 'disabled':'activo'" type="submit" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Finalizar pedido" >
+          <button (click)="envioCarrito()" class="btn p-0 border-0 position-relative carrito" [ngClass]="this.count===0 ? 'disabled':'activo'" type="submit" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Continuar con el pedido" >
             <svg xmlns="http://www.w3.org/2000/svg" width="40" fill="black" class="bi bi-cart3" viewBox="0 0 16 16">
               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </svg>
@@ -26,6 +26,28 @@
               <span>{{this.count}}</span>
             </span>
           </button>
+        </div>
+        <!-- Modal -->
+        <div (click)="closeModal()" *ngIf="this.showModal" class="veil" id="veil"></div>
+        <div *ngIf="this.showModal" class="modal text-center show" style="display: block;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="yellowgreen" class="bi bi-info-circle p-1" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                <h1 class="modal-title fs-5">Continuar con el pedido</h1>
+                <svg (click)="closeModal()" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="30px" data-bs-dismiss="modal" aria-label="Close" viewBox="0 0 16 16" class="bi bi-x-lg close p-1">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+                </svg>
+              </div>
+              <div class="modal-body">Tu pedido aun no ha sido finalizado. Revisa tus pedidos pendientes y finalizalos.</div>
+              <div class="modal-footer">
+                <button [routerLink]="['/pedidos']" type="button" class="btn btn-success mt-2">Ver mis pedidos pendientes</button>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
           <!--INICIO TARJETA DONACION EN CURSO-->
@@ -35,15 +57,17 @@
                 <div class="cardimg">
                   <img src="../../assets/img/cocinar.jpg" alt="">
                 </div>
-                <p class="p-0 m-0">Donación Nº{{d.id_oferta}}</p>
+                <div class="d-flex flex-column align-items-end">
+                  <p class="p-0 m-0">Donación Nº{{d.id_oferta}}</p>
+                </div>
               </div>
               <div class="card-body">
-                <h5 class="card-title mt-4">{{d.nombre}}</h5>
-                <p class="card-text">{{d.descripcion}}</p>
+                <h5 class="card-title mt-4 mb-1">{{d.nombre}}</h5>
+                <p class="card-text mb-1">{{d.descripcion}}</p>
                 <div *ngIf="d.notas!=''">
-                  <figcaption class="blockquote-footer ms-2 mt-2 mb-2">{{d.notas}}</figcaption>
+                  <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{d.notas}}</figcaption>
                 </div>
-                <h6 class="card-title">Alérgenos</h6>
+                <h6 class="card-title mb-1">Alérgenos</h6>
                 <div class="d-flex flex-wrap mb-2 gap-1">
                   <div *ngFor="let a of this.alergenosPlato[i]" class="alergenos">
                     <div [ngSwitch]="a">
@@ -92,11 +116,11 @@
                     </div>
                   </div>
                 </div>
-                <h6 class="card-title">Datos de entrega</h6>
-                <p class="card-text mb-1">{{d.direccion}}, 0{{d.cp}}</p>
-                <p class="card-text">{{d.f_recogida}} a las {{d.h_recogida}}</p>
+                <h6 class="card-title mb-0">Datos de entrega</h6>
+                <p class="card-text mb-0">{{d.direccion}}, 0{{d.cp}}</p>
+                <p class="card-text mb-1">{{d.f_recogida}} a las {{d.h_recogida}}</p>
                 <div *ngIf="d.anotacion!=''">
-                  <figcaption class="blockquote-footer ms-2 mt-2 mb-2">{{d.anotacion}}</figcaption>
+                  <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{d.anotacion}}</figcaption>
                 </div>
               </div>
               <div class="card-footer text-bg-light border-0 pb-3 pt-0">

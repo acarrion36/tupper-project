@@ -24,8 +24,10 @@ export class BuscarComponent implements OnInit {
   public donacionesTotales:number=0
   public alergenosPlato:any=[]
   public racionesPlato:any=[]
+  public donantes:any=[]
   public carrito:any=[]
   public carritoCerrado:any=[]
+  public showModal:boolean=false
 
   constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) {}
 
@@ -41,13 +43,24 @@ export class BuscarComponent implements OnInit {
       next : data => {
         this.donaciones=data.reverse()
         this.donacionesTotales=data.length
-        for (let index = 0; index < data.length; index++) {
-          this.alergenosPlato.push(JSON.parse(data[index].alergenos))
-          this.racionesPlato.push(Array(parseInt(data[index].raciones)).fill(1))
+        for (let index = 0; index < this.donaciones.length; index++) {
+          this.alergenosPlato.push(JSON.parse(this.donaciones[index].alergenos))
+          this.racionesPlato.push(Array(parseInt(this.donaciones[index].raciones)).fill(1))
+          this._loginService.readUserByID(this.donaciones[index].id_usuario).subscribe({
+            next : data => {
+              if(data[0].nombre_usuario!="") {
+                this.donantes.push(data[0].nombre_usuario)
+              } else {
+                this.donantes.push(data[0].nombre)
+              }
+            }
+          })
         }
       }
     })
+    console.log(this.donantes)
   }
+
 
   // Inicializr bootstrap tooltip
   tooltipInit():void {
@@ -90,10 +103,15 @@ export class BuscarComponent implements OnInit {
     for (const el of this.carrito) resultado[el] = resultado[el] + 1 || 1
     for (let index = 0; index < resultado.length; index++) {
       if(resultado[index]!=null){
-        console.log("Hay " + resultado[index] + " raciones del pedido numero " + index)
         this.carritoCerrado.push({"id": index, "cdt": resultado[index]})
       }
     }
+    this.showModal=true
+  }
+
+  // Cerrar ventana modal
+  closeModal():void {
+    this.showModal=false
   }
 
 }

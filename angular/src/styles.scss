@@ -108,7 +108,9 @@ a {
   font-size: .80rem !important;
 }
 
-
+h5 {
+  font-size: 1.4rem;
+}
 
 .btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
@@ -142,11 +144,12 @@ a {
     position: absolute;
     right: 20px;
     top: 26px;
-    color: $grey;
+    opacity: 0.4;
 
     &:hover {
       color: $black;
       cursor: pointer;
+      opacity: 1;
     }
   }
 
@@ -154,11 +157,12 @@ a {
     position: absolute;
     left: 20px;
     top: 26px;
-    color: $grey;
+    opacity: 0.4;
 
     &:hover {
       color: $black;
       cursor: pointer;
+      opacity: 1;
     }
   }
 
@@ -328,7 +332,7 @@ section {
   }
   // SECTION
   .section-section {
-    width: 70%;
+    width: 75%;
     min-width: 530px;
     background-color: $grey !important;
 
@@ -386,9 +390,10 @@ section {
 
       .bi-x-lg {
         cursor: pointer;
-        color: $grey;
+        opacity: 0.4;
         &:hover {
           color: $black;
+          opacity: 1;
         }
       }
 
@@ -439,6 +444,7 @@ section {
 
       .card-text {
         margin-bottom: 8px;
+        color: $darkgrey;
       }
 
       .card-header {
@@ -458,7 +464,7 @@ section {
           border-radius: 50%;
           border: 5px solid $white;
           top: 22px;
-          left: 0;
+          left: 0px;
 
           img {
             width: auto;
