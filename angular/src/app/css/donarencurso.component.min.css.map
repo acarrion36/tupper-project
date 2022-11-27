@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../donarencurso/donarencurso.component.scss"
+    ],
+    "names": [],
+    "file": "donarencurso.component.min.css"
+}

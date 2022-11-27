@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../perfil/perfil.component.scss"
+    ],
+    "names": [],
+    "file": "perfil.component.min.css"
+}
