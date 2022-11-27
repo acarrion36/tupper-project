@@ -1,0 +1,24 @@
+<div class="container-fluid main-section">
+    <div class="row flex-nowrap main-height">
+      <app-aside class="col-md-3 bg-light d-none d-md-block d-flex align-items-end bg-image shadow-sm"></app-aside>
+      <div class="col-md-9 p-5 d-flex justify-content-center">
+        <div class="section-section">
+            <h5>Nombre del plato</h5>
+            <p>Edita tu entrega.</p>
+            <div class="section-section-buttons">
+            <button class="btn btn-dark shadow-sm">Nueva</button>
+            <button [routerLink]="['/donar/en-curso']" class="btn btn-light shadow-sm">En curso</button>
+            <button [routerLink]="['/donar/finalizadas']" class="btn btn-light shadow-sm">Finalizadas</button>
+            </div>
+            <!--INICIO TARJETA DONACION NUEVA-->
+        <app-donar-formulario></app-donar-formulario>
+        <!--FIN TARJETA DONACION NUEVA-->
+        </div>
+      </div>
+    </div>
+</div>
+<footer>
+  <app-navsm></app-navsm>
+</footer>
+
+<!-- <h1>{{this.id_entrega}}</h1> -->

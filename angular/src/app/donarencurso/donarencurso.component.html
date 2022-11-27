@@ -16,19 +16,19 @@
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
           <!--INICIO TARJETA DONACION EN CURSO-->
-          <div *ngFor="let d of this.donaciones; index as i" class="col">
+          <div *ngFor="let donacion of this.donaciones; index as i" class="col">
             <div class="card h-100 mb-3 shadow-sm">
               <div class="card-header border-0 justify-content-between align-items-center">
                 <div class="cardimg">
                   <img src="../../assets/img/cocinar.jpg" alt="">
                 </div>
-                <p class="p-0 m-0">Donación Nº{{d.id_oferta}}</p>
+                <p class="p-0 m-0">Donación Nº{{donacion.id_oferta}}</p>
               </div>
               <div class="card-body">
-                <h5 class="card-title mt-4 mb-1">{{d.nombre}}</h5>
-                <p class="card-text mb-1">{{d.descripcion}}</p>
-                <div *ngIf="d.notas!=''">
-                  <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{d.notas}}</figcaption>
+                <h5 class="card-title mt-4 mb-1">{{donacion.nombre}}</h5>
+                <p class="card-text mb-1">{{donacion.descripcion}}</p>
+                <div *ngIf="donacion.notas!=''">
+                  <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.notas}}</figcaption>
                 </div>
                 <h6 class="card-title mb-1">Alérgenos</h6>
                 <div class="d-flex flex-wrap mb-2 gap-1">
@@ -53,7 +53,7 @@
                         <img title="Soja" src="../../assets/img/alergenos/Soja.png" alt="soja">
                       </p>
                       <p *ngSwitchCase="'lacteos'">
-                        <img title="Lácteos" src="../../assets/img/alergenos/Lácteos.png" alt="lacteos">
+                        <img title="Lácteos" src="../../assets/img/alergenos/Lacteos.png" alt="lacteos">
                       </p>
                       <p *ngSwitchCase="'frutoscascara'">
                         <img title="Frutos Secos" src="../../assets/img/alergenos/Frutos secos.png" alt="frutossecos">
@@ -65,7 +65,7 @@
                         <img title="Mostaza" src="../../assets/img/alergenos/Mostaza.png" alt="mostaza">
                       </p>
                       <p *ngSwitchCase="'granossesamo'">
-                        <img title="Sésamo" src="../../assets/img/alergenos/Sésamo.png" alt="sesamo">
+                        <img title="Sésamo" src="../../assets/img/alergenos/Sesamo.png" alt="sesamo">
                       </p>
                       <p *ngSwitchCase="'dioxido'">
                         <img title="Sulfitos" src="../../assets/img/alergenos/Sulfitos.png" alt="sulfitos">
@@ -80,10 +80,10 @@
                   </div>
                 </div>
                 <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
-                <p class="card-text mb-0">{{d.direccion}}, 0{{d.cp}}</p>
-                <p class="card-text mb-1">{{d.f_recogida}} a las {{d.h_recogida}}</p>
-                <div *ngIf="d.anotacion!=''">
-                  <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{d.anotacion}}</figcaption>
+                <p class="card-text mb-0">{{donacion.direccion}}, <span *ngIf="donacion.cp.length<5">0</span>{{donacion.cp}}</p>
+                <p class="card-text mb-1">{{donacion.f_recogida}} a las {{donacion.h_recogida}}</p>
+                <div *ngIf="donacion.anotacion!=''">
+                  <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.anotacion}}</figcaption>
                 </div>
               </div>
               <div class="card-footer border-0 pb-3 pt-0">
@@ -93,7 +93,9 @@
                     <div class="racion"></div>
                   </div>
                 </div>
+                <button type="button" class="btn btn-primary btn_editar_entrega" [routerLink]="['/donar/editar', donacion.id_oferta]">Editar entrega</button>
               </div>
+              
             </div>
           </div>
           <!--FIN TARJETA DONACION EN CURSO-->
