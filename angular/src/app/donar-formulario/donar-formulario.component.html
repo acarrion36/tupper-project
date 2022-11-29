@@ -2,20 +2,21 @@
     <form class="row g-3" id="donationForm" #formDonation="ngForm">
       <div class="col-md-12 d-flex flex-wrap justify-content-start">
         <p class="col-form-label"><strong>Información del plato</strong></p>
+        <p>{{this.nombrePlato}}</p>
       </div>
       <div class="col-md-12">
-        <label for="platoNombre" class="form-label">Nombre del plato*</label>
-        <input type="text" class="form-control" id="platoNombre" name="platoNombre" [(ngModel)]="this.nombrePlato">
+        <label for="nombre" class="form-label">Nombre del plato*</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="this.createDonation.nombre">
         <div *ngIf="this.alertNombrePlato" class="alert alert-danger">Campo obligatorio.</div>
       </div>
       <div class="col-md-6">
-        <label for="platoDescripcion" class="form-label">Descripcion*</label>
-        <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Es importante ser lo más preciso posible al describir el plato." id="platoDescripcion" name="platoDescripcion" rows="3" [(ngModel)]="this.descripcionPlato"></textarea>
+        <label for="descripcion" class="form-label">Descripcion*</label>
+        <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Es importante ser lo más preciso posible al describir el plato." id="descripcion" name="descripcion" rows="3" [(ngModel)]="this.createDonation.descripcion"></textarea>
         <div *ngIf="this.alertDescripcionPlato" class="alert alert-danger">Campo obligatorio.</div>
       </div>
       <div class="col-md-6">
-        <label for="platoDescripcion" class="form-label">Notas adicionales</label>
-        <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="right" id="platoDescripcion" name="platoDescripcion" rows="3" [(ngModel)]="this.notasPlato"></textarea>
+        <label for="anotacion" class="form-label">Notas adicionales</label>
+        <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="right" id="anotacion" name="anotacion" rows="3" [(ngModel)]="this.createDonation.anotacion"></textarea>
       </div>
       <div class="col-md-12">
         <label for="platoAlergenos" class="form-label">Alérgenos</label>
@@ -93,8 +94,8 @@
         </div>
       </div>
       <div class="col-md-2">
-        <label for="platoRaciones" class="form-label">Raciones*</label>
-        <input (change)="checkRation()" type="number" class="form-control" id="platoRaciones" name="platoRaciones" [(ngModel)]="this.racionesPlato">
+        <label for="raciones" class="form-label">Raciones*</label>
+        <input (change)="checkRation()" type="number" class="form-control" id="raciones" name="raciones" [(ngModel)]="this.createDonation.raciones">
       </div>
       <div class="col-md-5">
         <label for="platoFoto" class="form-label">Foto del plato</label>
@@ -104,28 +105,28 @@
         <p class="col-form-label"><strong>Información de la entrega</strong></p>
       </div>
       <div class="col-md-9">
-        <label for="entregaDireccion" class="form-label">Direccion de entrega*</label>
-        <input type="text" class="form-control" id="entregaDireccion" name="entregaDireccion" [(ngModel)]="this.direccionEntrega">
+        <label for="direccion" class="form-label">Direccion de entrega*</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" [(ngModel)]="this.createDonation.direccion">
         <div *ngIf="this.alertDireccionEntrega" class="alert alert-danger">Campo obligatorio.</div>
       </div>
       <div class="col-md-3">
-        <label for="entregaCP" class="form-label">C.P.*</label>
-        <input type="text" class="form-control" id="entregaCP" name="entregaCP" placeholder="Ej: 01234" [(ngModel)]="this.cpEntrega">
+        <label for="cp" class="form-label">C.P.*</label>
+        <input type="text" class="form-control" id="cp" name="cp" placeholder="Ej: 01234" [(ngModel)]="this.createDonation.cp">
         <div *ngIf="this.alertCPEntrega" class="alert alert-danger">{{this.alertMsg}}</div>
       </div>
       <div class="col-md-6">
-        <label for="entregaDia" class="form-label">Dia*</label>
-        <input type="date" class="form-control" id="entregaDia" name="entregaDia" [(ngModel)]="this.fechaEntrega">
+        <label for="f_recogida" class="form-label">Dia*</label>
+        <input type="date" class="form-control" id="f_recogida" name="f_recogida" [(ngModel)]="this.createDonation.f_recogida">
         <div *ngIf="this.alertFechaEntrega" class="alert alert-danger">Campo obligatorio.</div>
       </div>
       <div class="col-md-6">
-        <label for="entregaHora" class="form-label">Hora*</label>
-        <input type="time" class="form-control" id="entregaHora" name="entregaHora" [(ngModel)]="this.horaEntrega">
+        <label for="h_recogida" class="form-label">Hora*</label>
+        <input type="time" class="form-control" id="h_recogida" name="h_recogida" [(ngModel)]="this.createDonation.h_recogida">
         <div *ngIf="this.alertHoraEntrega" class="alert alert-danger">Campo obligatorio.</div>
       </div>
       <div class="col-md-12">
-        <label for="entregaNotas" class="form-label">Notas</label>
-        <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Usa esta campo para anotar cualquier cosa. Por ejemplo, otras franjas de entrega." id="entregaNotas" name="entregaNotas" rows="3" [(ngModel)]="this.notasEntrega"></textarea>
+        <label for="notas" class="form-label">Notas</label>
+        <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Usa esta campo para anotar cualquier cosa. Por ejemplo, otras franjas de entrega." id="notas" name="notas" rows="3" [(ngModel)]="this.createDonation.notas"></textarea>
       </div>
       <div class="col-md-12 d-flex justify-content-end">
         <div class="d-flex align-items-center gap-4">

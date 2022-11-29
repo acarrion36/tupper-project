@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { DonarService } from '../services/donar.service';
+//import { EditarEntregaComponent } from '../editar-entrega/editar-entrega.component';
 import { CookieService } from 'ngx-cookie-service';
 import { Donation } from '../models/Donation';
 
@@ -17,7 +18,7 @@ declare var bootstrap:any;
 export class DonarFormularioComponent implements OnInit {
 
   // Variables | Modelo Donation
-  public createDonation:Donation = new Donation('','','','','','','','',1,'','')
+  public createDonation:Donation = new Donation('','','','','','','','',1,'','');
   public idDonacion:any
 
   // Variables | Login Status
@@ -48,7 +49,58 @@ export class DonarFormularioComponent implements OnInit {
   public alertMsg:string=""
   public showModal:boolean=false
 
-  constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) { }
+  constructor(
+    private _loginService:LoginService, 
+    private _donarService:DonarService, 
+    //private EditarEntregaComponente:EditarEntregaComponent,
+    private router:Router, 
+    private _cookie:CookieService, 
+    private ruta:ActivatedRoute
+  ) { 
+    
+    this.ruta.params.subscribe(params=>{		
+      this.idDonacion = params['id_entrega'];
+      console.log(this.idDonacion);
+      
+      if(params['id_entrega']) {
+
+        this._donarService.readDonationsByIdd(this.idDonacion).subscribe({
+          next : data => {
+            console.log(data[0]);
+            this.createDonation = data[0];
+            
+            // this.createDonation.nombre = data[0].nombre;
+            // this.createDonation.descripcion = data[0].descripcion;
+            // this.createDonation.alergenos = data[0].alergenos;
+            // this.createDonation.notas = data[0].notas;
+            // this.createDonation.id_usuario = data[0].id_usuario
+            // this.createDonation.direccion = data[0].direccion;
+            // this.createDonation.cp = data[0].cp;
+            // this.createDonation.anotacion = data[0].anotacion;
+            // this.createDonation.raciones = data[0].raciones;
+            // this.createDonation.h_recogida = data[0].h_recogida;
+            // this.createDonation.f_recogida = data[0].f_recogida;
+
+            // this.createDonation.estado = data.anotacion;
+            // this.createDonation.id_menu: = data.
+            // this.createDonation.id_oferta = data.
+            
+            // this.donaciones=data.reverse()
+            // this.donacionesEnCurso=data.length
+            // for (let index = 0; index < data.length; index++) {
+            //   this.alergenosPlato.push(JSON.parse(data[index].alergenos))
+            //   this.racionesPlato.push(Array(parseInt(data[index].raciones)).fill(1))
+            // }
+          }
+          
+        })
+        console.log(this.createDonation);
+      }
+      
+    })
+    
+    
+  }
 
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
@@ -88,36 +140,36 @@ export class DonarFormularioComponent implements OnInit {
   }
 
   publicar():void {
-    if(!this.nombrePlato){
+    if(!this.createDonation.nombre){
       this.alertNombrePlato=true
     } else {
       this.alertNombrePlato=false
     }
-    if(!this.descripcionPlato){
+    if(!this.createDonation.descripcion){
       this.alertDescripcionPlato=true
     } else {
       this.alertDescripcionPlato=false
     }
-    if(!this.direccionEntrega){
+    if(!this.createDonation.direccion){
       this.alertDireccionEntrega=true
     } else {
       this.alertDireccionEntrega=false
     }
-    if(!this.cpEntrega){
+    if(!this.createDonation.cp){
       this.alertCPEntrega=true;
       this.alertMsg="Campo obligatorio."
-    } else if(!this.checkCP(this.cpEntrega)) {
+    } else if(!this.checkCP(this.createDonation.cp)) {
       this.alertCPEntrega=true;
       this.alertMsg="Formato no válido."
     } else {
       this.alertCPEntrega=false
     }
-    if(!this.fechaEntrega){  // COMPROBAR FECHA NO ANTERIOR AL DIA DE HOY
+    if(!this.createDonation.f_recogida){  // COMPROBAR FECHA NO ANTERIOR AL DIA DE HOY
       this.alertFechaEntrega=true
     } else {
       this.alertFechaEntrega=false
     }
-    if(!this.horaEntrega){ // COMPROBAR HORA NO ANTERIOR A LA HORA ACTUAL
+    if(!this.createDonation.h_recogida){ // COMPROBAR HORA NO ANTERIOR A LA HORA ACTUAL
       this.alertHoraEntrega=true
     } else {
       this.alertHoraEntrega=false
@@ -170,6 +222,13 @@ export class DonarFormularioComponent implements OnInit {
     // Vaciado de campos
     form.resetForm();
     window.scrollTo(0, 0);
+  }
+
+  // Completar formulario con datos de oferta existente
+  completarFormulario(idd:number):void{
+    
+
+    //createDonation
   }
 
 

@@ -13,12 +13,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./editar-entrega.component.scss']
 })
 export class EditarEntregaComponent implements OnInit {
-  public id_entrega: number =0;
-
-  constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService, private ruta:ActivatedRoute) {
-    this.ruta.params.subscribe(params=>{		
-      this.id_entrega = params['id_entrega'];
-    })
+  
+  constructor(
+    private _loginService:LoginService, 
+    private _donarService:DonarService, 
+    private router:Router, 
+    private _cookie:CookieService
+  ) {
+    
   }
 
   ngOnInit(): void {
