@@ -20,10 +20,15 @@ switch($_SERVER['REQUEST_METHOD']){
         }
          break;
     case 'GET':
-            if (isset($_GET['idu'])){
-                oferta::obtenerOfertas($_GET['idu']);  
-            }else{
-                oferta::obtenerOfertas(0);
+        if (isset($_GET['ido'])){
+            oferta::obtenerOfertasO($_GET['ido']);  
+        }
+            else{
+                if (isset($_GET['idu'])){
+                    oferta::obtenerOfertas($_GET['idu']);  
+                }else{
+                    oferta::obtenerOfertas(0);
+                }
             }
         break;
 

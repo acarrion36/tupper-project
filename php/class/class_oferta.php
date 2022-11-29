@@ -78,6 +78,18 @@ class oferta{
                 echo $var;
             }
         }
+        public static function obtenerOfertasO($ido){
+            global $bd;
+            $data=[];
+
+                    $sql="SELECT oferta.*, menu.* FROM oferta inner join menu on oferta.id_menu = menu.id_menu where oferta.id_oferta='".$ido."'";
+                    $resultado=$bd->seleccionar($sql);
+                    while ($usu = mysqli_fetch_assoc($resultado)) {
+                            $data[]=$usu;
+                        }
+                    $var= json_encode($data);
+                    echo $var;
+            }
        
         public static function eliminarOferta($id){
             global $bd;
