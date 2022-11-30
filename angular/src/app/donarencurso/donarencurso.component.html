@@ -11,7 +11,7 @@
           <button [routerLink]="['/donar/finalizadas']" class="btn btn-light shadow-sm">Finalizadas</button>
         </div>
         <div class="d-inline-flex flex-column justify-content-center align-items-center ps-4 mt-4">
-          <p class="fs-1 m-0"><strong>{{this.donacionesEnCurso}}</strong></p>
+          <p class="fs-1 m-0"><strong>{{this.donaciones.length}}</strong></p>
           <p><strong>En curso</strong></p>
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
@@ -93,7 +93,9 @@
                     <div class="racion"></div>
                   </div>
                 </div>
+                <button type="button" class="btn btn-danger btn_editar_entrega" (click)="borrarEntrega(donacion.id_oferta)">Eliminar</button>
                 <button type="button" class="btn btn-primary btn_editar_entrega" [routerLink]="['/donar/editar', donacion.id_oferta]">Editar entrega</button>
+
               </div>
               
             </div>

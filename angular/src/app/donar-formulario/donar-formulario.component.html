@@ -2,7 +2,7 @@
     <form class="row g-3" id="donationForm" #formDonation="ngForm">
       <div class="col-md-12 d-flex flex-wrap justify-content-start">
         <p class="col-form-label"><strong>Información del plato</strong></p>
-        <p>{{this.nombrePlato}}</p>
+        
       </div>
       <div class="col-md-12">
         <label for="nombre" class="form-label">Nombre del plato*</label>
@@ -116,7 +116,7 @@
       </div>
       <div class="col-md-6">
         <label for="f_recogida" class="form-label">Dia*</label>
-        <input type="date" class="form-control" id="f_recogida" name="f_recogida" [(ngModel)]="this.createDonation.f_recogida">
+        <input type="date" [min]="this.hoy" class="form-control" id="f_recogida" name="f_recogida" [(ngModel)]="this.createDonation.f_recogida" >
         <div *ngIf="this.alertFechaEntrega" class="alert alert-danger">Campo obligatorio.</div>
       </div>
       <div class="col-md-6">

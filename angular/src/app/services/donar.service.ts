@@ -4,6 +4,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Donation } from '../models/Donation';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -37,12 +38,22 @@ export class DonarService {
     return this._http.get(this.url$+"?ido="+ido,httpOptions)
   }
 
-  register(donation:any):Observable<any>{
+  register(donation:Donation):Observable<any>{
     return this._http.post(this.url$,donation,httpOptions)
+  }
+
+  update(donation:any):Observable<any>{
+    return this._http.put(this.url$,donation,httpOptions)
+  }
+
+  // Eliminar oferta
+  delete_oferta(id:any):Observable<any>{    
+    return this._http.delete(this.url$+"?id="+id,httpOptions)
   }
 
   delete(id:any):Observable<any>{
     return this._http.post(this.url$+"?idu="+id,httpOptions)
   }
+  
 
 }
