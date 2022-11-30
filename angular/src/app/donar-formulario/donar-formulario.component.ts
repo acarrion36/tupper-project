@@ -7,7 +7,7 @@ import { DonarService } from '../services/donar.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Donation } from '../models/Donation';
 
-import { DatePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 
 
 declare var bootstrap:any;
@@ -40,7 +40,8 @@ export class DonarFormularioComponent implements OnInit {
   public racionesPlato:number=1
   */
   public fotoPlato:string=""
-  public alergenosPlato:any=[]
+  public alergenosPlato:string[];
+  public alergenosLista:string[];
 
   public alertNombrePlato:boolean=false
   public alertDescripcionPlato:boolean=false
@@ -72,6 +73,11 @@ export class DonarFormularioComponent implements OnInit {
 
     this.hoy = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.donando = false;
+    this.alergenosPlato = []
+    this.alergenosLista = ["gluten", "crustaceos", "huevos", "pescado", "cacahuetes", "soja", "lacteos", "frutos_secos", "apio", "mostaza", "sesamo", "sulfitos", "moluscos", "altramuces"];
+
+
+
 
     this.ruta.params.subscribe(params=>{		
       this.idDonacion = params['id_entrega'];
@@ -85,29 +91,7 @@ export class DonarFormularioComponent implements OnInit {
           next : data => {
             console.log(data[0]);
             this.createDonation = data[0];
-            
-            // this.createDonation.nombre = data[0].nombre;
-            // this.createDonation.descripcion = data[0].descripcion;
-            // this.createDonation.alergenos = data[0].alergenos;
-            // this.createDonation.notas = data[0].notas;
-            // this.createDonation.id_usuario = data[0].id_usuario
-            // this.createDonation.direccion = data[0].direccion;
-            // this.createDonation.cp = data[0].cp;
-            // this.createDonation.anotacion = data[0].anotacion;
-            // this.createDonation.raciones = data[0].raciones;
-            // this.createDonation.h_recogida = data[0].h_recogida;
-            // this.createDonation.f_recogida = data[0].f_recogida;
-
-            // this.createDonation.estado = data.anotacion;
-            // this.createDonation.id_menu: = data.
-            // this.createDonation.id_oferta = data.
-            
-            // this.donaciones=data.reverse()
-            // this.donacionesEnCurso=data.length
-            // for (let index = 0; index < data.length; index++) {
-            //   this.alergenosPlato.push(JSON.parse(data[index].alergenos))
-            //   this.racionesPlato.push(Array(parseInt(data[index].raciones)).fill(1))
-            // }
+            this.alergenosPlato = JSON.parse(this.createDonation.alergenos);
           }
           
         })
@@ -233,6 +217,8 @@ export class DonarFormularioComponent implements OnInit {
 
   // Construir un array con los alergenos seleccionados
   isChecked(radio:string):void {
+    console.log(radio);
+    
     let checkbox=document.getElementById(radio) as HTMLInputElement | null;
     if(checkbox!=null) {
       if(checkbox.checked) {
@@ -244,6 +230,8 @@ export class DonarFormularioComponent implements OnInit {
         }
       }
     }
+
+    
   }
 
   // Validad raciones
