@@ -21,6 +21,10 @@ declare var bootstrap:any;
 })
 export class DonarFormularioComponent implements OnInit {
 
+  private alerstring:string ="";
+  private alerjson:any = {};
+  
+
   public hoy:string | null;
   private donando : boolean;
 
@@ -42,6 +46,7 @@ export class DonarFormularioComponent implements OnInit {
   public fotoPlato:string=""
   public alergenosPlato:string[];
   public alergenosLista:string[];
+  public alergenosChecked:any;
 
   public alertNombrePlato:boolean=false
   public alertDescripcionPlato:boolean=false
@@ -74,7 +79,11 @@ export class DonarFormularioComponent implements OnInit {
     this.hoy = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.donando = false;
     this.alergenosPlato = []
+    this.alergenosChecked = {}
     this.alergenosLista = ["gluten", "crustaceos", "huevos", "pescado", "cacahuetes", "soja", "lacteos", "frutos_secos", "apio", "mostaza", "sesamo", "sulfitos", "moluscos", "altramuces"];
+    
+    
+
 
 
 
@@ -91,7 +100,22 @@ export class DonarFormularioComponent implements OnInit {
           next : data => {
             console.log(data[0]);
             this.createDonation = data[0];
+
+            this.alergenosChecked = JSON.parse(this.createDonation.alergenos);
+
+            /*
             this.alergenosPlato = JSON.parse(this.createDonation.alergenos);
+
+            for (const alergeno of this.alergenosLista) {
+              console.log(alergeno + " " + this.alergenosPlato.includes(alergeno));
+              
+              // this.alergenosChecked[alergeno] = this.alergenosPlato.includes(alergeno);
+              this.alergenosChecked[alergeno] = this.alergenosPlato.includes(alergeno);
+
+            }
+            */
+            console.log(this.alergenosChecked);
+
           }
           
         })
@@ -99,6 +123,7 @@ export class DonarFormularioComponent implements OnInit {
       }
       
     })
+    
     
     
   }
@@ -178,7 +203,9 @@ export class DonarFormularioComponent implements OnInit {
     }
     
     if(this.createDonation.nombre&&this.createDonation.descripcion&&this.createDonation.direccion&&this.createDonation.cp&&this.createDonation.f_recogida&&this.createDonation.h_recogida){
-      this.createDonation.alergenos = JSON.stringify(this.alergenosPlato.sort());
+      // this.createDonation.alergenos = JSON.stringify(this.alergenosPlato.sort());
+      this.createDonation.alergenos = JSON.stringify(this.alergenosChecked);
+
       this.createDonation.id_usuario = this.idUsuario;
       
       if(!this.donando){  // Se está creando una oferta nueva
@@ -216,23 +243,18 @@ export class DonarFormularioComponent implements OnInit {
   }
 
   // Construir un array con los alergenos seleccionados
+  /*
   isChecked(radio:string):void {
     console.log(radio);
     
-    let checkbox=document.getElementById(radio) as HTMLInputElement | null;
-    if(checkbox!=null) {
-      if(checkbox.checked) {
-        this.alergenosPlato.push(radio)
-      } else {
-        const index = this.alergenosPlato.indexOf(radio, 0);
-        if (index > -1) {
-          this.alergenosPlato.splice(index, 1);
-        }
-      }
-    }
-
-    
+    console.log(this.alergenosPlato);
+    this.alerstring = JSON.stringify(this.alergenosChecked);
+    this.alerjson = JSON.parse(this.alerstring)
+    console.log("Alérgenostring: ", this.alerstring);
+    console.log("Alérgenout: ", this.alerjson);
+    console.log("alergico: ", this.createDonation.alergenos);
   }
+  */
 
   // Validad raciones
   checkRation():void {
@@ -258,13 +280,5 @@ export class DonarFormularioComponent implements OnInit {
     form.resetForm();
     window.scrollTo(0, 0);
   }
-
-  // Completar formulario con datos de oferta existente
-  completarFormulario(idd:number):void{
-    
-
-    //createDonation
-  }
-
 
 }

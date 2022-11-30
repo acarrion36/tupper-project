@@ -25,6 +25,7 @@ export class EditarEntregaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }

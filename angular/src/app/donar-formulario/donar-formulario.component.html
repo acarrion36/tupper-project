@@ -30,7 +30,8 @@
         <label for="platoAlergenos" class="form-label">Alérgenos</label>
         <div class="d-flex flex-wrap mb-2">
           <div *ngFor="let alergeno of this.alergenosLista" class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
-            <input (click)="isChecked(alergeno)" class="form-check-input" type="checkbox" id={{alergeno}} name={{alergeno}} value={{alergeno}} [checked]="this.alergenosPlato.includes(alergeno)">
+            <input type="checkbox" id={{alergeno}} name={{alergeno}} value={{alergeno}} (click)="this.alergenosChecked[alergeno] = !this.alergenosChecked[alergeno]" [checked]="this.alergenosChecked[alergeno]" class="form-check-input">
+
             <label class="form-check-label" for={{alergeno}}><img class="m-0" src="../../assets/img/alergenos/{{alergeno}}.png" alt={{alergeno}} width="30px"></label>
             <span class="m-0 p-0 fs-7"> {{ alergeno.replace('_', ' ') | titlecase }}</span>
           </div>
