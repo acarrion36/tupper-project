@@ -35,52 +35,17 @@
                 <h6 class="card-title mb-1">Alérgenos</h6>
                 <div class="d-flex flex-wrap mb-2 gap-1">
                   
-                  <div *ngFor="let a of this.alergenosPlato[i]" class="alergenos">
-                    <div [ngSwitch]="a">
-                      <p *ngSwitchCase="'huevos'">
-                        <img title="Huevos" src="../../assets/img/alergenos/Huevos.png" alt="huevos">
+                  
+                  <div class="alergenos_listado">
+                    
+                      <p *ngFor="let alergeno of this.alergenosPlatos[i]" class="alergeno_bloque">
+                        <img title={{alergeno}} src="../../assets/img/alergenos/{{alergeno}}.png" alt="{{ alergeno.replace('_', ' ') | titlecase }}" title="{{ alergeno.replace('_', ' ') | titlecase }}">
+                        <span class="alergeno_sub">{{ alergeno.substring(0,3) | uppercase }}</span>
                       </p>
-                      <p *ngSwitchCase="'gluten'">
-                        <img title="Gluten" src="../../assets/img/alergenos/Gluten.png" alt="gluten">
-                      </p>
-                      <p *ngSwitchCase="'crustaceos'">
-                        <img title="Crustaceos" src="../../assets/img/alergenos/Crustaceos.png" alt="crustaceos">
-                      </p>
-                      <p *ngSwitchCase="'pescado'">
-                        <img title="Pescado" src="../../assets/img/alergenos/Pescado.png" alt="pescado">
-                      </p>
-                      <p *ngSwitchCase="'cacahuetes'">
-                        <img title="Cacahuetes" src="../../assets/img/alergenos/Cacahuetes.png" alt="cacahuetes">
-                      </p>
-                      <p *ngSwitchCase="'soja'">
-                        <img title="Soja" src="../../assets/img/alergenos/Soja.png" alt="soja">
-                      </p>
-                      <p *ngSwitchCase="'lacteos'">
-                        <img title="Lácteos" src="../../assets/img/alergenos/Lacteos.png" alt="lacteos">
-                      </p>
-                      <p *ngSwitchCase="'frutoscascara'">
-                        <img title="Frutos Secos" src="../../assets/img/alergenos/Frutos secos.png" alt="frutossecos">
-                      </p>
-                      <p *ngSwitchCase="'apio'">
-                        <img title="Apio" src="../../assets/img/alergenos/Apio.png" alt="apio">
-                      </p>
-                      <p *ngSwitchCase="'mostaza'">
-                        <img title="Mostaza" src="../../assets/img/alergenos/Mostaza.png" alt="mostaza">
-                      </p>
-                      <p *ngSwitchCase="'granossesamo'">
-                        <img title="Sésamo" src="../../assets/img/alergenos/Sesamo.png" alt="sesamo">
-                      </p>
-                      <p *ngSwitchCase="'dioxido'">
-                        <img title="Sulfitos" src="../../assets/img/alergenos/Sulfitos.png" alt="sulfitos">
-                      </p>
-                      <p *ngSwitchCase="'moluscos'">
-                        <img title="Moluscos" src="../../assets/img/alergenos/Moluscos.png" alt="moluscos">
-                      </p>
-                      <p *ngSwitchCase="'altramuces'">
-                        <img title="Altramuces" src="../../assets/img/alergenos/Altramuz.png" alt="altramuces">
-                      </p>
-                    </div>
-                  </div>
+                        
+                      
+                   
+                </div>
                 </div>
                 <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
                 <p class="card-text mb-0">{{donacion.direccion}}, <span *ngIf="donacion.cp.length<5">0</span>{{donacion.cp}}</p>

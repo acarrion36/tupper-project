@@ -80,13 +80,8 @@ export class DonarFormularioComponent implements OnInit {
     this.donando = false;
     this.alergenosPlato = []
     this.alergenosChecked = {}
-    this.alergenosLista = ["gluten", "crustaceos", "huevos", "pescado", "cacahuetes", "soja", "lacteos", "frutos_secos", "apio", "mostaza", "sesamo", "sulfitos", "moluscos", "altramuces"];
+    this.alergenosLista = ["gluten", "crustaceos", "huevos", "pescado", "cacahuetes", "soja", "lacteos", "frutos_secos", "apio", "mostaza", "sesamo", "sulfitos", "moluscos", "altramuces"].sort();
     
-    
-
-
-
-
 
     this.ruta.params.subscribe(params=>{		
       this.idDonacion = params['id_entrega'];
@@ -95,37 +90,15 @@ export class DonarFormularioComponent implements OnInit {
       if(params['id_entrega']) {
         this.donando = true;
         
-
         this._donarService.readDonationsByIdd(this.idDonacion).subscribe({
           next : data => {
-            console.log(data[0]);
             this.createDonation = data[0];
-
             this.alergenosChecked = JSON.parse(this.createDonation.alergenos);
-
-            /*
-            this.alergenosPlato = JSON.parse(this.createDonation.alergenos);
-
-            for (const alergeno of this.alergenosLista) {
-              console.log(alergeno + " " + this.alergenosPlato.includes(alergeno));
-              
-              // this.alergenosChecked[alergeno] = this.alergenosPlato.includes(alergeno);
-              this.alergenosChecked[alergeno] = this.alergenosPlato.includes(alergeno);
-
-            }
-            */
-            console.log(this.alergenosChecked);
-
           }
           
         })
-
-      }
-      
+      }      
     })
-    
-    
-    
   }
 
   ngOnInit(): void {
@@ -141,7 +114,6 @@ export class DonarFormularioComponent implements OnInit {
       next : data => {
         if(data!=0) {
           this.idUsuario=data[0].id_usuario;
-          
         }
       }
     })
@@ -203,7 +175,6 @@ export class DonarFormularioComponent implements OnInit {
     }
     
     if(this.createDonation.nombre&&this.createDonation.descripcion&&this.createDonation.direccion&&this.createDonation.cp&&this.createDonation.f_recogida&&this.createDonation.h_recogida){
-      // this.createDonation.alergenos = JSON.stringify(this.alergenosPlato.sort());
       this.createDonation.alergenos = JSON.stringify(this.alergenosChecked);
 
       this.createDonation.id_usuario = this.idUsuario;
@@ -242,19 +213,6 @@ export class DonarFormularioComponent implements OnInit {
     }
   }
 
-  // Construir un array con los alergenos seleccionados
-  /*
-  isChecked(radio:string):void {
-    console.log(radio);
-    
-    console.log(this.alergenosPlato);
-    this.alerstring = JSON.stringify(this.alergenosChecked);
-    this.alerjson = JSON.parse(this.alerstring)
-    console.log("Alérgenostring: ", this.alerstring);
-    console.log("Alérgenout: ", this.alerjson);
-    console.log("alergico: ", this.createDonation.alergenos);
-  }
-  */
 
   // Validad raciones
   checkRation():void {

@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAAA,AAAA,kBAAkB,AAAA,CACd,OAAO,CAAE,IAAI,CACb,UAAU,CAAE,IAAI,CACnB,AAED,AAAA,gBAAgB,AAAA,CACZ,OAAO,CAAE,IAAI,CACb,SAAS,CAAE,KAAK,CAChB,UAAU,CAAE,MAAM,CAKrB,AARD,AAKI,gBALY,CAKV,GAAG,AAAA,CACD,KAAK,CAAE,IAAI,CACd",
     "sources": [
         "../donarencurso/donarencurso.component.scss"
     ],
