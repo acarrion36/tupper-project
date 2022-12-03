@@ -82,8 +82,7 @@ export class DonarencursoComponent implements OnInit {
             }
             
           }
-          
-          
+
           this.alergenosPlatos.push(alergenosTrue.sort());
         }
         

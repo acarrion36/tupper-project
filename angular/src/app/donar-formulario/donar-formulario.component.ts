@@ -84,7 +84,6 @@ export class DonarFormularioComponent implements OnInit {
     this.alergenosChecked = {}
     this.alergenosLista = ["gluten", "crustaceos", "huevos", "pescado", "cacahuetes", "soja", "lacteos", "frutos_secos", "apio", "mostaza", "sesamo", "sulfitos", "moluscos", "altramuces"].sort();
     
-
     this.ruta.params.subscribe(params=>{		
       this.idDonacion = params['id_entrega'];
    
@@ -95,13 +94,8 @@ export class DonarFormularioComponent implements OnInit {
         this._donarService.readDonationsByIdd(this.idDonacion).subscribe({
           next : data => {
             this.createDonation = data[0];
-            /*
-            console.log("DATA: ", data[0]);
-            console.log("DONATIION: ", this.createDonation);
-            */
             this.alergenosChecked = JSON.parse(this.createDonation.alergenos);
-          }
-          
+          } 
         })
       }      
     })
@@ -169,7 +163,7 @@ export class DonarFormularioComponent implements OnInit {
     } else {
       this.alertCPEntrega=false
     }
-    if(!this.createDonation.f_recogida){  // COMPROBAR FECHA NO ANTERIOR AL DIA DE HOY
+    if(!this.createDonation.f_recogida){
       this.alertFechaEntrega=true
     } else {
       this.alertFechaEntrega=false
@@ -186,34 +180,14 @@ export class DonarFormularioComponent implements OnInit {
       this.createDonation.id_usuario = this.idUsuario;
       
       if(!this.donando){  // Se está creando una oferta nueva
-        //new Donation(this.createDonation.nombre,this.createDonation.descripcion,JSON.stringify(this.alergenosPlato.sort()),this.createDonation.notas,this.idUsuario,this.createDonation.direccion,this.createDonation.cp,this.createDonation.anotacion,this.createDonation.raciones,this.createDonation.h_recogida,this.createDonation.f_recogida)
         this._donarService.register(this.createDonation).subscribe({
           next:data => {
             this.idDonacion=data[0].id_oferta
           }
         })
-      } else {
-        // this._donarService.update(this.createDonation).subscribe({
-        console.log(this.createDonation);
-        
+      } else {       
         this._donarService.updateOferta(
-          /*
-          {
-            "direccion": this.createDonation.direccion,
-            "cp": this.createDonation.cp,
-            "anotacion": this.createDonation.anotacion,
-            "raciones": this.createDonation.raciones,
-            "h_recogida": this.createDonation.h_recogida,
-            "f_recogida": this.createDonation.f_recogida,
-            "id_menu": this.createDonation.id_menu,
-            "nombre": this.createDonation.nombre, // Funciona
-            "descripcion": this.createDonation.descripcion,  // Funciona
-            "alergenos": this.createDonation.alergenos, //Funciona
-            "notas": this.createDonation.notas  // Funciona
-            },
-            */
-            this.createDonation,
-            this.idUsuario
+            this.createDonation
         ).subscribe({
           next:data => {
             this.idDonacion=data[0].id_oferta
@@ -223,7 +197,6 @@ export class DonarFormularioComponent implements OnInit {
       this.showModal=true
     }
   }
-
 
   // Validad raciones
   checkRation():void {
