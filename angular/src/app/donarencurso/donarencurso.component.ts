@@ -95,12 +95,14 @@ export class DonarencursoComponent implements OnInit {
         }
 
         
-        /*
+        
         for (let index = 0; index < data.length; index++) {
-          this.alergenosPlatos.push(JSON.parse(data[index].alergenos))
+          //this.alergenosPlatos.push(JSON.parse(data[index].alergenos))
           this.racionesPlato.push(Array(parseInt(data[index].raciones)).fill(1))
+          console.log(this.racionesPlato[index]);
+          
         }
-        */
+        
       }
     })
   }

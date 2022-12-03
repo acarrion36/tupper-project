@@ -18,6 +18,7 @@
           
           <!--INICIO TARJETA DONACION EN CURSO-->
           <div *ngFor="let donacion of this.donaciones; index as i" class="col">
+            
             <div class="card h-100 mb-3 shadow-sm">
               <div class="card-header border-0 justify-content-between align-items-center">
                 <div class="cardimg">
@@ -27,25 +28,22 @@
               </div>
               <div class="card-body">
                 
-                <h5 class="card-title mt-4 mb-1">{{donacion.nombre}}</h5>
+                <h5 class="card-title mt-4 mb-1 titulo_oferta" [routerLink]="['/donar/editar', donacion.id_oferta]">{{donacion.nombre}}</h5>
                 <p class="card-text mb-1">{{donacion.descripcion}}</p>
                 <div *ngIf="donacion.notas!=''">
                   <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.notas}}</figcaption>
                 </div>
                 <h6 class="card-title mb-1">Alérgenos</h6>
                 <div class="d-flex flex-wrap mb-2 gap-1">
-                  
-                  
+
                   <div class="alergenos_listado">
                     
                       <p *ngFor="let alergeno of this.alergenosPlatos[i]" class="alergeno_bloque">
                         <img title={{alergeno}} src="../../assets/img/alergenos/{{alergeno}}.png" alt="{{ alergeno.replace('_', ' ') | titlecase }}" title="{{ alergeno.replace('_', ' ') | titlecase }}">
                         <span class="alergeno_sub">{{ alergeno.substring(0,3) | uppercase }}</span>
                       </p>
-                        
-                      
-                   
-                </div>
+                         
+                  </div>
                 </div>
                 <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
                 <p class="card-text mb-0">{{donacion.direccion}}, <span *ngIf="donacion.cp.length<5">0</span>{{donacion.cp}}</p>
@@ -53,15 +51,16 @@
                 <div *ngIf="donacion.anotacion!=''">
                   <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.anotacion}}</figcaption>
                 </div>
-              </div>
-              <div class="card-footer border-0 pb-3 pt-0">
                 <h6 class="card-title">Raciones</h6>
                 <div class="d-flex flex-wrap gap-2">
-                  <div *ngFor="let r of this.racionesPlato[i]; index as u">
+                  <div *ngFor="let racion of this.racionesPlato[i]; index as u">
                     <div class="racion"></div>
                   </div>
                 </div>
-                <button type="button" class="btn btn-danger btn_editar_entrega" (click)="borrarEntrega(donacion.id_oferta)">Eliminar</button>
+              </div>
+              <div class="card-footer border-0 pb-3 pt-0">
+                
+                <button type="button" class="btn btn-danger btn_eliminar_entrega" (click)="borrarEntrega(donacion.id_oferta)">Eliminar</button>
                 <button type="button" class="btn btn-primary btn_editar_entrega" [routerLink]="['/donar/editar', donacion.id_oferta]">Editar entrega</button>
 
               </div>

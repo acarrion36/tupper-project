@@ -1,3 +1,5 @@
+$lightgreen: rgb(59, 187, 70);
+
 .alergenos_listado{
     display: flex;
     column-gap: 15px;
@@ -12,3 +14,18 @@
         width: 30px;
     }
 }
+
+.titulo_oferta {
+    cursor: pointer;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.racion{
+    width: 16px;
+    height: 16px;
+    background-color: $lightgreen;
+    border-radius: 4px;
+  }
