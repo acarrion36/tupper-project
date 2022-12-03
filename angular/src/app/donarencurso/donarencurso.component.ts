@@ -21,10 +21,12 @@ export class DonarencursoComponent implements OnInit {
   // Variable | Donaciones del usuario
   public donaciones:any=[]
   public donacionesEnCurso:number=0
-  public alergenosPlato:any=[]
+  public alergenosPlatos:any[];
   public racionesPlato:any=[]
 
-  constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) { }
+  constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) {
+    this.alergenosPlatos = []
+   }
 
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
@@ -69,10 +71,48 @@ export class DonarencursoComponent implements OnInit {
       next : data => {
         this.donaciones=data.reverse()
         this.donacionesEnCurso=data.length
+
+        for (const [i,plato] of this.donaciones.entries()) {
+          let alergenosTrue:string[] = [];
+          
+          let alergenos = JSON.parse(data[i].alergenos);
+          for(const alergeno in alergenos){
+            if(alergenos[alergeno]){
+              alergenosTrue.push(alergeno);
+            }
+            
+          }
+          
+          
+          this.alergenosPlatos.push(alergenosTrue.sort());
+        }
+        console.log(this.alergenosPlatos);
+
+        for(const alerpla of this.alergenosPlatos){
+          console.log(alerpla);
+          alerpla.p
+          
+        }
+
+        
+        /*
         for (let index = 0; index < data.length; index++) {
-          this.alergenosPlato.push(JSON.parse(data[index].alergenos))
+          this.alergenosPlatos.push(JSON.parse(data[index].alergenos))
           this.racionesPlato.push(Array(parseInt(data[index].raciones)).fill(1))
         }
+        */
+      }
+    })
+  }
+
+  borrarEntrega(id_oferta:number){
+    this._donarService.delete_oferta(id_oferta).subscribe({
+      next : data => {
+        console.log(data);
+        //this.donaciones.splice(indice, 1);
+        this.readDonationsByIdu(this.idUsuario);
+        
+        
       }
     })
   }

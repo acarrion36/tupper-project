@@ -1,0 +1,14 @@
+.alergenos_listado{
+    display: flex;
+    column-gap: 15px;
+}
+
+.alergeno_bloque{
+    display: grid;
+    font-size: 0.8em;
+    text-align: center;
+    
+    & img{
+        width: 30px;
+    }
+}

@@ -7,6 +7,10 @@ a {
   font-size: 0.8rem !important;
 }
 
+h5 {
+  font-size: 1.4rem;
+}
+
 .btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
@@ -39,21 +43,23 @@ a {
   position: absolute;
   right: 20px;
   top: 26px;
-  color: rgb(233, 233, 233);
+  opacity: 0.4;
 }
 .login .close:hover {
   color: rgb(33, 37, 41);
   cursor: pointer;
+  opacity: 1;
 }
 .login .back {
   position: absolute;
   left: 20px;
   top: 26px;
-  color: rgb(233, 233, 233);
+  opacity: 0.4;
 }
 .login .back:hover {
   color: rgb(33, 37, 41);
   cursor: pointer;
+  opacity: 1;
 }
 .login .btn-success {
   width: 100%;
@@ -215,7 +221,7 @@ section .main-section .main-height ul .activo {
   background-color: #ebebeb !important;
 }
 section .section-section {
-  width: 70%;
+  width: 75%;
   min-width: 530px;
   background-color: rgb(233, 233, 233) !important;
 }
@@ -281,6 +287,16 @@ section .section-section .section-section-buttons {
   -moz-column-gap: 10px;
        column-gap: 10px;
 }
+section .section-section .carrito {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+section .section-section .carrito .translate-middle {
+  transform: translate(-70%, -10%) !important;
+  height: 20px;
+  width: 30px;
+}
 section .section-section .unregister {
   cursor: pointer;
   text-decoration: none;
@@ -313,10 +329,11 @@ section .section-section .modal {
 }
 section .section-section .modal .bi-x-lg {
   cursor: pointer;
-  color: rgb(233, 233, 233);
+  opacity: 0.4;
 }
 section .section-section .modal .bi-x-lg:hover {
   color: rgb(33, 37, 41);
+  opacity: 1;
 }
 section .section-section .modal .modal-content {
   padding: 8px;
@@ -367,17 +384,19 @@ section .section-section .alert-info, section .section-section .alert-primary {
 section .section-section .card {
   border-radius: 14px;
   font-size: 14px;
+  background-color: rgb(255, 255, 255);
 }
 section .section-section .card .card-text {
   margin-bottom: 8px;
+  color: rgb(87, 87, 87);
 }
 section .section-section .card .card-header {
   display: flex;
   height: 45px;
   position: relative;
-  background-color: #ebebeb;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
+  background-color: rgb(214, 214, 214);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   font-size: 12px;
 }
 section .section-section .card .card-header .cardimg {
@@ -388,7 +407,7 @@ section .section-section .card .card-header .cardimg {
   border-radius: 50%;
   border: 5px solid rgb(255, 255, 255);
   top: 22px;
-  left: 0;
+  left: 0px;
 }
 section .section-section .card .card-header .cardimg img {
   width: auto;
@@ -400,8 +419,8 @@ section .section-section .card .card-body {
 section .section-section .card .card-footer {
   border-bottom-left-radius: 14px;
   border-bottom-right-radius: 14px;
-  color: rgb(255, 255, 255);
   font-size: 16px;
+  background-color: rgb(255, 255, 255);
 }
 section .section-section .card .card-footer small {
   vertical-align: middle;

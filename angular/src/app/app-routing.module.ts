@@ -12,6 +12,7 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { PedidosfinalizadosComponent } from './pedidosfinalizados/pedidosfinalizados.component';
 import { PedidosrecogidosComponent } from './pedidosrecogidos/pedidosrecogidos.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
+import { EditarEntregaComponent } from './editar-entrega/editar-entrega.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'donar', component: DonarComponent },
   { path: 'donar/en-curso', component: DonarencursoComponent },
   { path: 'donar/finalizadas', component: DonarfinalizadasComponent },
+  { path: 'donar/editar/:id_entrega', component: EditarEntregaComponent },
   { path: 'buscar', component: BuscarComponent },
   { path: 'pedidos/finalizados', component: PedidosfinalizadosComponent },
   { path: 'pedidos/recogidos', component: PedidosrecogidosComponent },

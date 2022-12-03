@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../ayuda/ayuda.component.scss"
+    ],
+    "names": [],
+    "file": "ayuda.component.min.css"
+}
