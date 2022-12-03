@@ -95,9 +95,10 @@ export class DonarFormularioComponent implements OnInit {
         this._donarService.readDonationsByIdd(this.idDonacion).subscribe({
           next : data => {
             this.createDonation = data[0];
+            /*
             console.log("DATA: ", data[0]);
             console.log("DONATIION: ", this.createDonation);
-            
+            */
             this.alergenosChecked = JSON.parse(this.createDonation.alergenos);
           }
           
@@ -193,7 +194,8 @@ export class DonarFormularioComponent implements OnInit {
         })
       } else {
         // this._donarService.update(this.createDonation).subscribe({
-
+        console.log(this.createDonation);
+        
         this._donarService.updateOferta(
           /*
           {

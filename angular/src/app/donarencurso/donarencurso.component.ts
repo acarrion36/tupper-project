@@ -86,20 +86,10 @@ export class DonarencursoComponent implements OnInit {
           
           this.alergenosPlatos.push(alergenosTrue.sort());
         }
-        console.log(this.alergenosPlatos);
-
-        for(const alerpla of this.alergenosPlatos){
-          console.log(alerpla);
-          alerpla.p
-          
-        }
-
         
         
         for (let index = 0; index < data.length; index++) {
-          //this.alergenosPlatos.push(JSON.parse(data[index].alergenos))
           this.racionesPlato.push(Array(parseInt(data[index].raciones)).fill(1))
-          console.log(this.racionesPlato[index]);
           
         }
         
