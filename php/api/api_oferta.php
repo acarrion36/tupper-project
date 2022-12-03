@@ -34,7 +34,7 @@ switch($_SERVER['REQUEST_METHOD']){
 
     case 'PUT':
             if (isset($_GET['id'])){
-                oferta::modificarOferta($_GET['id'],$_POST['direccion'],$_POST['cp'],$_POST['anotacion'],$_POST['raciones'],$_POST['h_recogida'],$_POST['f_recogida'],$_POST['id_menu'],$_POST['nombre'],$_POST['descripcion'],$_POST['alergenos'],$_POST['notas']);          
+                oferta::modificarOferta($_GET['id'],$_POST['id_oferta'],$_POST['direccion'],$_POST['cp'],$_POST['anotacion'],$_POST['raciones'],$_POST['h_recogida'],$_POST['f_recogida'],$_POST['id_menu'],$_POST['nombre'],$_POST['descripcion'],$_POST['alergenos'],$_POST['notas']);          
             }
         break;
 
