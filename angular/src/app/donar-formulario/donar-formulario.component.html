@@ -2,7 +2,6 @@
     <form class="row g-3" id="donationForm" #formDonation="ngForm">
       <div class="col-md-12 d-flex flex-wrap justify-content-start">
         <p class="col-form-label"><strong>Información del plato</strong></p>
-        
       </div>
       <!-- NOMBRE -->
       <div class="col-md-12">
@@ -29,8 +28,7 @@
         <label for="platoAlergenos" class="form-label">Alérgenos</label>
         <div class="d-flex flex-wrap mb-2">
           <div *ngFor="let alergeno of this.alergenosLista" class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
-            <input type="checkbox" id={{alergeno}} name={{alergeno}} value={{alergeno}} (click)="this.alergenosChecked[alergeno] = !this.alergenosChecked[alergeno]" [checked]="this.alergenosChecked[alergeno]" class="form-check-input">
-
+            <input type="checkbox" id={{alergeno}} name={{alergeno}} value={{alergeno}} (click)="this.alergenosChecked[alergeno] = !this.alergenosChecked[alergeno]; checkChecked(alergeno)" [checked]="this.alergenosChecked[alergeno]" class="form-check-input">
             <label class="form-check-label" for={{alergeno}}><img class="m-0" src="../../assets/img/alergenos/{{alergeno}}.png" alt={{alergeno}} width="30px"></label>
             <span class="m-0 p-0 fs-7"> {{ alergeno.replace('_', ' ') | titlecase }}</span>
           </div>

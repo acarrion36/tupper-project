@@ -29,8 +29,9 @@ export class DonarFormularioComponent implements OnInit {
   private donando : boolean;
 
   // Variables | Modelo Donation
-  public createDonation:Donation = new Donation('','','','','','','','',1,'','');
+  public createDonation:Donation = new Donation('','','','','','','','',1,'','', '');
   public idDonacion:any
+  public id_menu:string;
 
   // Variables | Login Status
   public loginStatus$:any
@@ -78,6 +79,7 @@ export class DonarFormularioComponent implements OnInit {
 
     this.hoy = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.donando = false;
+    this.id_menu = "";
     this.alergenosPlato = []
     this.alergenosChecked = {}
     this.alergenosLista = ["gluten", "crustaceos", "huevos", "pescado", "cacahuetes", "soja", "lacteos", "frutos_secos", "apio", "mostaza", "sesamo", "sulfitos", "moluscos", "altramuces"].sort();
@@ -85,7 +87,7 @@ export class DonarFormularioComponent implements OnInit {
 
     this.ruta.params.subscribe(params=>{		
       this.idDonacion = params['id_entrega'];
-      console.log(this.idDonacion);
+   
       
       if(params['id_entrega']) {
         this.donando = true;
@@ -93,6 +95,9 @@ export class DonarFormularioComponent implements OnInit {
         this._donarService.readDonationsByIdd(this.idDonacion).subscribe({
           next : data => {
             this.createDonation = data[0];
+            console.log("DATA: ", data[0]);
+            console.log("DONATIION: ", this.createDonation);
+            
             this.alergenosChecked = JSON.parse(this.createDonation.alergenos);
           }
           
@@ -189,7 +194,8 @@ export class DonarFormularioComponent implements OnInit {
       } else {
         // this._donarService.update(this.createDonation).subscribe({
 
-        this._donarService.update(
+        this._donarService.updateOferta(
+          /*
           {
             "direccion": this.createDonation.direccion,
             "cp": this.createDonation.cp,
@@ -197,12 +203,15 @@ export class DonarFormularioComponent implements OnInit {
             "raciones": this.createDonation.raciones,
             "h_recogida": this.createDonation.h_recogida,
             "f_recogida": this.createDonation.f_recogida,
-            "id_menu": this.idDonacion,
-            "nombre": this.createDonation.nombre,
-            "descripcion": this.createDonation.descripcion,
-            "alergenos": this.createDonation.alergenos,
-            "notas": this.createDonation.notas
-            }
+            "id_menu": this.createDonation.id_menu,
+            "nombre": this.createDonation.nombre, // Funciona
+            "descripcion": this.createDonation.descripcion,  // Funciona
+            "alergenos": this.createDonation.alergenos, //Funciona
+            "notas": this.createDonation.notas  // Funciona
+            },
+            */
+            this.createDonation,
+            this.idUsuario
         ).subscribe({
           next:data => {
             this.idDonacion=data[0].id_oferta
@@ -237,6 +246,13 @@ export class DonarFormularioComponent implements OnInit {
     // Vaciado de campos
     form.resetForm();
     window.scrollTo(0, 0);
+  }
+
+  // Eliminar de alergenosChecked los alergenos deseleccionados
+  checkChecked(alergeno:string){
+    if(!this.alergenosChecked[alergeno]){
+      delete this.alergenosChecked[alergeno];
+    }    
   }
 
 }

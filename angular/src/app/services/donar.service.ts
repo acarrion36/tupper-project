@@ -42,8 +42,8 @@ export class DonarService {
     return this._http.post(this.url$,donation,httpOptions)
   }
 
-  update(donation:any):Observable<any>{
-    return this._http.put(this.url$,donation,httpOptions)
+  updateOferta(donation:any, id_usuario:string):Observable<any>{
+    return this._http.put(this.url$+"?id="+id_usuario,donation,httpOptions)
   }
 
   // Eliminar oferta
