@@ -60,7 +60,7 @@ class oferta{
         global $bd;
         $data=[];
         if($idu==0){ 
-            $sql="SELECT * FROM oferta";
+            $sql="SELECT oferta.*, menu.* FROM oferta inner join menu on oferta.id_menu = menu.id_menu";
             $resultado=$bd->seleccionar($sql);
                 while ($ofer = mysqli_fetch_assoc($resultado)) {
                     $data[]=$ofer;
@@ -78,4 +78,35 @@ class oferta{
                 echo $var;
             }
         }
+        public static function obtenerOfertasO($ido){
+            global $bd;
+            $data=[];
+
+                    $sql="SELECT oferta.*, menu.* FROM oferta inner join menu on oferta.id_menu = menu.id_menu where oferta.id_oferta='".$ido."'";
+                    $resultado=$bd->seleccionar($sql);
+                    while ($usu = mysqli_fetch_assoc($resultado)) {
+                            $data[]=$usu;
+                        }
+                    $var= json_encode($data);
+                    echo $var;
+            }
+       
+        public static function eliminarOferta($id){
+            global $bd;
+            $sql=" SET FOREIGN_KEY_CHECKS = 0";
+            $bd->eliminar($sql);
+            $sql="DELETE FROM oferta where id_oferta='$id'";
+            $bd->eliminar($sql);
+            $sql=" SET FOREIGN_KEY_CHECKS = 1";
+            $bd->eliminar($sql);
+        }
+
+        public static function modificarOferta($id_oferta,$direccion,$cp,$anotacion,$raciones,$h_recogida,$f_recogida,$id_menu,$nombre,$descripcion,$alergenos,$notas){
+            global $bd;
+            $sql="UPDATE oferta SET direccion='$direccion',cp='$cp',anotacion='$anotacion',raciones='$raciones',h_recogida='$h_recogida',f_recogida='$f_recogida' where id_oferta='".$id_oferta."'";
+            $resultado=$bd->update($sql);
+            $sql="UPDATE menu SET nombre='$nombre',descripcion='$descripcion',alergenos='$alergenos',notas='$notas' where id_menu='".$id_menu."'";
+            $resultado=$bd->update($sql);
+        }
+
 }
