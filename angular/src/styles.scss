@@ -17,7 +17,7 @@ $yellow: #ffc107;
 
 // IMPORTS
 // Animaciones css
-@import '..\node_modules\animate.css\animate.css';
+@import '../node_modules/animate.css/animate.css';
 
 // MIXINS
 @mixin pmw {
@@ -121,19 +121,6 @@ a {
 h5 {
   font-size: 1.4rem;
 }
-
-.loader {
-  width: 40px;
-  height: 40px;
-  margin: 5px 0 15px 0;
-  border: 5px solid $black;
-  opacity: .5;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-  }
 
   @keyframes rotation {
   0% {
@@ -382,6 +369,7 @@ section {
       height: 35px;
       border-radius: 50% !important;
     }
+
 
     .carrito {
       width: 50px;
@@ -651,3 +639,8 @@ footer {
   }
 
 }
+
+.btn_editar_entrega{
+  margin-top: 10px;
+}
+

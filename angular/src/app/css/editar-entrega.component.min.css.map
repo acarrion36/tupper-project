@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../editar-entrega/editar-entrega.component.scss"
+    ],
+    "names": [],
+    "file": "editar-entrega.component.min.css"
+}

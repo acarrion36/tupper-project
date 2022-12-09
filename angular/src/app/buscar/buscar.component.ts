@@ -18,7 +18,6 @@ export class BuscarComponent implements OnInit {
 
   // Variables | Login Status
   public loginStatus$:any
-  public load:boolean=false
 
   // Variables | Donaciones disponibles
   public donaciones:any=[]
@@ -34,14 +33,12 @@ export class BuscarComponent implements OnInit {
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
     this.readAllDonations()
-    this.authGuard()
-    this.tooltipInit()
-    setTimeout(() => {
-      this.load=true
-    }, 500);
-  }
 
   // Leer todas las ofertas publicadas
+    this.tooltipInit()
+    this.authGuard()
+  }
+
   readAllDonations():void {
     this._donarService.readAllDonations().subscribe({
       next : data => {
@@ -92,6 +89,7 @@ export class BuscarComponent implements OnInit {
     }
   }
 
+
   // Crear un carrito con el id de oferta y la cantidad de raciones
   envioCarrito():void {
     const resultado:any=[]
@@ -109,5 +107,4 @@ export class BuscarComponent implements OnInit {
     this.showModal=false
     this.carritoCerrado=[]
   }
-
 }
