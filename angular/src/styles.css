@@ -1,4 +1,13 @@
 @import '..\node_modules\animate.css\animate.css';
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+body {
+  background-color: #ebebeb;
+}
+
 a {
   color: rgb(33, 37, 41);
 }
@@ -7,7 +16,42 @@ a {
   font-size: 0.8rem !important;
 }
 
-.btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
+h5 {
+  font-size: 1.4rem;
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  margin: 5px 0 15px 0;
+  border: 5px solid rgb(33, 37, 41);
+  opacity: 0.5;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  -webkit-animation: rotation 1s linear infinite;
+          animation: rotation 1s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
   border-radius: 14px;
@@ -39,21 +83,23 @@ a {
   position: absolute;
   right: 20px;
   top: 26px;
-  color: rgb(233, 233, 233);
+  opacity: 0.4;
 }
 .login .close:hover {
   color: rgb(33, 37, 41);
   cursor: pointer;
+  opacity: 1;
 }
 .login .back {
   position: absolute;
   left: 20px;
   top: 26px;
-  color: rgb(233, 233, 233);
+  opacity: 0.4;
 }
 .login .back:hover {
   color: rgb(33, 37, 41);
   cursor: pointer;
+  opacity: 1;
 }
 .login .btn-success {
   width: 100%;
@@ -215,7 +261,7 @@ section .main-section .main-height ul .activo {
   background-color: #ebebeb !important;
 }
 section .section-section {
-  width: 70%;
+  width: 75%;
   min-width: 530px;
   background-color: rgb(233, 233, 233) !important;
 }
@@ -281,6 +327,11 @@ section .section-section .section-section-buttons {
   -moz-column-gap: 10px;
        column-gap: 10px;
 }
+section .section-section .perfil-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50% !important;
+}
 section .section-section .carrito {
   width: 50px;
   height: 50px;
@@ -323,10 +374,11 @@ section .section-section .modal {
 }
 section .section-section .modal .bi-x-lg {
   cursor: pointer;
-  color: rgb(233, 233, 233);
+  opacity: 0.4;
 }
 section .section-section .modal .bi-x-lg:hover {
   color: rgb(33, 37, 41);
+  opacity: 1;
 }
 section .section-section .modal .modal-content {
   padding: 8px;
@@ -377,28 +429,30 @@ section .section-section .alert-info, section .section-section .alert-primary {
 section .section-section .card {
   border-radius: 14px;
   font-size: 14px;
+  background-color: rgb(255, 255, 255);
 }
 section .section-section .card .card-text {
   margin-bottom: 8px;
+  color: rgb(87, 87, 87);
 }
 section .section-section .card .card-header {
   display: flex;
-  height: 55px;
+  height: 45px;
   position: relative;
-  background-color: #ebebeb;
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
+  background-color: rgb(214, 214, 214);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   font-size: 12px;
 }
 section .section-section .card .card-header .cardimg {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   overflow: hidden;
   border-radius: 50%;
   border: 5px solid rgb(255, 255, 255);
-  top: 20px;
-  left: 0;
+  top: 22px;
+  left: 0px;
 }
 section .section-section .card .card-header .cardimg img {
   width: auto;
@@ -410,8 +464,8 @@ section .section-section .card .card-body {
 section .section-section .card .card-footer {
   border-bottom-left-radius: 14px;
   border-bottom-right-radius: 14px;
-  color: rgb(255, 255, 255);
   font-size: 16px;
+  background-color: rgb(255, 255, 255);
 }
 section .section-section .card .card-footer small {
   vertical-align: middle;
@@ -421,6 +475,13 @@ section .section-section .card .card-footer .racion {
   height: 16px;
   background-color: rgb(59, 187, 70);
   border-radius: 4px;
+}
+section .section-section .card .card-footer .bi-trash {
+  fill: grey;
+}
+section .section-section .card .card-footer .bi-trash:hover {
+  fill: rgb(33, 37, 41);
+  cursor: pointer;
 }
 section .section-section .form-control {
   background-color: #ebebeb;
