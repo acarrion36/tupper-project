@@ -86,7 +86,15 @@
               </div>
               <div class="col-md-7">
                 <label for="perfilFoto" class="form-label">Foto de perfil</label>
-                <input class="form-control" type="file" name="perfilFoto" [(ngModel)]="this.perfilFoto">
+                <div *ngIf="this.perfilFoto===''" class="d-flex gap-2">
+                  <input (change)="onFileSelected($event)" class="form-control" type="file" accept="image/*"/>
+                  <img *ngIf="this.previewFile" [src]="this.previewFile" class="perfil-img m-0 p-0">
+                  <button *ngIf="this.previewFile" (click)="fileUpload()" class="btn btn-light">Subir</button>
+                </div>
+                <div *ngIf="this.perfilFoto" class="d-flex gap-2">
+                  <img [src]="this.perfilFoto" class="perfil-img m-0 p-0">
+                  <button (click)="fileDelete()" class="btn btn-light">Eliminar</button>
+                </div>
               </div>
             </form>
         </div>

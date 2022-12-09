@@ -33,6 +33,8 @@ export class BuscarComponent implements OnInit {
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
     this.readAllDonations()
+
+  // Leer todas las ofertas publicadas
     this.tooltipInit()
     this.authGuard()
   }
@@ -87,6 +89,8 @@ export class BuscarComponent implements OnInit {
     }
   }
 
+
+  // Crear un carrito con el id de oferta y la cantidad de raciones
   envioCarrito():void {
     const resultado:any=[]
     for (const el of this.carrito) resultado[el] = resultado[el] + 1 || 1
@@ -96,12 +100,11 @@ export class BuscarComponent implements OnInit {
       }
     }
     this.showModal=true
-    console.log(this.carritoCerrado)
   }
 
   // Cerrar ventana modal
   closeModal():void {
     this.showModal=false
+    this.carritoCerrado=[]
   }
-
 }

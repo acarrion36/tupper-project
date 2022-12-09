@@ -101,6 +101,15 @@ $yellow: #ffc107;
 }
 
 // SCSS
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+body {
+  background-color: $lightgrey;
+}
+
 a {
   color: $black;
 }
@@ -113,7 +122,16 @@ h5 {
   font-size: 1.4rem;
 }
 
-.btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
   border-radius: $borderRadiusM;
@@ -346,6 +364,13 @@ section {
       column-gap: 10px;
     }
 
+    .perfil-img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50% !important;
+    }
+
+
     .carrito {
       width: 50px;
       height: 50px;
@@ -494,6 +519,15 @@ section {
           height: 16px;
           background-color: $lightgreen;
           border-radius: 4px;
+        }
+
+        .bi-trash {
+          fill: grey;
+
+          &:hover {
+            fill: $black;
+            cursor: pointer;
+          }
         }
       }
     }

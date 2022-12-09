@@ -17,6 +17,7 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
           
           <!--INICIO TARJETA DONACION EN CURSO-->
+
           <div *ngFor="let donacion of this.donaciones; index as i" class="col">
             
             <div class="card h-100 mb-3 shadow-sm">
@@ -26,8 +27,7 @@
                 </div>
                 <p class="p-0 m-0">Donación Nº{{donacion.id_oferta}}</p>
               </div>
-              <div class="card-body">
-                
+              <div class="card-body">      
                 <h5 class="card-title mt-4 mb-1 titulo_oferta" [routerLink]="['/donar/editar', donacion.id_oferta]">{{donacion.nombre}}</h5>
                 <p class="card-text mb-1">{{donacion.descripcion}}</p>
                 <div *ngIf="donacion.notas!=''">
@@ -46,11 +46,13 @@
                   </div>
                 </div>
                 <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
+
                 <p class="card-text mb-0">{{donacion.direccion}}, <span *ngIf="donacion.cp.length<5">0</span>{{donacion.cp}}</p>
                 <p class="card-text mb-1">{{donacion.f_recogida}} a las {{donacion.h_recogida}}</p>
                 <div *ngIf="donacion.anotacion!=''">
                   <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.anotacion}}</figcaption>
                 </div>
+
                 <h6 class="card-title">Raciones</h6>
                 <div class="d-flex flex-wrap gap-2">
                   <div *ngFor="let racion of this.racionesPlato[i]; index as u">

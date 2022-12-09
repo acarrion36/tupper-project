@@ -1,4 +1,13 @@
 @import '..\node_modules\animate.css\animate.css';
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+body {
+  background-color: #ebebeb;
+}
+
 a {
   color: rgb(33, 37, 41);
 }
@@ -287,6 +296,13 @@ section .section-section .section-section-buttons {
   -moz-column-gap: 10px;
        column-gap: 10px;
 }
+
+section .section-section .perfil-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50% !important;
+}
+
 section .section-section .carrito {
   width: 50px;
   height: 50px;
@@ -430,6 +446,13 @@ section .section-section .card .card-footer .racion {
   height: 16px;
   background-color: rgb(59, 187, 70);
   border-radius: 4px;
+}
+section .section-section .card .card-footer .bi-trash {
+  fill: grey;
+}
+section .section-section .card .card-footer .bi-trash:hover {
+  fill: rgb(33, 37, 41);
+  cursor: pointer;
 }
 section .section-section .form-control {
   background-color: #ebebeb;
