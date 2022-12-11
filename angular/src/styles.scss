@@ -404,6 +404,21 @@ section {
       }
     }
 
+    .alergenos_listado{
+      display: flex;
+      column-gap: 15px;
+    }
+  
+  .alergeno_bloque{
+      display: grid;
+      font-size: 0.8em;
+      text-align: center;
+      
+      & img{
+          width: 30px;
+      }
+  }
+
     .modal {
       left: 50%;
       top: 50%;
@@ -514,12 +529,7 @@ section {
           vertical-align: middle;
         }
 
-        .racion{
-          width: 16px;
-          height: 16px;
-          background-color: $lightgreen;
-          border-radius: 4px;
-        }
+        
 
         .bi-trash {
           fill: grey;
@@ -534,6 +544,13 @@ section {
 
     @include formControl;
   }
+}
+
+.racion{
+  width: 16px;
+  height: 16px;
+  background-color: $lightgreen;
+  border-radius: 4px;
 }
 
 // FOOTER

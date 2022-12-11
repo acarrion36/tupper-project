@@ -37,12 +37,7 @@
                 <div class="d-flex flex-wrap mb-2 gap-1">
 
                   <div class="alergenos_listado">
-                    
-                      <p *ngFor="let alergeno of this.alergenosPlatos[i]" class="alergeno_bloque">
-                        <img title={{alergeno}} src="../../assets/img/alergenos/{{alergeno}}.png" alt="{{ alergeno.replace('_', ' ') | titlecase }}" title="{{ alergeno.replace('_', ' ') | titlecase }}">
-                        <span class="alergeno_sub">{{ alergeno.substring(0,3) | uppercase }}</span>
-                      </p>
-                         
+                    <app-pintaalergenos [alergenosPlato]=alergenosPlatos[i]></app-pintaalergenos>
                   </div>
                 </div>
                 <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
