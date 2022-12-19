@@ -9,7 +9,7 @@ declare var bootstrap:any;
 @Component({
   selector: 'app-buscar',
   templateUrl: './buscar.component.html',
-  styleUrls: ['./buscar.component.scss']
+  styleUrls: ['./buscar.component.scss'],
 })
 
 export class BuscarComponent implements OnInit {
@@ -22,17 +22,22 @@ export class BuscarComponent implements OnInit {
   // Variables | Donaciones disponibles
   public donaciones:any=[]
   public donacionesTotales:number=0
-  public alergenosPlato:any=[]
+  public alergenosPlatos:any=[]
+  
   public racionesPlato:any=[]
   public carrito:any=[]
   public carritoCerrado:any=[]
   public showModal:boolean=false
 
-  constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) {}
+  constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) {
+    this.alergenosPlatos = []
+  }
 
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
     this.readAllDonations()
+
+  // Leer todas las ofertas publicadas
     this.tooltipInit()
     this.authGuard()
   }
@@ -40,12 +45,28 @@ export class BuscarComponent implements OnInit {
   readAllDonations():void {
     this._donarService.readAllDonations().subscribe({
       next : data => {
-        console.log(data)
+
         this.donaciones=data.reverse()
         this.donacionesTotales=data.length
-        for (let index = 0; index < this.donaciones.length; index++) {
-          this.alergenosPlato.push(JSON.parse(this.donaciones[index].alergenos))
+
+        for (const [i,plato] of this.donaciones.entries()) {
+          let alergenosTrue:string[] = [];
+          
+          let alergenos = JSON.parse(data[i].alergenos);
+          for(const alergeno in alergenos){
+            if(alergenos[alergeno]){
+              alergenosTrue.push(alergeno);
+            }
+            
+          }
+
+          this.alergenosPlatos.push(alergenosTrue.sort());
+        }
+        
+        
+        for (let index = 0; index < data.length; index++) {
           this.racionesPlato.push(Array(parseInt(this.donaciones[index].raciones)).fill(1))
+          
         }
       }
     })
@@ -87,6 +108,8 @@ export class BuscarComponent implements OnInit {
     }
   }
 
+
+  // Crear un carrito con el id de oferta y la cantidad de raciones
   envioCarrito():void {
     const resultado:any=[]
     for (const el of this.carrito) resultado[el] = resultado[el] + 1 || 1
@@ -96,12 +119,11 @@ export class BuscarComponent implements OnInit {
       }
     }
     this.showModal=true
-    console.log(this.carritoCerrado)
   }
 
   // Cerrar ventana modal
   closeModal():void {
     this.showModal=false
+    this.carritoCerrado=[]
   }
-
 }

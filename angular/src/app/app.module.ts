@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { EditarEntregaComponent } from './editar-entrega/editar-entrega.component';
 import { DonarFormularioComponent } from './donar-formulario/donar-formulario.component';
+import { PintaalergenosComponent } from './pintaalergenos/pintaalergenos.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DonarFormularioComponent } from './donar-formulario/donar-formulario.co
     LoginComponent,
     LogoutComponent,
     EditarEntregaComponent,
-    DonarFormularioComponent
+    DonarFormularioComponent,
+    PintaalergenosComponent
   ],
   imports: [
     BrowserModule,
