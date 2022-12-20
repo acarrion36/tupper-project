@@ -7,11 +7,13 @@ $sectionPaddingTop: $logoWidth + 15;
 //VARIABLES: COLORES
 $lightgrey: #ebebeb;
 $grey: rgb(233, 233, 233);
+$greyer: rgb(214, 214, 214);
 $darkgrey: rgb(87, 87, 87);
 $black: rgb(33, 37, 41);
 $white: rgb(255, 255, 255);
 $green: rgb(21, 115, 71);
 $lightgreen: rgb(59, 187, 70);
+$yellow: #ffc107;
 
 // IMPORTS
 // Animaciones css
@@ -99,6 +101,15 @@ $lightgreen: rgb(59, 187, 70);
 }
 
 // SCSS
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+body {
+  background-color: $lightgrey;
+}
+
 a {
   color: $black;
 }
@@ -107,9 +118,20 @@ a {
   font-size: .80rem !important;
 }
 
+h5 {
+  font-size: 1.4rem;
+}
 
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
 
-.btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
+.btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
   border-radius: $borderRadiusM;
@@ -141,11 +163,12 @@ a {
     position: absolute;
     right: 20px;
     top: 26px;
-    color: $grey;
+    opacity: 0.4;
 
     &:hover {
       color: $black;
       cursor: pointer;
+      opacity: 1;
     }
   }
 
@@ -153,11 +176,12 @@ a {
     position: absolute;
     left: 20px;
     top: 26px;
-    color: $grey;
+    opacity: 0.4;
 
     &:hover {
       color: $black;
       cursor: pointer;
+      opacity: 1;
     }
   }
 
@@ -327,7 +351,7 @@ section {
   }
   // SECTION
   .section-section {
-    width: 70%;
+    width: 75%;
     min-width: 530px;
     background-color: $grey !important;
 
@@ -338,6 +362,24 @@ section {
       flex-wrap: wrap;
       row-gap: 10px;
       column-gap: 10px;
+    }
+
+    .perfil-img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50% !important;
+    }
+
+
+    .carrito {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      .translate-middle {
+        transform: translate(-70%,-10%)!important;
+        height: 20px;
+        width: 30px;
+      }
     }
 
     .unregister {
@@ -374,9 +416,10 @@ section {
 
       .bi-x-lg {
         cursor: pointer;
-        color: $grey;
+        opacity: 0.4;
         &:hover {
           color: $black;
+          opacity: 1;
         }
       }
 
@@ -424,18 +467,20 @@ section {
     .card {
       border-radius: $borderRadiusM;
       font-size: 14px;
+      background-color: $white;
 
       .card-text {
         margin-bottom: 8px;
+        color: $darkgrey;
       }
 
       .card-header {
         display: flex;
         height: 45px;
         position: relative;
-        background-color: $lightgrey;
-        border-top-left-radius: $borderRadiusM;
-        border-top-right-radius: $borderRadiusM;
+        background-color: $greyer;
+        border-top-left-radius: $borderRadiusS;
+        border-top-right-radius: $borderRadiusS;
         font-size: 12px;
 
         .cardimg {
@@ -446,7 +491,7 @@ section {
           border-radius: 50%;
           border: 5px solid $white;
           top: 22px;
-          left: 0;
+          left: 0px;
 
           img {
             width: auto;
@@ -462,8 +507,8 @@ section {
       .card-footer {
         border-bottom-left-radius: $borderRadiusM;
         border-bottom-right-radius: $borderRadiusM;
-        color: $white;
         font-size: 16px;
+        background-color: $white;
 
         small {
           vertical-align: middle;
@@ -474,6 +519,15 @@ section {
           height: 16px;
           background-color: $lightgreen;
           border-radius: 4px;
+        }
+
+        .bi-trash {
+          fill: grey;
+
+          &:hover {
+            fill: $black;
+            cursor: pointer;
+          }
         }
       }
     }
@@ -585,3 +639,8 @@ footer {
   }
 
 }
+
+.btn_editar_entrega{
+  margin-top: 10px;
+}
+

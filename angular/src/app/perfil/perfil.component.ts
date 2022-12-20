@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service';
+import { FilesService } from '../services/files.service';
 import { User } from '../models/User';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare var bootstrap:any;
 
@@ -39,9 +41,11 @@ export class PerfilComponent implements OnInit {
   public perfilFoto:string=""
   public cnfPerBtn:boolean=false
   public cnfPerChecked:boolean=false
+  public selectedFile:any=[]
+  public previewFile:string=""
 
   // Constructor | _loginService: Controla si esta logueado | router: Navegación | _cookie: Trabajar con cookies
-  constructor(private _loginService:LoginService, private router:Router, private _cookie:CookieService) {}
+  constructor(private _loginService:LoginService, private router:Router, private _cookie:CookieService, private sanitizer:DomSanitizer, private _fileService:FilesService) {}
 
   // OnInit
   ngOnInit():void {
@@ -53,6 +57,7 @@ export class PerfilComponent implements OnInit {
     this.tooltipInit()
     this.authGuard()
     this.visibleNickname()
+    
   }
 
   // Leer los datos del usuario logeado
@@ -146,6 +151,57 @@ export class PerfilComponent implements OnInit {
     this.cnfPerChecked=true
     this.cnfPerBtn=false
   }
+
+  onFileSelected(event:any):void {
+    const capturedFile = event.target.files[0]
+    this.selectedFile.push(capturedFile)
+    this.extraerBase64(capturedFile).then((imagen:any) => {
+      this.previewFile = imagen.base
+    })
+  }
+
+  fileUpload():void {
+    try {
+      const formularioDeDatos = new FormData()
+      this.selectedFile.forEach((archivo:any) => {
+        formularioDeDatos.append('image',archivo)
+      })
+      this._fileService.post(formularioDeDatos).subscribe({
+        next : data => {
+          console.log(data)
+          this.perfilFoto=data.data.image.url
+        }
+      })
+    } catch (e) {
+      console.log("error",e)
+    }
+  }
+
+  fileDelete():void {
+    this.perfilFoto=""
+    this.previewFile=""
+  }
+
+  extraerBase64 = async ($event:any) => new Promise((resolve):any => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg)
+      const reader = new FileReader()
+      reader.readAsDataURL($event)
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        })
+      }
+      reader.onerror = error => {
+        resolve({
+          base: null
+        })
+      }
+    } catch (e) {
+      return null
+    }
+  })
 
   // Validar CP
   checkCP(input:any) {

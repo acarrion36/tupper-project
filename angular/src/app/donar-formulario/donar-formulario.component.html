@@ -1,0 +1,108 @@
+<div class="mt-4 p-4 bg-light border shadow-sm">
+    <form class="row g-3" id="donationForm" #formDonation="ngForm">
+      <div class="col-md-12 d-flex flex-wrap justify-content-start">
+        <p class="col-form-label"><strong>Información del plato</strong></p>
+      </div>
+      <!-- NOMBRE -->
+      <div class="col-md-12">
+        <label for="nombre" class="form-label">Nombre del plato*</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="this.createDonation.nombre">
+        <div *ngIf="this.alertNombrePlato" class="alert alert-danger">Campo obligatorio.</div>
+      </div>
+
+      <!-- DESCRIPCIÓN -->
+      <div class="col-md-6">
+        <label for="descripcion" class="form-label">Descripcion*</label>
+        <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Es importante ser lo más preciso posible al describir el plato." id="descripcion" name="descripcion" rows="3" [(ngModel)]="this.createDonation.descripcion"></textarea>
+        <div *ngIf="this.alertDescripcionPlato" class="alert alert-danger">Campo obligatorio.</div>
+      </div>
+
+      <!-- NOTAS ADICIONALES -->
+      <div class="col-md-6">
+        <label for="anotacion" class="form-label">Notas adicionales</label>
+        <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="right" id="anotacion" name="anotacion" rows="3" [(ngModel)]="this.createDonation.anotacion"></textarea>
+      </div>
+
+      <!-- ALÉRGENOS -->
+      <div class="col-md-12">
+        <label for="platoAlergenos" class="form-label">Alérgenos</label>
+        <div class="d-flex flex-wrap mb-2">
+          <div *ngFor="let alergeno of this.alergenosLista" class="form-check form-check-inline d-flex align-items-center gap-1 alergeno">
+            <input type="checkbox" id={{alergeno}} name={{alergeno}} value={{alergeno}} (click)="this.alergenosChecked[alergeno] = !this.alergenosChecked[alergeno]; checkChecked(alergeno)" [checked]="this.alergenosChecked[alergeno]" class="form-check-input">
+            <label class="form-check-label" for={{alergeno}}><img class="m-0" src="../../assets/img/alergenos/{{alergeno}}.png" alt={{alergeno}} width="30px"></label>
+            <span class="m-0 p-0 fs-7"> {{ alergeno.replace('_', ' ') | titlecase }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RACIONES -->
+      <div class="col-md-2">
+        <label for="raciones" class="form-label">Raciones*</label>
+        <input (change)="checkRation()" type="number" class="form-control" id="raciones" name="raciones" [(ngModel)]="this.createDonation.raciones">
+      </div>
+
+      <!-- FOTO -->
+      <div class="col-md-5">
+        <label for="platoFoto" class="form-label">Foto del plato</label>
+        <input class="form-control" type="file" id="platoFoto" name="platoFoto" [(ngModel)]="this.fotoPlato">
+      </div>
+
+      <!-- INFORMACIÓN DE LA ENTREGA -->
+      <div class="col-md-12 d-flex justify-content-between align-items-center">
+        <p class="col-form-label"><strong>Información de la entrega</strong></p>
+      </div>
+      <div class="col-md-9">
+        <label for="direccion" class="form-label">Direccion de entrega*</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" [(ngModel)]="this.createDonation.direccion">
+        <div *ngIf="this.alertDireccionEntrega" class="alert alert-danger">Campo obligatorio.</div>
+      </div>
+      <div class="col-md-3">
+        <label for="cp" class="form-label">C.P.*</label>
+        <input type="text" class="form-control" id="cp" name="cp" placeholder="Ej: 01234" [(ngModel)]="this.createDonation.cp">
+        <div *ngIf="this.alertCPEntrega" class="alert alert-danger">{{this.alertMsg}}</div>
+      </div>
+      <div class="col-md-6">
+        <label for="f_recogida" class="form-label">Dia*</label>
+        <input type="date" [min]="this.hoy" class="form-control" id="f_recogida" name="f_recogida" [(ngModel)]="this.createDonation.f_recogida" >
+        <div *ngIf="this.alertFechaEntrega" class="alert alert-danger">Campo obligatorio.</div>
+      </div>
+      <div class="col-md-6">
+        <label for="h_recogida" class="form-label">Hora*</label>
+        <input type="time" class="form-control" id="h_recogida" name="h_recogida" [(ngModel)]="this.createDonation.h_recogida">
+        <div *ngIf="this.alertHoraEntrega" class="alert alert-danger">Campo obligatorio.</div>
+      </div>
+      <div class="col-md-12">
+        <label for="notas" class="form-label">Notas</label>
+        <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Usa esta campo para anotar cualquier cosa. Por ejemplo, otras franjas de entrega." id="notas" name="notas" rows="3" [(ngModel)]="this.createDonation.notas"></textarea>
+      </div>
+
+      <!-- SUBMIT -->
+      <div class="col-md-12 d-flex justify-content-end">
+        <div class="d-flex align-items-center gap-4">
+          <button (click)="publicar()" class="btn btn-dark" id="btnGuardarDonacion" type="submit">Publicar</button>
+        </div>
+        <!-- Modal -->
+        <div (click)="closeModal(formDonation)" *ngIf="this.showModal" class="veil" id="veil"></div>
+        <div *ngIf="this.showModal" class="modal text-center show" style="display: block;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="green" viewBox="0 0 16 16" class="bi bi-check-circle p-1">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                  <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+                </svg>
+                <h1 class="modal-title fs-5">Publicar donación</h1>
+                <svg (click)="closeModal(formDonation)" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="30px" data-bs-dismiss="modal" aria-label="Close" viewBox="0 0 16 16" class="bi bi-x-lg close p-1">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+                </svg>
+              </div>
+              <div class="modal-body">¡Perfecto! La donación Nº{{this.idDonacion}} se ha publicado correctamente. Gracias por tu aportación.</div>
+              <div class="modal-footer">
+                <button [routerLink]="['/donar/en-curso']" type="button" class="btn btn-success">Donaciones en curso</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>

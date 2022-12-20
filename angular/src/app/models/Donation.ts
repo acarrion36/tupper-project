@@ -11,7 +11,9 @@ export class Donation {
       public anotacion:string,
       public raciones:number,
       public h_recogida:string,
-      public f_recogida:string
+      public f_recogida:string,
+      public id_menu:string,
+      
   ){}
 
 }
