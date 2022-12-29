@@ -28,9 +28,11 @@ export class BuscarComponent implements OnInit {
   public carrito:any=[]
   public carritoCerrado:any=[]
   public showModal:boolean=false
+  public racionesDisponibles:number[];
 
   constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) {
     this.alergenosPlatos = []
+    this.racionesDisponibles = [];
   }
 
   ngOnInit(): void {
@@ -52,22 +54,31 @@ export class BuscarComponent implements OnInit {
         for (const [i,plato] of this.donaciones.entries()) {
           let alergenosTrue:string[] = [];
           
+          // Alérgenos
           let alergenos = JSON.parse(data[i].alergenos);
           for(const alergeno in alergenos){
             if(alergenos[alergeno]){
               alergenosTrue.push(alergeno);
             }
-            
           }
-
           this.alergenosPlatos.push(alergenosTrue.sort());
-        }
-        
-        
-        for (let index = 0; index < data.length; index++) {
-          this.racionesPlato.push(Array(parseInt(this.donaciones[index].raciones)).fill(1))
+
+          // Raciones
+          let racionesTotales = plato.raciones;
+          let racionesReservadas = 0; // PENDIENTE!!
+          let racionesDisponiblesPlato = racionesTotales - racionesReservadas;
+          
+          this.racionesDisponibles[plato.id_oferta] = racionesDisponiblesPlato;
+
           
         }
+        
+        
+        
+        // for (let index = 0; index < data.length; index++) {
+        //   this.racionesPlato.push(Array(parseInt(this.donaciones[index].raciones)).fill(1))
+          
+        // }
       }
     })
   }
@@ -125,5 +136,11 @@ export class BuscarComponent implements OnInit {
   closeModal():void {
     this.showModal=false
     this.carritoCerrado=[]
+  }
+
+  // Solicitar raciones
+  solicitar(id_oferta:number){
+    let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
+    // console.log(raciones);
   }
 }
