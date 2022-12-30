@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { DonarService } from '../services/donar.service';
+import { DemandarService } from '../services/demandar.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Demand } from '../models/Demand';
 
 declare var bootstrap:any;
 
 @Component({
   selector: 'app-buscar',
   templateUrl: './buscar.component.html',
-  styleUrls: ['./buscar.component.scss']
+  styleUrls: ['./buscar.component.scss'],
 })
 
 export class BuscarComponent implements OnInit {
@@ -18,17 +20,23 @@ export class BuscarComponent implements OnInit {
 
   // Variables | Login Status
   public loginStatus$:any
+  public idUsuario:any
 
   // Variables | Donaciones disponibles
   public donaciones:any=[]
   public donacionesTotales:number=0
-  public alergenosPlato:any=[]
+  public alergenosPlatos:any=[]
+  
   public racionesPlato:any=[]
   public carrito:any=[]
   public carritoCerrado:any=[]
   public showModal:boolean=false
+  public racionesDisponibles:number[];
 
-  constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) {}
+  constructor(private _loginService:LoginService, private _donarService:DonarService, private _demandarService:DemandarService, private router:Router, private _cookie:CookieService) {
+    this.alergenosPlatos = []
+    this.racionesDisponibles = [];
+  }
 
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
@@ -36,19 +44,56 @@ export class BuscarComponent implements OnInit {
 
   // Leer todas las ofertas publicadas
     this.tooltipInit()
+    this.readUserLogged()
     this.authGuard()
+  }
+
+  // Leer los datos del usuario logeado
+  readUserLogged():void {
+    this._loginService.readUserLogged().subscribe({
+      next : data => {
+        if(data!=0) {
+          this.idUsuario=data[0].id_usuario
+        }
+      }
+    })
   }
 
   readAllDonations():void {
     this._donarService.readAllDonations().subscribe({
       next : data => {
-        console.log(data)
+
         this.donaciones=data.reverse()
         this.donacionesTotales=data.length
-        for (let index = 0; index < this.donaciones.length; index++) {
-          this.alergenosPlato.push(JSON.parse(this.donaciones[index].alergenos))
-          this.racionesPlato.push(Array(parseInt(this.donaciones[index].raciones)).fill(1))
+
+        for (const [i,plato] of this.donaciones.entries()) {
+          let alergenosTrue:string[] = [];
+          
+          // Alérgenos
+          let alergenos = JSON.parse(data[i].alergenos);
+          for(const alergeno in alergenos){
+            if(alergenos[alergeno]){
+              alergenosTrue.push(alergeno);
+            }
+          }
+          this.alergenosPlatos.push(alergenosTrue.sort());
+
+          // Raciones
+          let racionesTotales = plato.raciones;
+          let racionesReservadas = 0; // PENDIENTE!!
+          let racionesDisponiblesPlato = racionesTotales - racionesReservadas;
+          
+          this.racionesDisponibles[plato.id_oferta] = racionesDisponiblesPlato;
+
+          
         }
+        
+        
+        
+        // for (let index = 0; index < data.length; index++) {
+        //   this.racionesPlato.push(Array(parseInt(this.donaciones[index].raciones)).fill(1))
+          
+        // }
       }
     })
   }
@@ -106,5 +151,21 @@ export class BuscarComponent implements OnInit {
   closeModal():void {
     this.showModal=false
     this.carritoCerrado=[]
+  }
+
+  // Solicitar raciones
+  solicitar(id_oferta:number){
+    let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
+    
+    let demanda = new Demand(this.idUsuario, id_oferta.toString(), raciones.toString(), "", 0, "");
+
+    this._demandarService.post(demanda).subscribe({
+      next:data => {
+        // this.idDonacion=data[0].id_oferta
+        // console.log(data);
+        
+      }
+    });
+
   }
 }

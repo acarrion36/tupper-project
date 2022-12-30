@@ -52,88 +52,44 @@
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
           <!--INICIO TARJETA DONACION EN CURSO-->
-          <div *ngFor="let d of this.donaciones; index as i" class="col">
-            <div class="card h-100 mb-3 shadow-sm" id="{{d.id_oferta}}">
-              <div class="card-header border-0 justify-content-between align-items-center">
-                <div class="cardimg">
-                  <img src="../../assets/img/cocinar.jpg" alt="">
+          <ng-container *ngFor="let donacion of this.donaciones; index as i" class="col" >
+            <div *ngIf="this.racionesDisponibles[donacion.id_oferta] > 0">
+              <div class="card h-100 mb-3 shadow-sm" id="{{donacion.id_oferta}}">
+                <div class="card-header border-0 justify-content-between align-items-center">
+                  <div class="cardimg">
+                    <img src="../../assets/img/cocinar.jpg" alt="">
+                  </div>
+                  <p class="p-0 m-0">Donación Nº{{donacion.id_oferta}}</p>
                 </div>
-                <p class="p-0 m-0">Donación Nº{{d.id_oferta}}</p>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title mt-4 mb-1">{{d.nombre}}</h5>
-                <p class="card-text mb-1">{{d.descripcion}}</p>
-                <div *ngIf="d.notas!=''">
-                  <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{d.notas}}</figcaption>
-                </div>
-                <h6 class="card-title mb-1">Alérgenos</h6>
-                <div class="d-flex flex-wrap mb-2 gap-1">
-                  <div *ngFor="let a of this.alergenosPlato[i]" class="alergenos">
-                    <div [ngSwitch]="a">
-                      <p *ngSwitchCase="'huevos'">
-                        <img title="Huevos" src="../../assets/img/alergenos/Huevos.png" alt="huevos">
-                      </p>
-                      <p *ngSwitchCase="'gluten'">
-                        <img title="Gluten" src="../../assets/img/alergenos/Gluten.png" alt="gluten">
-                      </p>
-                      <p *ngSwitchCase="'crustaceos'">
-                        <img title="Crustaceos" src="../../assets/img/alergenos/Crustaceos.png" alt="crustaceos">
-                      </p>
-                      <p *ngSwitchCase="'pescado'">
-                        <img title="Pescado" src="../../assets/img/alergenos/Pescado.png" alt="pescado">
-                      </p>
-                      <p *ngSwitchCase="'cacahuetes'">
-                        <img title="Cacahuetes" src="../../assets/img/alergenos/Cacahuetes.png" alt="cacahuetes">
-                      </p>
-                      <p *ngSwitchCase="'soja'">
-                        <img title="Soja" src="../../assets/img/alergenos/Soja.png" alt="soja">
-                      </p>
-                      <p *ngSwitchCase="'lacteos'">
-                        <img title="Lácteos" src="../../assets/img/alergenos/Lácteos.png" alt="lacteos">
-                      </p>
-                      <p *ngSwitchCase="'frutoscascara'">
-                        <img title="Frutos Secos" src="../../assets/img/alergenos/Frutos secos.png" alt="frutossecos">
-                      </p>
-                      <p *ngSwitchCase="'apio'">
-                        <img title="Apio" src="../../assets/img/alergenos/Apio.png" alt="apio">
-                      </p>
-                      <p *ngSwitchCase="'mostaza'">
-                        <img title="Mostaza" src="../../assets/img/alergenos/Mostaza.png" alt="mostaza">
-                      </p>
-                      <p *ngSwitchCase="'granossesamo'">
-                        <img title="Sésamo" src="../../assets/img/alergenos/Sésamo.png" alt="sesamo">
-                      </p>
-                      <p *ngSwitchCase="'dioxido'">
-                        <img title="Sulfitos" src="../../assets/img/alergenos/Sulfitos.png" alt="sulfitos">
-                      </p>
-                      <p *ngSwitchCase="'moluscos'">
-                        <img title="Moluscos" src="../../assets/img/alergenos/Moluscos.png" alt="moluscos">
-                      </p>
-                      <p *ngSwitchCase="'altramuces'">
-                        <img title="Altramuces" src="../../assets/img/alergenos/Altramuz.png" alt="altramuces">
-                      </p>
-                    </div>
+                <div class="card-body">
+                  <h5 class="card-title mt-4 mb-1">{{donacion.nombre}}</h5>
+                  <p class="card-text mb-1">{{donacion.descripcion}}</p>
+                  <div *ngIf="donacion.notas!=''">
+                    <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.notas}}</figcaption>
+                  </div>
+                  <h6 class="card-title mb-1">Alérgenos</h6>
+                  <div class="d-flex flex-wrap mb-2 gap-1">
+                      <app-pintaalergenos [alergenosPlato]=alergenosPlatos[i]></app-pintaalergenos>
+                  </div>
+                  <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
+                  <p class="card-text mb-0">{{donacion.direccion}}, 0{{donacion.cp}}</p>
+                  <p class="card-text mb-1">{{donacion.f_recogida}} a las {{donacion.h_recogida}}</p>
+                  <div *ngIf="donacion.anotacion!=''">
+                    <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.anotacion}}</figcaption>
                   </div>
                 </div>
-                <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
-                <p class="card-text mb-0">{{d.direccion}}, 0{{d.cp}}</p>
-                <p class="card-text mb-1">{{d.f_recogida}} a las {{d.h_recogida}}</p>
-                <div *ngIf="d.anotacion!=''">
-                  <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{d.anotacion}}</figcaption>
-                </div>
-              </div>
-              <div class="card-footer border-0 pb-3 pt-0">
-                <h6 class="card-title">Raciones</h6>
-                <div class="d-flex flex-wrap gap-2">
-                  <div *ngFor="let r of this.racionesPlato[i]; index as u">
-                    <div class="input-group-lg">
-                      <input (click)="isChecked('id'+d.id_oferta+':'+u)" class="form-check-input m-0" type="checkbox" id="id{{d.id_oferta}}:{{u}}" value="{{d.id_oferta}}">
+                <div class="card-footer border-0 pb-3 pt-0">
+                  <h6 class="card-title">Raciones</h6>
+                  <div class="d-flex flex-wrap gap-2" id="plato_{{donacion.id_oferta}}">
+                    <div *ngFor="let racion of [].constructor(this.racionesDisponibles[donacion.id_oferta]); index as u">
+                        <input class="form-check-input m-0" type="checkbox" name="{{donacion.id_oferta}}" value="{{donacion.id_oferta}}">      
                     </div>
+                    <button class="btn btn-primary" (click)="solicitar(donacion.id_oferta)">Solicitar</button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+        </ng-container>
           <!--FIN TARJETA DONACION EN CURSO-->
         </div>
       </div>

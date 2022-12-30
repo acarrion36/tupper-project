@@ -404,6 +404,21 @@ section {
       }
     }
 
+    .alergenos_listado{
+      display: flex;
+      column-gap: 15px;
+    }
+  
+  .alergeno_bloque{
+      display: grid;
+      font-size: 0.8em;
+      text-align: center;
+      
+      & img{
+          width: 30px;
+      }
+  }
+
     .modal {
       left: 50%;
       top: 50%;
@@ -508,32 +523,83 @@ section {
         border-bottom-left-radius: $borderRadiusM;
         border-bottom-right-radius: $borderRadiusM;
         font-size: 16px;
-        background-color: $white;
+        background-color: $grey;
+        text-align: right;
+
+        display: flex;
+        justify-content: right;
+        // align-items: center;
+        gap: 1.2em;
 
         small {
           vertical-align: middle;
         }
 
-        .racion{
-          width: 16px;
-          height: 16px;
-          background-color: $lightgreen;
-          border-radius: 4px;
+        .btn_editar_entrega{
+          fill: grey;
         }
 
-        .bi-trash {
-          fill: grey;
+        div{
 
-          &:hover {
-            fill: $black;
+          display: grid;
+          grid-template-columns: 1fr;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+
+          svg{
+            display: block;
+            margin: auto;
+            padding: 0;
+          }
+
+          p{
+            padding: 0;
+            margin: 0;
+            font-size: 0.7em;
+            color: grey;
+          }
+          
+          
+          .bi-trash {
+            fill: grey;
+          }
+
+          &.div_editar:hover{
             cursor: pointer;
+            .btn_editar_entrega {
+              fill: rgb(0, 59, 252);
+            }
+            p {
+              color: rgb(0, 59, 252);
+              
+            }
+          }
+
+          &.div_borrar:hover{
+            cursor: default;
+            .bi-trash {
+              fill: rgb(144, 1, 1);
+            }
+            p {
+              color: rgb(144, 1, 1);
+              
+            }
           }
         }
+          
       }
     }
 
     @include formControl;
   }
+}
+
+.racion{
+  width: 16px;
+  height: 16px;
+  background-color: $lightgreen;
+  border-radius: 4px;
 }
 
 // FOOTER
@@ -639,8 +705,3 @@ footer {
   }
 
 }
-
-.btn_editar_entrega{
-  margin-top: 10px;
-}
-

@@ -1,0 +1,6 @@
+<div class="alergenos_listado">
+    <p *ngFor="let alergeno of this.alergenosPlato" class="alergeno_bloque">
+        <img title={{alergeno}} src="../../assets/img/alergenos/{{alergeno}}.png" alt="{{ alergeno.replace('_', ' ') | titlecase }}" title="{{ alergeno.replace('_', ' ') | titlecase }}">
+        <span class="alergeno_sub">{{ alergeno.substring(0,3) | uppercase }}</span>
+    </p>
+</div>
