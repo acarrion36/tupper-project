@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { DonarService } from '../services/donar.service';
+import { DemandarService } from '../services/demandar.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Demand } from '../models/Demand';
 
 declare var bootstrap:any;
 
@@ -18,6 +20,7 @@ export class BuscarComponent implements OnInit {
 
   // Variables | Login Status
   public loginStatus$:any
+  public idUsuario:any
 
   // Variables | Donaciones disponibles
   public donaciones:any=[]
@@ -30,7 +33,7 @@ export class BuscarComponent implements OnInit {
   public showModal:boolean=false
   public racionesDisponibles:number[];
 
-  constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) {
+  constructor(private _loginService:LoginService, private _donarService:DonarService, private _demandarService:DemandarService, private router:Router, private _cookie:CookieService) {
     this.alergenosPlatos = []
     this.racionesDisponibles = [];
   }
@@ -41,7 +44,19 @@ export class BuscarComponent implements OnInit {
 
   // Leer todas las ofertas publicadas
     this.tooltipInit()
+    this.readUserLogged()
     this.authGuard()
+  }
+
+  // Leer los datos del usuario logeado
+  readUserLogged():void {
+    this._loginService.readUserLogged().subscribe({
+      next : data => {
+        if(data!=0) {
+          this.idUsuario=data[0].id_usuario
+        }
+      }
+    })
   }
 
   readAllDonations():void {
@@ -141,6 +156,16 @@ export class BuscarComponent implements OnInit {
   // Solicitar raciones
   solicitar(id_oferta:number){
     let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
-    // console.log(raciones);
+    
+    let demanda = new Demand(this.idUsuario, id_oferta.toString(), raciones.toString(), "", 0, "");
+
+    this._demandarService.post(demanda).subscribe({
+      next:data => {
+        // this.idDonacion=data[0].id_oferta
+        console.log(data);
+        
+      }
+    });
+
   }
 }
