@@ -28,9 +28,13 @@ export class DemandarService {
     return this._http.get(this.url$,httpOptions)
   }
 
-    readDemandasByIdd(idd:any):Observable<any>{
-      return this._http.get(this.url$+"?idd="+idd,httpOptions)
-    }
+  readDemandasByIdd(idd:any):Observable<any>{
+    return this._http.get(this.url$+"?idd="+idd,httpOptions)
+  }
+
+  readRacionesByIdo(ido:any):Observable<any>{
+    return this._http.get(this.url$+"?rido="+ido,httpOptions)
+  }
 
   post(demand:Demand):Observable<any>{
     return this._http.post(this.url$,demand,httpOptions)

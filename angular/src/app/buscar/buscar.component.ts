@@ -81,6 +81,14 @@ export class BuscarComponent implements OnInit {
           // Raciones
           let racionesTotales = plato.raciones;
           let racionesReservadas = 0; // PENDIENTE!!
+          this._demandarService.readRacionesByIdo(plato.id_oferta).subscribe({
+            next:data => {
+              console.log(data);
+              
+              racionesReservadas = data[0];
+              
+            }
+          });
           let racionesDisponiblesPlato = racionesTotales - racionesReservadas;
           
           this.racionesDisponibles[plato.id_oferta] = racionesDisponiblesPlato;
