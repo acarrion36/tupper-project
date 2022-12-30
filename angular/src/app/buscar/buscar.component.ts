@@ -171,6 +171,7 @@ export class BuscarComponent implements OnInit {
       next:data => {
         // this.idDonacion=data[0].id_oferta
         // console.log(data);
+        this.readAllDonations();
         
       }
     });
