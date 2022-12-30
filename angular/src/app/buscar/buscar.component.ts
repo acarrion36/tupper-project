@@ -81,19 +81,27 @@ export class BuscarComponent implements OnInit {
           // Raciones
           let racionesTotales = plato.raciones;
           let racionesReservadas = 0; // PENDIENTE!!
-          let racionesDisponiblesPlato = racionesTotales - racionesReservadas;
-          
-          this.racionesDisponibles[plato.id_oferta] = racionesDisponiblesPlato;
+          this._demandarService.readRacionesByIdo(plato.id_oferta).subscribe({
+            next:data => {
+              console.log("Raciones: ", data[0]["raciones"]);
 
+              if(data[0]["raciones"] != null){
+                console.log("Si");
+                
+                racionesReservadas = data[0]["raciones"];
+              }
+
+              let racionesDisponiblesPlato = racionesTotales - racionesReservadas;
+              console.log("Total: " + racionesTotales + "; Reser: " + racionesReservadas + "; Disp.: "+ racionesDisponiblesPlato);
           
+          
+              this.racionesDisponibles[plato.id_oferta] = racionesDisponiblesPlato;
+              
+            }
+          });
+ 
         }
         
-        
-        
-        // for (let index = 0; index < data.length; index++) {
-        //   this.racionesPlato.push(Array(parseInt(this.donaciones[index].raciones)).fill(1))
-          
-        // }
       }
     })
   }
