@@ -73,7 +73,7 @@ class demanda{
         public static function obtenerRacionesDemandaO($ido){
             global $bd;
             $data=[];
-                $sql="SELECT SUM(n_raciones) FROM demanda WHERE id_oferta='".$ido."'";
+                $sql="SELECT SUM(n_raciones) as raciones FROM demanda WHERE id_oferta='".$ido."'";
                 $resultado=$bd->seleccionar($sql);
                     while ($ofer = mysqli_fetch_assoc($resultado)) {
                         $data[]=$ofer;
