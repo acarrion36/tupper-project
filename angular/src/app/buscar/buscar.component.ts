@@ -162,7 +162,7 @@ export class BuscarComponent implements OnInit {
     this._demandarService.post(demanda).subscribe({
       next:data => {
         // this.idDonacion=data[0].id_oferta
-        console.log(data);
+        // console.log(data);
         
       }
     });
