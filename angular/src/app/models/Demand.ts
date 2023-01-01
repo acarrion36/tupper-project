@@ -1,6 +1,7 @@
 export class Demand {
 
   constructor(
+      public id_demanda:number,
       public id_usuario:string,
       public id_oferta:string,
       public n_raciones:string,

@@ -34,7 +34,7 @@ export class DonarService {
   }
 
   // Donaciones por OFERTA
-  readDonationsByIdd(ido:any):Observable<any>{
+  readDonationsByIdo(ido:any):Observable<any>{
     return this._http.get(this.url$+"?ido="+ido,httpOptions)
   }
 
