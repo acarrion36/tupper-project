@@ -78,14 +78,16 @@ export class PedidosComponent implements OnInit {
       next : data => {
         this.demandas=data.reverse();              
         this.totalDemandas = this.demandas.length;
+        this.platos.length = 0;
+        
         this.demandasToPlatos();
       }
       
     })
-    console.log(this.totalDemandas);
   }
 
-  demandasToPlatos(){
+  demandasToPlatos():void{
+   
     for (const demanda of this.demandas) {
       let idDemanda = demanda['id_demanda'];
       let idOferta = demanda['id_oferta'];
@@ -94,8 +96,7 @@ export class PedidosComponent implements OnInit {
         next : data => {
           this.platos[idDemanda] = data[0];
           this.platos[idDemanda]["raciones"] =  parseInt(demanda['n_raciones']);
-
-
+         
           let alergenosTrue:string[] = [];
           
           let alergenos = JSON.parse(data[0].alergenos);
@@ -103,7 +104,6 @@ export class PedidosComponent implements OnInit {
             if(alergenos[alergeno]){
               alergenosTrue.push(alergeno);
             }
-            
           }
 
           this.alergenosPlatos[idDemanda] = alergenosTrue.sort();
@@ -112,7 +112,16 @@ export class PedidosComponent implements OnInit {
       })
       
     }
-    console.log("Alergenos: ", this.alergenosPlatos);
+  }
+
+  borrarDemanda(id_demanda:number){
+    this._demandarService.delete(id_demanda).subscribe({
+      next : data => {
+        this.readDemandasByIdu(this.idUsuario)
+
+      }
+    });
+
   }
 
 }

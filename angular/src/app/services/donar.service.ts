@@ -52,9 +52,7 @@ export class DonarService {
     return this._http.delete(this.url$+"?id="+id,httpOptions)
   }
 
-  delete(id:any):Observable<any>{
-    return this._http.post(this.url$+"?idu="+id,httpOptions)
-  }
+
   
 
 }

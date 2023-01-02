@@ -52,7 +52,7 @@ export class DemandarService {
 
   /**** DELETE ****/
   delete(id:any):Observable<any>{
-    return this._http.post(this.url$+"?id="+id,httpOptions)
+    return this._http.delete(this.url$+"?id="+id,httpOptions)
   }
 
 }
