@@ -46,14 +46,15 @@
                   <div *ngIf="plato.anotacion!=''">
                     <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{plato.anotacion}}</figcaption>
                   </div>
-                </div>
-                <div class="card-footer border-0 pb-3 pt-0">
                   <h6 class="card-title">Raciones: {{this.plato.raciones}}</h6>
                   <div class="d-flex flex-wrap gap-2" id="plato_{{indice}}">
                     <div *ngFor="let racion of [].constructor(this.plato.raciones); index as u">
                       <div class="racion"></div>      
                     </div> 
                   </div>
+                </div>
+
+                <div class="card-footer border-0">
                   <div class="div_borrar">
                     <svg xmlns="http://www.w3.org/2000/svg" title="Eliminar pedido" height="25" class="bi bi-trash btn_eliminar_entrega" viewBox="0 0 16 16" (click)="borrarDemanda(indice)">
                       <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
