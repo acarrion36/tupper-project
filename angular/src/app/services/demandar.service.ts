@@ -24,24 +24,35 @@ export class DemandarService {
 
   constructor(private _http:HttpClient) { }
 
-  readAllDemands():Observable<any>{
-    return this._http.get(this.url$,httpOptions)
-  }
+  /**** READ ****/
+    // Todas las demandas
+    readAllDemands():Observable<any>{
+      return this._http.get(this.url$,httpOptions)
+    }
 
-  readDemandasByIdd(idd:any):Observable<any>{
-    return this._http.get(this.url$+"?idd="+idd,httpOptions)
-  }
+    // 1 demanda por ID demanda
+    readDemandasByIdd(idd:any):Observable<any>{
+      return this._http.get(this.url$+"?idd="+idd,httpOptions)
+    }
 
-  readRacionesByIdo(ido:any):Observable<any>{
-    return this._http.get(this.url$+"?rido="+ido,httpOptions)
-  }
+    // Todas las demandas de un usuario (por ID usuario)
+    readDemandasByIdu(idu:any):Observable<any>{      
+      return this._http.get(this.url$+"?idu="+idu,httpOptions)
+    }
 
+    // Raciones reservadas/solicitadas/demandadas de un plato
+    readRacionesByIdo(ido:any):Observable<any>{
+      return this._http.get(this.url$+"?rido="+ido,httpOptions)
+    }
+  
+  /**** POST ****/
   post(demand:Demand):Observable<any>{
     return this._http.post(this.url$,demand,httpOptions)
   }
 
+  /**** DELETE ****/
   delete(id:any):Observable<any>{
-    return this._http.post(this.url$+"?id="+id,httpOptions)
+    return this._http.delete(this.url$+"?id="+id,httpOptions)
   }
 
 }

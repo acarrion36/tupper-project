@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,kBAAkB,AAAA,CACd,OAAO,CAAE,IAAI,CACb,UAAU,CAAE,IAAI,CACjB,AAEH,AAAA,gBAAgB,AAAA,CACZ,OAAO,CAAE,IAAI,CACb,SAAS,CAAE,KAAK,CAChB,UAAU,CAAE,MAAM,CAKrB,AARD,AAKI,gBALY,CAKV,GAAG,AAAA,CACD,KAAK,CAAE,IAAI,CACd",
+    "sources": [
+        "app/pintaalergenos/pintaalergenos.component.scss"
+    ],
+    "names": [],
+    "file": "pintaalergenos.component.css"
+}

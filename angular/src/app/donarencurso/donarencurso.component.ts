@@ -99,11 +99,7 @@ export class DonarencursoComponent implements OnInit {
   borrarEntrega(id_oferta:number){
     this._donarService.delete_oferta(id_oferta).subscribe({
       next : data => {
-        console.log(data);
-        //this.donaciones.splice(indice, 1);
         this.readDonationsByIdu(this.idUsuario);
-        
-        
       }
     })
   }

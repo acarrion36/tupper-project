@@ -91,7 +91,7 @@ export class DonarFormularioComponent implements OnInit {
       if(params['id_entrega']) {
         this.donando = true;
         
-        this._donarService.readDonationsByIdd(this.idDonacion).subscribe({
+        this._donarService.readDonationsByIdo(this.idDonacion).subscribe({
           next : data => {
             this.createDonation = data[0];
             this.alergenosChecked = JSON.parse(this.createDonation.alergenos);
