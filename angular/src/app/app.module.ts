@@ -26,7 +26,6 @@ import { LogoutComponent } from './logout/logout.component';
 import { EditarEntregaComponent } from './editar-entrega/editar-entrega.component';
 import { DonarFormularioComponent } from './donar-formulario/donar-formulario.component';
 import { PintaalergenosComponent } from './pintaalergenos/pintaalergenos.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -58,9 +57,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     HttpClientModule,
     FormsModule
   ],
-  providers: [CookieService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
-  ],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
