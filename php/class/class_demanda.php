@@ -68,7 +68,34 @@ class demanda{
                 $var= json_encode($data);
                 echo $var;
 
-            }
+        }
+    
+        public static function obtenerDemandaUsuario($idu){
+            global $bd;
+            $data=[];
+                $sql="SELECT * FROM demanda WHERE id_usuario='".$idu."'";
+                $resultado=$bd->seleccionar($sql);
+                    while ($ofer = mysqli_fetch_assoc($resultado)) {
+                        $data[]=$ofer;
+                    }
+                $var= json_encode($data);
+                echo $var;
+
+        }
+
+        public static function obtenerRacionesDemandaO($ido){
+            global $bd;
+            $data=[];
+                $sql="SELECT SUM(n_raciones) as raciones FROM demanda WHERE id_oferta='".$ido."'";
+                $resultado=$bd->seleccionar($sql);
+                    while ($ofer = mysqli_fetch_assoc($resultado)) {
+                        $data[]=$ofer;
+                    }
+                $var= json_encode($data);
+                echo $var;
+
+        }
+
         public static function eliminarDemanda($id){
             global $bd;
             $sql=" SET FOREIGN_KEY_CHECKS = 0";

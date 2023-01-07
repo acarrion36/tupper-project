@@ -705,3 +705,24 @@ footer {
   }
 
 }
+
+button {
+
+  align-items: center;
+  span{
+  font-size: 0.9em;
+  margin-left: 0.8em;
+  }
+
+  &.solicitar{
+    background-color: rgb(4, 130, 255);
+    color: white;
+
+    &:hover{
+      background-color: rgb(6, 115, 225);
+      color: #fff;
+    }
+  }
+
+
+}

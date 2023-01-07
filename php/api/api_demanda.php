@@ -25,7 +25,11 @@ switch($_SERVER['REQUEST_METHOD']){
     case 'GET':  
           if (isset($_GET['ido'])){
                demanda::obtenerDemandaO($_GET['ido']);
-          }else{
+          } else if (isset($_GET['idu'])){
+               demanda::obtenerDemandaUsuario($_GET['idu']);
+          } else if (isset($_GET['rido'])){
+               demanda::obtenerRacionesDemandaO($_GET['rido']);
+          } else{
                if (isset($_GET['idd'])){
                     demanda::obtenerDemanda($_GET['idd']);  
                }else{

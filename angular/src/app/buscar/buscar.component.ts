@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { DonarService } from '../services/donar.service';
+import { DemandarService } from '../services/demandar.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Demand } from '../models/Demand';
 
 declare var bootstrap:any;
 
@@ -18,6 +20,7 @@ export class BuscarComponent implements OnInit {
 
   // Variables | Login Status
   public loginStatus$:any
+  public idUsuario:any
 
   // Variables | Donaciones disponibles
   public donaciones:any=[]
@@ -28,9 +31,11 @@ export class BuscarComponent implements OnInit {
   public carrito:any=[]
   public carritoCerrado:any=[]
   public showModal:boolean=false
+  public racionesDisponibles:number[];
 
-  constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) {
+  constructor(private _loginService:LoginService, private _donarService:DonarService, private _demandarService:DemandarService, private router:Router, private _cookie:CookieService) {
     this.alergenosPlatos = []
+    this.racionesDisponibles = [];
   }
 
   ngOnInit(): void {
@@ -39,7 +44,19 @@ export class BuscarComponent implements OnInit {
 
   // Leer todas las ofertas publicadas
     this.tooltipInit()
+    this.readUserLogged()
     this.authGuard()
+  }
+
+  // Leer los datos del usuario logeado
+  readUserLogged():void {
+    this._loginService.readUserLogged().subscribe({
+      next : data => {
+        if(data!=0) {
+          this.idUsuario=data[0].id_usuario
+        }
+      }
+    })
   }
 
   readAllDonations():void {
@@ -52,22 +69,31 @@ export class BuscarComponent implements OnInit {
         for (const [i,plato] of this.donaciones.entries()) {
           let alergenosTrue:string[] = [];
           
+          // Alérgenos
           let alergenos = JSON.parse(data[i].alergenos);
           for(const alergeno in alergenos){
             if(alergenos[alergeno]){
               alergenosTrue.push(alergeno);
             }
-            
           }
-
           this.alergenosPlatos.push(alergenosTrue.sort());
+
+          // Raciones
+          let racionesTotales = plato.raciones;
+          let racionesReservadas = 0; // PENDIENTE!!
+          this._demandarService.readRacionesByIdo(plato.id_oferta).subscribe({
+            next:data => {
+              if(data[0]["raciones"] != null){                
+                racionesReservadas = data[0]["raciones"];
+              }
+
+              let racionesDisponiblesPlato = racionesTotales - racionesReservadas;      
+              this.racionesDisponibles[plato.id_oferta] = racionesDisponiblesPlato;
+            }
+          });
+ 
         }
         
-        
-        for (let index = 0; index < data.length; index++) {
-          this.racionesPlato.push(Array(parseInt(this.donaciones[index].raciones)).fill(1))
-          
-        }
       }
     })
   }
@@ -125,5 +151,19 @@ export class BuscarComponent implements OnInit {
   closeModal():void {
     this.showModal=false
     this.carritoCerrado=[]
+  }
+
+  // Solicitar raciones
+  solicitar(id_oferta:number){
+    let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
+    
+    let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), raciones.toString(), "", 0, "");
+
+    this._demandarService.post(demanda).subscribe({
+      next:data => {
+        this.readAllDonations();        
+      }
+    });
+
   }
 }

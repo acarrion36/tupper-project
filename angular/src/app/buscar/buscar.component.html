@@ -52,43 +52,50 @@
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
           <!--INICIO TARJETA DONACION EN CURSO-->
-          <div *ngFor="let donacion of this.donaciones; index as i" class="col">
-            <div class="card h-100 mb-3 shadow-sm" id="{{donacion.id_oferta}}">
-              <div class="card-header border-0 justify-content-between align-items-center">
-                <div class="cardimg">
-                  <img src="../../assets/img/cocinar.jpg" alt="">
+          <ng-container *ngFor="let donacion of this.donaciones; index as i" class="col" >
+            <div *ngIf="this.racionesDisponibles[donacion.id_oferta] > 0">
+              <div class="card h-100 mb-3 shadow-sm" id="{{donacion.id_oferta}}">
+                <div class="card-header border-0 justify-content-between align-items-center">
+                  <div class="cardimg">
+                    <img src="../../assets/img/cocinar.jpg" alt="">
+                  </div>
+                  <p class="p-0 m-0">Donación Nº{{donacion.id_oferta}}</p>
                 </div>
-                <p class="p-0 m-0">Donación Nº{{donacion.id_oferta}}</p>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title mt-4 mb-1">{{donacion.nombre}}</h5>
-                <p class="card-text mb-1">{{donacion.descripcion}}</p>
-                <div *ngIf="donacion.notas!=''">
-                  <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.notas}}</figcaption>
-                </div>
-                <h6 class="card-title mb-1">Alérgenos</h6>
-                <div class="d-flex flex-wrap mb-2 gap-1">
-                    <app-pintaalergenos [alergenosPlato]=alergenosPlatos[i]></app-pintaalergenos>
-                </div>
-                <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
-                <p class="card-text mb-0">{{donacion.direccion}}, 0{{donacion.cp}}</p>
-                <p class="card-text mb-1">{{donacion.f_recogida}} a las {{donacion.h_recogida}}</p>
-                <div *ngIf="donacion.anotacion!=''">
-                  <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.anotacion}}</figcaption>
-                </div>
-              </div>
-              <div class="card-footer border-0 pb-3 pt-0">
-                <h6 class="card-title">Raciones</h6>
-                <div class="d-flex flex-wrap gap-2">
-                  <div *ngFor="let r of this.racionesPlato[i]; index as u">
-                    <div class="input-group-lg">
-                      <input (click)="isChecked('id'+donacion.id_oferta+':'+u)" class="form-check-input m-0" type="checkbox" id="id{{donacion.id_oferta}}:{{u}}" value="{{donacion.id_oferta}}">
+                <div class="card-body">
+                  <h5 class="card-title mt-4 mb-1">{{donacion.nombre}}</h5>
+                  <p class="card-text mb-1">{{donacion.descripcion}}</p>
+                  <div *ngIf="donacion.notas!=''">
+                    <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.notas}}</figcaption>
+                  </div>
+                  <h6 class="card-title mb-1">Alérgenos</h6>
+                  <div class="d-flex flex-wrap mb-2 gap-1">
+                      <app-pintaalergenos [alergenosPlato]=alergenosPlatos[i]></app-pintaalergenos>
+                  </div>
+                  <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
+                  <p class="card-text mb-0">{{donacion.direccion}}, 0{{donacion.cp}}</p>
+                  <p class="card-text mb-1">{{donacion.f_recogida}} a las {{donacion.h_recogida}}</p>
+                  <div *ngIf="donacion.anotacion!=''">
+                    <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.anotacion}}</figcaption>
+                  </div>
+                  <h6 class="card-title">Raciones</h6>
+                  <div class="d-flex flex-wrap gap-2" id="plato_{{donacion.id_oferta}}">
+                    <div *ngFor="let racion of [].constructor(this.racionesDisponibles[donacion.id_oferta]); index as u">
+                      <input class="form-check-input m-0" type="checkbox" name="{{donacion.id_oferta}}" value="{{donacion.id_oferta}}">      
                     </div>
                   </div>
                 </div>
+                <div class="card-footer border-0">
+                  
+                  <button class="btn solicitar" (click)="solicitar(donacion.id_oferta)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </svg>
+                    <span>Solicitar</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+        </ng-container>
           <!--FIN TARJETA DONACION EN CURSO-->
         </div>
       </div>
