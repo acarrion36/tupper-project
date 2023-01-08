@@ -53,7 +53,7 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
           <!--INICIO TARJETA DONACION EN CURSO-->
           <ng-container *ngFor="let donacion of this.donaciones; index as i" class="col" >
-            <div *ngIf="this.racionesDisponibles[donacion.id_oferta] > 0">
+            <div *ngIf="donacion.id_usuario != this.idUsuario && this.racionesDisponibles[donacion.id_oferta] > 0">
               <div class="card h-100 mb-3 shadow-sm" id="{{donacion.id_oferta}}">
                 <div class="card-header border-0 justify-content-between align-items-center">
                   <div class="cardimg">

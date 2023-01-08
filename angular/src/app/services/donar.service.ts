@@ -19,7 +19,7 @@ const httpOptions = {
 
 export class DonarService {
 
-  private url$:string="http://elika-waste.learnhowto.space/php/api/api_oferta.php"
+  private url$:string="https://elika-waste.learnhowto.space/php/api/api_oferta.php"
 
   constructor(private _http:HttpClient) { }
 
