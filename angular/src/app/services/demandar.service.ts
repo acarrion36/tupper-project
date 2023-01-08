@@ -20,7 +20,7 @@ const httpOptions = {
 
 export class DemandarService {
 
-  private url$:string="http://elika-waste.learnhowto.space/php/api/api_demanda.php"
+  private url$:string="https://elika-waste.learnhowto.space/php/api/api_demanda.php"
 
   constructor(private _http:HttpClient) { }
 

@@ -19,7 +19,7 @@ const httpOptions = {
 
 export class LoginService {
 
-  private url$:string="http://elika-waste.learnhowto.space/php/api/api_usuario.php"
+  private url$:string="https://elika-waste.learnhowto.space/php/api/api_usuario.php"
   private loginWStatus$=new BehaviorSubject<boolean>(false)
   private logoutWStatus$=new BehaviorSubject<boolean>(false)
   private loginUStatus$=new BehaviorSubject<boolean>(false)
