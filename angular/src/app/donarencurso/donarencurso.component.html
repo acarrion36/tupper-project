@@ -19,7 +19,7 @@
           <!--INICIO TARJETA DONACION EN CURSO-->
 
           <div *ngFor="let donacion of this.donaciones; index as i" class="col">
-            
+            <div *ngIf="donacion.id_usuario == this.idUsuario">
             <div class="card h-100 mb-3 shadow-sm">
               <div class="card-header border-0 justify-content-between align-items-center">
                 <div class="cardimg">
