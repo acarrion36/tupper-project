@@ -4,25 +4,31 @@
     <div class="col-md-9 p-5 d-flex justify-content-center">
       <div class="section-section">
         <h5>Pedidos</h5>
-        <p>Aqui podrás revisar y/o finalizar tus pedidos.</p>
-        <div class="section-section-buttons">
+        <p>Aqui podrás revisar tus pedidos.</p>
+        <!--<div class="section-section-buttons">
           <button class="btn btn-dark shadow-sm">Pendientes</button>
           <button [routerLink]="['/pedidos/finalizados']" class="btn btn-light shadow-sm">Finalizados</button>
           <button [routerLink]="['/pedidos/recogidos']" class="btn btn-light shadow-sm">Recogidos</button>
-        </div>
-        <div class="d-flex justify-content-between align-items-center ps-4 pe-4 mt-4">
+        </div>-->
+        <div *ngIf="this.totalDemandas>0 && this.loading" class="d-flex justify-content-between align-items-center ps-4 pe-4 mt-4">
           <div class="d-flex flex-column justify-content-center align-items-center">
             <p class="fs-1 m-0"><strong>{{this.totalDemandas}}</strong></p>
-            <p><strong>Pendientes</strong></p>
+            <p><strong>Solicitados</strong></p>
           </div>
-          <button [routerLink]="['/donar']" class="btn btn-success shadow-sm">Finalizar</button>
+          <!--<button [routerLink]="['/donar']" class="btn btn-success shadow-sm">Finalizar</button>-->
+        </div>
+        <div *ngIf="this.totalDemandas<=0 && this.loading">
+          <div class="d-flex flex-column justify-content-center align-items-center taper-div">
+            <img class="m-0 p-0 taper-vacio" src="../../assets/img/tapper-vacio.webp">
+            <p class="m-0 p-0 fs-2">:(</p>
+            <p class="m-0 p-0">Actualmente no hay ningun pedido finalizado.</p>
+          </div>
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xxl-3 g-3 mt-0">
-
         <!--INICIO TARJETA DONACION EN CURSO-->
-        <ng-container *ngIf="this.totalDemandas > 0">
+        <ng-container *ngIf="this.totalDemandas > 0 && this.loading">
           <ng-container *ngFor="let plato of this.platos; index as indice" class="col">
-            <div  *ngIf="plato != null">        
+            <div  *ngIf="plato != null">
               <div class="card h-100 mb-3 shadow-sm" id="{{indice}}">
                 <div class="card-header border-0 justify-content-between align-items-center">
                   <div class="cardimg">
@@ -49,8 +55,8 @@
                   <h6 class="card-title">Raciones: {{this.plato.raciones}}</h6>
                   <div class="d-flex flex-wrap gap-2" id="plato_{{indice}}">
                     <div *ngFor="let racion of [].constructor(this.plato.raciones); index as u">
-                      <div class="racion"></div>      
-                    </div> 
+                      <div class="racion"></div>
+                    </div>
                   </div>
                 </div>
 

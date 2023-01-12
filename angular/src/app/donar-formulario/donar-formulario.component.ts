@@ -23,7 +23,7 @@ export class DonarFormularioComponent implements OnInit {
 
   private alerstring:string ="";
   private alerjson:any = {};
-  
+
 
   public hoy:string | null;
   private donando : boolean;
@@ -52,7 +52,6 @@ export class DonarFormularioComponent implements OnInit {
   public alertNombrePlato:boolean=false
   public alertDescripcionPlato:boolean=false
   public alertRacionesPlato:boolean=false
-  
 
   // Variables | Informacion de entrega
   public direccionEntrega:string=""
@@ -68,14 +67,14 @@ export class DonarFormularioComponent implements OnInit {
   public showModal:boolean=false
 
   constructor(
-    private _loginService:LoginService, 
-    private _donarService:DonarService, 
+    private _loginService:LoginService,
+    private _donarService:DonarService,
     //private EditarEntregaComponente:EditarEntregaComponent,
-    private router:Router, 
-    private _cookie:CookieService, 
+    private router:Router,
+    private _cookie:CookieService,
     private ruta:ActivatedRoute,
     private datePipe: DatePipe
-  ) { 
+  ) {
 
     this.hoy = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.donando = false;
@@ -83,21 +82,20 @@ export class DonarFormularioComponent implements OnInit {
     this.alergenosPlato = []
     this.alergenosChecked = {}
     this.alergenosLista = ["gluten", "crustaceos", "huevos", "pescado", "cacahuetes", "soja", "lacteos", "frutos_secos", "apio", "mostaza", "sesamo", "sulfitos", "moluscos", "altramuces"].sort();
-    
-    this.ruta.params.subscribe(params=>{		
+
+    this.ruta.params.subscribe(params=>{
       this.idDonacion = params['id_entrega'];
-   
-      
+
       if(params['id_entrega']) {
         this.donando = true;
-        
+
         this._donarService.readDonationsByIdo(this.idDonacion).subscribe({
           next : data => {
             this.createDonation = data[0];
             this.alergenosChecked = JSON.parse(this.createDonation.alergenos);
-          } 
+          }
         })
-      }      
+      }
     })
   }
 
@@ -162,6 +160,28 @@ export class DonarFormularioComponent implements OnInit {
       this.alertMsg="Formato no válido."
     } else {
       this.alertCPEntrega=false
+      if(this.createDonation.nombre&&this.createDonation.descripcion&&this.createDonation.direccion&&this.createDonation.cp&&this.createDonation.f_recogida&&this.createDonation.h_recogida){
+        this.createDonation.alergenos = JSON.stringify(this.alergenosChecked);
+
+        this.createDonation.id_usuario = this.idUsuario;
+
+        if(!this.donando){  // Se está creando una oferta nueva
+          this._donarService.register(this.createDonation).subscribe({
+            next:data => {
+              this.idDonacion=data[0].id_oferta
+            }
+          })
+        } else {
+          this._donarService.updateOferta(
+              this.createDonation
+          ).subscribe({
+            next:data => {
+              this.idDonacion=data[0].id_oferta
+            }
+          })
+        }
+        this.showModal=true
+      }
     }
     if(!this.createDonation.f_recogida){
       this.alertFechaEntrega=true
@@ -172,29 +192,6 @@ export class DonarFormularioComponent implements OnInit {
       this.alertHoraEntrega=true
     } else {
       this.alertHoraEntrega=false
-    }
-    
-    if(this.createDonation.nombre&&this.createDonation.descripcion&&this.createDonation.direccion&&this.createDonation.cp&&this.createDonation.f_recogida&&this.createDonation.h_recogida){
-      this.createDonation.alergenos = JSON.stringify(this.alergenosChecked);
-
-      this.createDonation.id_usuario = this.idUsuario;
-      
-      if(!this.donando){  // Se está creando una oferta nueva
-        this._donarService.register(this.createDonation).subscribe({
-          next:data => {
-            this.idDonacion=data[0].id_oferta
-          }
-        })
-      } else {       
-        this._donarService.updateOferta(
-            this.createDonation
-        ).subscribe({
-          next:data => {
-            this.idDonacion=data[0].id_oferta
-          }
-        })
-      }
-      this.showModal=true
     }
   }
 
@@ -207,7 +204,7 @@ export class DonarFormularioComponent implements OnInit {
 
   // Validar CP
   checkCP(input:any) {
-    let regex = /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/g
+    let regex = /^(?:0?[1-9]|[1-4]\d|5[0-2])\d{3}$/g
     if(input.match(regex)) {
       return true
     } else {
@@ -227,7 +224,7 @@ export class DonarFormularioComponent implements OnInit {
   checkChecked(alergeno:string){
     if(!this.alergenosChecked[alergeno]){
       delete this.alergenosChecked[alergeno];
-    }    
+    }
   }
 
 }

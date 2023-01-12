@@ -17,16 +17,19 @@ declare var bootstrap:any;
 export class BuscarComponent implements OnInit {
 
   public count:number=0
+  public loading:boolean=false
 
   // Variables | Login Status
   public loginStatus$:any
+  public alertInfo$:any
   public idUsuario:any
 
   // Variables | Donaciones disponibles
   public donaciones:any=[]
   public donacionesTotales:number=0
+  public donacionesUsuarioActual:number=0
   public alergenosPlatos:any=[]
-  
+
   public racionesPlato:any=[]
   public carrito:any=[]
   public carritoCerrado:any=[]
@@ -40,12 +43,14 @@ export class BuscarComponent implements OnInit {
 
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
-    this.readAllDonations()
-
-  // Leer todas las ofertas publicadas
-    this.tooltipInit()
+    this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
     this.readUserLogged()
+    this.readAllDonations()
+    this.tooltipInit()
     this.authGuard()
+    setTimeout(()=>{
+      this.loading=true
+    }, 150);
   }
 
   // Leer los datos del usuario logeado
@@ -53,8 +58,23 @@ export class BuscarComponent implements OnInit {
     this._loginService.readUserLogged().subscribe({
       next : data => {
         if(data!=0) {
+          this.readActualUserDonations(data[0].id_usuario)
           this.idUsuario=data[0].id_usuario
+          // Controlar el mensaje de alerta si no esta rellenados direccion y CP
+          if(data[0].direccion!='' && data[0].cp!=null){
+            this._loginService.setalertInfoStatus(false)
+          } else {
+            this._loginService.setalertInfoStatus(true)
+          }
         }
+      }
+    })
+  }
+
+  readActualUserDonations(id:any):void {
+    this._donarService.readDonationsByIdu(id).subscribe({
+      next : data => {
+        this.donacionesUsuarioActual = data.length
       }
     })
   }
@@ -68,7 +88,7 @@ export class BuscarComponent implements OnInit {
 
         for (const [i,plato] of this.donaciones.entries()) {
           let alergenosTrue:string[] = [];
-          
+
           // Alérgenos
           let alergenos = JSON.parse(data[i].alergenos);
           for(const alergeno in alergenos){
@@ -83,17 +103,17 @@ export class BuscarComponent implements OnInit {
           let racionesReservadas = 0; // PENDIENTE!!
           this._demandarService.readRacionesByIdo(plato.id_oferta).subscribe({
             next:data => {
-              if(data[0]["raciones"] != null){                
+              if(data[0]["raciones"] != null){
                 racionesReservadas = data[0]["raciones"];
               }
 
-              let racionesDisponiblesPlato = racionesTotales - racionesReservadas;      
+              let racionesDisponiblesPlato = racionesTotales - racionesReservadas;
               this.racionesDisponibles[plato.id_oferta] = racionesDisponiblesPlato;
             }
           });
- 
+
         }
-        
+
       }
     })
   }
@@ -134,7 +154,6 @@ export class BuscarComponent implements OnInit {
     }
   }
 
-
   // Crear un carrito con el id de oferta y la cantidad de raciones
   envioCarrito():void {
     const resultado:any=[]
@@ -156,12 +175,12 @@ export class BuscarComponent implements OnInit {
   // Solicitar raciones
   solicitar(id_oferta:number){
     let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
-    
+
     let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), raciones.toString(), "", 0, "");
 
     this._demandarService.post(demanda).subscribe({
       next:data => {
-        this.readAllDonations();        
+        this.readAllDonations();
       }
     });
 

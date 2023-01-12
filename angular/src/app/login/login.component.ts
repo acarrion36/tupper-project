@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
               this.alertMail=false
               this.alertMsg="Escribe tu contraseña."
               // Si la pass es correcta...
-            } else if(this.loginPassword===data[0].pass) {
+            } else if(this.loginPassword===atob(data[0].pass)) {
               //...se validan los datos, cerramos la ventana de login, seteamos las cookies y redirigimos al perfil
               this._loginService.setloginWindowStatus(false)
               this._loginService.setToken(btoa(data[0].email))
@@ -158,7 +158,7 @@ export class LoginComponent implements OnInit {
             // Si todos los campos son validos (alarmas 0)...
             if(!this.alertNombre&&!this.alertApellido1&&!this.alertApellido2&&!this.alertMail&&!this.alertPassword) {
               // ...POST de usuario registrado
-              this._loginService.register(new User(this.registroApellido1,this.registroApellido2,'','',this.registroMail,this.registroNombre,'',this.registroPassword)).subscribe({
+              this._loginService.register(new User(this.registroApellido1,this.registroApellido2,'','',this.registroMail,this.registroNombre,'',btoa(this.registroPassword))).subscribe({
                 next:data => {
                   this._loginService.setToken(btoa(data[0].email))
                 }

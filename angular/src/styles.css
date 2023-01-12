@@ -501,13 +501,13 @@ section .section-section .card .card-footer div.div_editar:hover {
   cursor: pointer;
 }
 section .section-section .card .card-footer div.div_editar:hover .btn_editar_entrega {
-  fill: rgb(0, 59, 252);
+  fill: rgb(87, 87, 87);
 }
 section .section-section .card .card-footer div.div_editar:hover p {
-  color: rgb(0, 59, 252);
+  color: rgb(87, 87, 87);
 }
 section .section-section .card .card-footer div.div_borrar:hover {
-  cursor: default;
+  cursor: pointer;
 }
 section .section-section .card .card-footer div.div_borrar:hover .bi-trash {
   fill: rgb(144, 1, 1);
@@ -527,6 +527,15 @@ section .section-section .form-control:focus {
   background-color: #ebebeb;
   border-color: #ebebeb;
   box-shadow: 0 0 0 0.1rem rgb(233, 233, 233);
+}
+
+.taper-div {
+  margin-top: 100px;
+}
+
+.taper-vacio {
+  position: absolute;
+  opacity: 0.2;
 }
 
 .racion {

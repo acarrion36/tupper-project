@@ -14,6 +14,8 @@ declare var bootstrap:any;
 
 export class DonarencursoComponent implements OnInit {
 
+  public loading:boolean=false
+
   // Variables | Login Status
   public loginStatus$:any
   public idUsuario:any
@@ -33,6 +35,9 @@ export class DonarencursoComponent implements OnInit {
     this.readUserLogged()
     this.tooltipInit()
     this.authGuard()
+    setTimeout(()=>{
+      this.loading=true
+    }, 100);
   }
 
   // Leer los datos del usuario logeado
@@ -74,24 +79,23 @@ export class DonarencursoComponent implements OnInit {
 
         for (const [i,plato] of this.donaciones.entries()) {
           let alergenosTrue:string[] = [];
-          
+
           let alergenos = JSON.parse(data[i].alergenos);
           for(const alergeno in alergenos){
             if(alergenos[alergeno]){
               alergenosTrue.push(alergeno);
             }
-            
+
           }
 
           this.alergenosPlatos.push(alergenosTrue.sort());
         }
-        
-        
+
         for (let index = 0; index < data.length; index++) {
           this.racionesPlato.push(Array(parseInt(data[index].raciones)).fill(1))
-          
+
         }
-        
+
       }
     })
   }

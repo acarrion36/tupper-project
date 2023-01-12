@@ -408,12 +408,12 @@ section {
       display: flex;
       column-gap: 15px;
     }
-  
+
   .alergeno_bloque{
       display: grid;
       font-size: 0.8em;
       text-align: center;
-      
+
       & img{
           width: 30px;
       }
@@ -559,8 +559,8 @@ section {
             font-size: 0.7em;
             color: grey;
           }
-          
-          
+
+
           .bi-trash {
             fill: grey;
           }
@@ -568,31 +568,39 @@ section {
           &.div_editar:hover{
             cursor: pointer;
             .btn_editar_entrega {
-              fill: rgb(0, 59, 252);
+              fill: $darkgrey;
             }
             p {
-              color: rgb(0, 59, 252);
-              
+              color: $darkgrey;
             }
           }
 
           &.div_borrar:hover{
-            cursor: default;
+            cursor: pointer;
             .bi-trash {
               fill: rgb(144, 1, 1);
             }
             p {
               color: rgb(144, 1, 1);
-              
+
             }
           }
         }
-          
+
       }
     }
 
     @include formControl;
   }
+}
+
+.taper-div {
+  margin-top: 100px;
+}
+
+.taper-vacio {
+  position: absolute;
+  opacity: 0.2;
 }
 
 .racion{

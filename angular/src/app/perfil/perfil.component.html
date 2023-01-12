@@ -9,7 +9,7 @@
         <p>Aquí podrás ver y editar tu información personal.</p>
         <div class="section-section-buttons">
           <button class="btn btn-dark shadow-sm" type="submit">Perfil</button>
-          <button [routerLink]="['/perfil/opiniones']" class="btn btn-light shadow-sm" type="submit">Opiniones</button>
+          <!--<button [routerLink]="['/perfil/opiniones']" class="btn btn-light shadow-sm" type="submit">Opiniones</button>-->
           <app-logout *ngIf="this.loginStatus$" class="ms-auto"></app-logout>
         </div>
         <div *ngIf="this.alertInfo$" class="mt-4 alert alert-primary shadow-sm" role="alert">

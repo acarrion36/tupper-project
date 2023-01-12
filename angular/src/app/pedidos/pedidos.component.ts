@@ -17,6 +17,8 @@ declare var bootstrap:any;
 
 export class PedidosComponent implements OnInit {
 
+  public loading:boolean=false
+
   // Variables | Login Status
   public loginStatus$:any
   public idUsuario:any
@@ -25,8 +27,6 @@ export class PedidosComponent implements OnInit {
   public totalDemandas:number;
   public platos : Donation[]
   public alergenosPlatos : any[];
-
-  
 
   constructor(private _loginService:LoginService, private router:Router, private _cookie:CookieService, private _demandarService: DemandarService, private _donarServicio:DonarService) {
     this.demandas = [];
@@ -40,6 +40,9 @@ export class PedidosComponent implements OnInit {
     this.readUserLogged()
     this.tooltipInit()
     this.authGuard()
+    setTimeout(()=>{
+      this.loading=true
+    }, 150);
   }
 
   // Leer los datos del usuario logeado
@@ -76,29 +79,29 @@ export class PedidosComponent implements OnInit {
   readDemandasByIdu(idu:any):void {
     this._demandarService.readDemandasByIdu(idu).subscribe({
       next : data => {
-        this.demandas=data.reverse();              
+        this.demandas=data.reverse();
         this.totalDemandas = this.demandas.length;
         this.platos.length = 0;
-        
+
         this.demandasToPlatos();
       }
-      
+
     })
   }
 
   demandasToPlatos():void{
-   
+
     for (const demanda of this.demandas) {
       let idDemanda = demanda['id_demanda'];
       let idOferta = demanda['id_oferta'];
-      
+
       this._donarServicio.readDonationsByIdo(idOferta).subscribe({
         next : data => {
           this.platos[idDemanda] = data[0];
           this.platos[idDemanda]["raciones"] =  parseInt(demanda['n_raciones']);
-         
+
           let alergenosTrue:string[] = [];
-          
+
           let alergenos = JSON.parse(data[0].alergenos);
           for(const alergeno in alergenos){
             if(alergenos[alergeno]){
@@ -110,7 +113,7 @@ export class PedidosComponent implements OnInit {
 
         }
       })
-      
+
     }
   }
 

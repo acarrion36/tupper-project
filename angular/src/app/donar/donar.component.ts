@@ -16,12 +16,9 @@ declare var bootstrap:any;
 
 export class DonarComponent implements OnInit {
 
-
-
   // Variables | Login Status
   public loginStatus$:any
   public idUsuario:any
-
 
   constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) { }
 
