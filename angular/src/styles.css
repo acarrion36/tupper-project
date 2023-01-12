@@ -1,4 +1,4 @@
-@import '..\node_modules\animate.css\animate.css';
+@import '../node_modules/animate.css/animate.css';
 html {
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
@@ -20,7 +20,24 @@ h5 {
   font-size: 1.4rem;
 }
 
-.btn-dark, .btn-light, .btn-success, .btn-danger, .btn-outline-success {
+@-webkit-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
   border-radius: 14px;
@@ -296,13 +313,11 @@ section .section-section .section-section-buttons {
   -moz-column-gap: 10px;
        column-gap: 10px;
 }
-
 section .section-section .perfil-img {
   width: 35px;
   height: 35px;
   border-radius: 50% !important;
 }
-
 section .section-section .carrito {
   width: 50px;
   height: 50px;
@@ -330,6 +345,19 @@ section .section-section .alergenos {
 }
 section .section-section .alergenos img {
   width: 25px;
+}
+section .section-section .alergenos_listado {
+  display: flex;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+}
+section .section-section .alergeno_bloque {
+  display: grid;
+  font-size: 0.8em;
+  text-align: center;
+}
+section .section-section .alergeno_bloque img {
+  width: 30px;
 }
 section .section-section .modal {
   left: 50%;
@@ -436,23 +464,56 @@ section .section-section .card .card-footer {
   border-bottom-left-radius: 14px;
   border-bottom-right-radius: 14px;
   font-size: 16px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(233, 233, 233);
+  text-align: right;
+  display: flex;
+  justify-content: right;
+  gap: 1.2em;
 }
 section .section-section .card .card-footer small {
   vertical-align: middle;
 }
-section .section-section .card .card-footer .racion {
-  width: 16px;
-  height: 16px;
-  background-color: rgb(59, 187, 70);
-  border-radius: 4px;
-}
-section .section-section .card .card-footer .bi-trash {
+section .section-section .card .card-footer .btn_editar_entrega {
   fill: grey;
 }
-section .section-section .card .card-footer .bi-trash:hover {
-  fill: rgb(33, 37, 41);
+section .section-section .card .card-footer div {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+section .section-section .card .card-footer div svg {
+  display: block;
+  margin: auto;
+  padding: 0;
+}
+section .section-section .card .card-footer div p {
+  padding: 0;
+  margin: 0;
+  font-size: 0.7em;
+  color: grey;
+}
+section .section-section .card .card-footer div .bi-trash {
+  fill: grey;
+}
+section .section-section .card .card-footer div.div_editar:hover {
   cursor: pointer;
+}
+section .section-section .card .card-footer div.div_editar:hover .btn_editar_entrega {
+  fill: rgb(0, 59, 252);
+}
+section .section-section .card .card-footer div.div_editar:hover p {
+  color: rgb(0, 59, 252);
+}
+section .section-section .card .card-footer div.div_borrar:hover {
+  cursor: default;
+}
+section .section-section .card .card-footer div.div_borrar:hover .bi-trash {
+  fill: rgb(144, 1, 1);
+}
+section .section-section .card .card-footer div.div_borrar:hover p {
+  color: rgb(144, 1, 1);
 }
 section .section-section .form-control {
   background-color: #ebebeb;
@@ -466,6 +527,13 @@ section .section-section .form-control:focus {
   background-color: #ebebeb;
   border-color: #ebebeb;
   box-shadow: 0 0 0 0.1rem rgb(233, 233, 233);
+}
+
+.racion {
+  width: 16px;
+  height: 16px;
+  background-color: rgb(59, 187, 70);
+  border-radius: 4px;
 }
 
 footer .align-footer {
@@ -551,4 +619,19 @@ footer .nav-bottom .bi:focus {
   section .section-section {
     min-width: 100% !important;
   }
+}
+button {
+  align-items: center;
+}
+button span {
+  font-size: 0.9em;
+  margin-left: 0.8em;
+}
+button.solicitar {
+  background-color: rgb(4, 130, 255);
+  color: white;
+}
+button.solicitar:hover {
+  background-color: rgb(6, 115, 225);
+  color: #fff;
 }/*# sourceMappingURL=styles.css.map */
