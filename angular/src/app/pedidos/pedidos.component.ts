@@ -42,7 +42,7 @@ export class PedidosComponent implements OnInit {
     this.authGuard()
     setTimeout(()=>{
       this.loading=true
-    }, 150);
+    }, 500);
   }
 
   // Leer los datos del usuario logeado
@@ -82,10 +82,8 @@ export class PedidosComponent implements OnInit {
         this.demandas=data.reverse();
         this.totalDemandas = this.demandas.length;
         this.platos.length = 0;
-
         this.demandasToPlatos();
       }
-
     })
   }
 

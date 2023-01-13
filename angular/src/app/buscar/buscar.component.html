@@ -13,9 +13,9 @@
             <input type="range" class="form-range" min="0" max="5" step="1" id="buscarRadio">
           </div>
         </div>-->
-        <div *ngIf="(this.donacionesTotales - this.donacionesUsuarioActual)>0 && this.loading" class="d-flex justify-content-between align-items-center ps-4 pe-4 mt-4">
+        <div *ngIf="(this.donacionesTotales)>0 && this.loading" class="d-flex justify-content-between align-items-center ps-4 pe-4 mt-4">
           <div class="d-flex flex-column justify-content-center align-items-center">
-            <p class="fs-1 m-0"><strong>{{this.donacionesTotales - this.donacionesUsuarioActual}}</strong></p>
+            <p class="fs-1 m-0"><strong>{{this.donacionesTotales}}</strong></p>
             <p><strong>Donaciones</strong></p>
           </div>
           <!--<button (click)="envioCarrito()" class="btn p-0 border-0 position-relative carrito" [ngClass]="this.count===0 ? 'disabled':'activo'" type="submit" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Continuar con el pedido" >
@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="(this.donacionesTotales - this.donacionesUsuarioActual)===0 && this.loading">
+        <div *ngIf="(this.donacionesTotales)===0 && this.loading">
           <div class="d-flex flex-column justify-content-center align-items-center taper-div">
             <img class="m-0 p-0 taper-vacio" src="../../assets/img/tapper-vacio.webp">
             <p class="m-0 p-0 fs-2">:(</p>

@@ -1,13 +1,82 @@
-<div class="container-fluid aside-section">
-  <div class="row flex-nowrap aside-height">
+<div class="container-fluid main-section">
+  <div class="row flex-nowrap main-height">
     <app-aside class="col-md-3 bg-light d-none d-md-block d-flex align-items-end bg-image"></app-aside>
     <div class="col-md-9 p-5 d-flex justify-content-center">
-      <div class="main-section">
+      <div class="section-section">
         <h5>Ayuda</h5>
-        <p>Aquí podrás ver que opinan de tus donaciones</p>
-        <div class="main-section-buttons">
-          <button [routerLink]="['/perfil']" class="btn btn-light">Perfil</button>
-          <button class="btn btn-dark">Opiniones</button>
+        <p>Dinos que necesitas e intentaremos ayudarte.</p>
+        <div class="accordion mt-5" id="accordionPanelsStayOpenExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                Acerca de mi perfil
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse text-bg-light" aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et eligendi ipsum vero, quisquam nulla, nihil neque suscipit earum, consequatur blanditiis veniam? Commodi dolores iure praesentium? Reprehenderit tenetur similique corrupti reiciendis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde qui nihil est similique quibusdam molestias mollitia, autem quae vero velit dolores totam sequi, voluptate voluptatum, ab cum. Distinctio, minus sequi!
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                Como realizar una donación paso a paso
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse text-bg-light" aria-labelledby="panelsStayOpen-headingTwo">
+              <div class="accordion-body">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, expedita doloremque consectetur voluptatum veritatis, ducimus sit perspiciatis aut dolore maxime, cupiditate qui quis? Porro quaerat, quasi voluptas rem aspernatur corrupti. Lorem ipsum dolor sit amet consectetur adipisicing elit. Et consequuntur expedita dolores sit aperiam incidunt saepe, ab ullam, debitis odio ratione aliquam esse iusto doloremque modi possimus dignissimos tempore aut?
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                Como consultar mis donaciones pendientes
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse text-bg-light" aria-labelledby="panelsStayOpen-headingThree">
+              <div class="accordion-body">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum neque molestias tenetur doloremque aliquid repudiandae placeat consequuntur repellendus, culpa, sunt natus, odio voluptates libero maiores esse possimus commodi voluptatibus pariatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Et accusamus deleniti libero, neque perspiciatis ducimus nesciunt, earum error a quae aliquid nihil ea quia, cum quas esse. Excepturi, minus ipsum.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                Como buscar y solicitar uno o varios pedidos
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse text-bg-light" aria-labelledby="panelsStayOpen-headingFour">
+              <div class="accordion-body">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate cumque minima iure, laudantium consequatur excepturi veritatis ducimus. Harum, hic facilis necessitatibus soluta, ab cupiditate quia eius cumque provident molestiae blanditiis. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt, recusandae? Temporibus ab cupiditate dolorem sint impedit quae eos officia totam sed tenetur, illum rem, culpa corrupti magnam tempora. Mollitia, ea.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                Tengo otra duda
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse text-bg-light" aria-labelledby="panelsStayOpen-headingFive">
+              <div class="accordion-body">
+                <p>Haznos llegar tu duda y te responderemos lo antes posible.</p>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Asunto</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-secondary">Enviar</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

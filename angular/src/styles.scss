@@ -351,7 +351,7 @@ section {
   }
   // SECTION
   .section-section {
-    width: 75%;
+    width: 80%;
     min-width: 530px;
     background-color: $grey !important;
 
@@ -608,6 +608,12 @@ section {
   height: 16px;
   background-color: $lightgreen;
   border-radius: 4px;
+}
+
+.accordion-button:not(.collapsed) {
+  color: $black;
+  background-color: #cacaca;
+  box-shadow: none;
 }
 
 // FOOTER

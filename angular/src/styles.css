@@ -247,7 +247,7 @@ section .main-section .main-height ul .activo {
   background-color: #ebebeb !important;
 }
 section .section-section {
-  width: 75%;
+  width: 80%;
   min-width: 530px;
   background-color: rgb(233, 233, 233) !important;
 }
@@ -543,6 +543,12 @@ section .section-section .form-control:focus {
   height: 16px;
   background-color: rgb(59, 187, 70);
   border-radius: 4px;
+}
+
+.accordion-button:not(.collapsed) {
+  color: rgb(33, 37, 41);
+  background-color: #cacaca;
+  box-shadow: none;
 }
 
 footer .align-footer {

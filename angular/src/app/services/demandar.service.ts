@@ -36,7 +36,7 @@ export class DemandarService {
     }
 
     // Todas las demandas de un usuario (por ID usuario)
-    readDemandasByIdu(idu:any):Observable<any>{      
+    readDemandasByIdu(idu:any):Observable<any>{
       return this._http.get(this.url$+"?idu="+idu,httpOptions)
     }
 
@@ -44,10 +44,15 @@ export class DemandarService {
     readRacionesByIdo(ido:any):Observable<any>{
       return this._http.get(this.url$+"?rido="+ido,httpOptions)
     }
-  
+
   /**** POST ****/
   post(demand:Demand):Observable<any>{
     return this._http.post(this.url$,demand,httpOptions)
+  }
+
+  /**** UPDATE ****/
+  update(demand:Demand):Observable<any>{
+    return this._http.put(this.url$+"?id="+demand.id_oferta,demand,httpOptions)
   }
 
   /**** DELETE ****/

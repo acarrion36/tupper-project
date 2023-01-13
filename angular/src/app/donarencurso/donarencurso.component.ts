@@ -37,7 +37,7 @@ export class DonarencursoComponent implements OnInit {
     this.authGuard()
     setTimeout(()=>{
       this.loading=true
-    }, 100);
+    }, 400);
   }
 
   // Leer los datos del usuario logeado

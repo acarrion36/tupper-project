@@ -18,6 +18,7 @@ export class BuscarComponent implements OnInit {
 
   public count:number=0
   public loading:boolean=false
+  public demandasTotales:any=[]
 
   // Variables | Login Status
   public loginStatus$:any
@@ -27,7 +28,6 @@ export class BuscarComponent implements OnInit {
   // Variables | Donaciones disponibles
   public donaciones:any=[]
   public donacionesTotales:number=0
-  public donacionesUsuarioActual:number=0
   public alergenosPlatos:any=[]
 
   public racionesPlato:any=[]
@@ -50,7 +50,7 @@ export class BuscarComponent implements OnInit {
     this.authGuard()
     setTimeout(()=>{
       this.loading=true
-    }, 150);
+    }, 400);
   }
 
   // Leer los datos del usuario logeado
@@ -58,6 +58,7 @@ export class BuscarComponent implements OnInit {
     this._loginService.readUserLogged().subscribe({
       next : data => {
         if(data!=0) {
+          this.readActualUserDemands(data[0].id_usuario)
           this.readActualUserDonations(data[0].id_usuario)
           this.idUsuario=data[0].id_usuario
           // Controlar el mensaje de alerta si no esta rellenados direccion y CP
@@ -74,9 +75,27 @@ export class BuscarComponent implements OnInit {
   readActualUserDonations(id:any):void {
     this._donarService.readDonationsByIdu(id).subscribe({
       next : data => {
-        this.donacionesUsuarioActual = data.length
+        this.donacionesTotales -= data.length
       }
     })
+  }
+
+  readActualUserDemands(id:any):void {
+    this._demandarService.readDemandasByIdu(id).subscribe({
+      next : data => {
+        for (let index = 0; index < data.length; index++) {
+          this.demandasTotales.push(data[index].id_oferta)
+        }
+      }
+    })
+  }
+
+  existeDemanda(idOferta:any):boolean {
+    if (this.demandasTotales.indexOf(idOferta)===-1) {
+      return false
+    } else {
+      return true
+    }
   }
 
   readAllDonations():void {
@@ -106,7 +125,6 @@ export class BuscarComponent implements OnInit {
               if(data[0]["raciones"] != null){
                 racionesReservadas = data[0]["raciones"];
               }
-
               let racionesDisponiblesPlato = racionesTotales - racionesReservadas;
               this.racionesDisponibles[plato.id_oferta] = racionesDisponiblesPlato;
             }
@@ -154,18 +172,6 @@ export class BuscarComponent implements OnInit {
     }
   }
 
-  // Crear un carrito con el id de oferta y la cantidad de raciones
-  envioCarrito():void {
-    const resultado:any=[]
-    for (const el of this.carrito) resultado[el] = resultado[el] + 1 || 1
-    for (let index = 0; index < resultado.length; index++) {
-      if(resultado[index]!=null){
-        this.carritoCerrado.push({"id": index, "cdt": resultado[index]})
-      }
-    }
-    this.showModal=true
-  }
-
   // Cerrar ventana modal
   closeModal():void {
     this.showModal=false
@@ -174,15 +180,22 @@ export class BuscarComponent implements OnInit {
 
   // Solicitar raciones
   solicitar(id_oferta:number){
-    let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
-
-    let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), raciones.toString(), "", 0, "");
-
-    this._demandarService.post(demanda).subscribe({
-      next:data => {
-        this.readAllDonations();
-      }
-    });
-
+    if(this.existeDemanda(id_oferta)) {
+      let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
+      let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), raciones.toString(), "", 0, "");
+      this._demandarService.update(demanda).subscribe({
+        next:data => {
+          window.location.reload();
+        }
+      });
+    } else {
+      let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
+      let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), raciones.toString(), "", 0, "");
+      this._demandarService.post(demanda).subscribe({
+        next:data => {
+          window.location.reload();
+        }
+      });
+    }
   }
 }

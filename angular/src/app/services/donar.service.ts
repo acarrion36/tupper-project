@@ -39,7 +39,6 @@ export class DonarService {
   }
 
   register(donation:Donation):Observable<any>{
-
     return this._http.post(this.url$,donation,httpOptions)
   }
 
@@ -48,11 +47,8 @@ export class DonarService {
   }
 
   // Eliminar oferta
-  delete_oferta(id:any):Observable<any>{    
+  delete_oferta(id:any):Observable<any>{
     return this._http.delete(this.url$+"?id="+id,httpOptions)
   }
-
-
-  
 
 }
