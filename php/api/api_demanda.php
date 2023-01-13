@@ -39,7 +39,9 @@ switch($_SERVER['REQUEST_METHOD']){
          break;
 
     case 'PUT':
-        
+          if (isset($_POST['id_demanda'])&&isset($_POST['n_raciones'])){
+               demanda::updateRacionesDemanda($_POST['id_demanda'],$_POST['n_raciones']);          
+          }
          break;
 
     case 'DELETE':
