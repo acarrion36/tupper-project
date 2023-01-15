@@ -6,6 +6,7 @@ html {
 
 body {
   background-color: #ebebeb;
+  padding-right: 0px !important;
 }
 
 a {
@@ -132,6 +133,9 @@ h5 {
   box-shadow: 0 0 0 0.1rem rgb(233, 233, 233);
 }
 
+header .container-fluid {
+  padding-right: 0px !important;
+}
 header .logo img, header .logo-img img {
   height: 50px;
 }
@@ -482,6 +486,8 @@ section .section-section .card .card-footer div {
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 5px;
+  margin-bottom: -3px;
 }
 section .section-section .card .card-footer div svg {
   display: block;
@@ -638,15 +644,19 @@ footer .nav-bottom .bi:focus {
 button {
   align-items: center;
 }
+button svg {
+  margin-top: -5px;
+}
 button span {
   font-size: 0.9em;
-  margin-left: 0.8em;
+  margin-left: 0.6em;
 }
 button.solicitar {
-  background-color: rgb(4, 130, 255);
-  color: white;
+  background-color: rgb(69, 108, 194);
+  color: rgb(255, 255, 255);
+  border-radius: 14px;
 }
 button.solicitar:hover {
-  background-color: rgb(6, 115, 225);
-  color: #fff;
+  background-color: rgb(56, 89, 160);
+  color: rgb(255, 255, 255);
 }/*# sourceMappingURL=styles.css.map */

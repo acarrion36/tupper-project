@@ -51,8 +51,8 @@ export class DemandarService {
   }
 
   /**** UPDATE ****/
-  update(demand:Demand):Observable<any>{
-    return this._http.put(this.url$+"?id="+demand.id_oferta,demand,httpOptions)
+  update(demand:any):Observable<any>{
+    return this._http.put(this.url$,demand,httpOptions)
   }
 
   /**** DELETE ****/

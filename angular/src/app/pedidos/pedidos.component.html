@@ -30,7 +30,7 @@
           <ng-container *ngFor="let plato of this.platos; index as indice" class="col">
             <div  *ngIf="plato != null">
               <div class="card h-100 mb-3 shadow-sm" id="{{indice}}">
-                <div class="card-header border-0 justify-content-between align-items-center">
+                <div class="card-header border-0 justify-content-between align-items-center text-bg-success">
                   <div class="cardimg">
                     <img src="../../assets/img/cocinar.jpg" alt="">
                   </div>
@@ -43,16 +43,16 @@
                     <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{plato.notas}}</figcaption>
                   </div>
                   <h6 class="card-title mb-1">Alérgenos</h6>
-                  <div class="d-flex flex-wrap mb-2 gap-1">
+                  <div class="d-flex flex-wrap mb-0 gap-1">
                       <app-pintaalergenos [alergenosPlato]=alergenosPlatos[indice]></app-pintaalergenos>
                   </div>
-                  <h6 class="card-title mt-3 mb-1">Datos de entrega</h6>
+                  <h6 class="card-title mt-0 mb-1">Datos de entrega</h6>
                   <p class="card-text mb-0">{{plato.direccion}}, 0{{plato.cp}}</p>
                   <p class="card-text mb-1">{{plato.f_recogida}} a las {{plato.h_recogida}}</p>
                   <div *ngIf="plato.anotacion!=''">
                     <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{plato.anotacion}}</figcaption>
                   </div>
-                  <h6 class="card-title">Raciones: {{this.plato.raciones}}</h6>
+                  <h6 class="card-title mt-2">Raciones: {{this.plato.raciones}}</h6>
                   <div class="d-flex flex-wrap gap-2" id="plato_{{indice}}">
                     <div *ngFor="let racion of [].constructor(this.plato.raciones); index as u">
                       <div class="racion"></div>

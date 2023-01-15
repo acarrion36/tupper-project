@@ -16,9 +16,12 @@ declare var bootstrap:any;
 
 export class BuscarComponent implements OnInit {
 
-  public count:number=0
   public loading:boolean=false
-  public demandasTotales:any=[]
+  public demandas:any=[]
+  public idDemanda:any
+  public nDemandas:number=0
+  public nRacionesActuales:number=0
+  public solicitarBtn:boolean=false
 
   // Variables | Login Status
   public loginStatus$:any
@@ -31,8 +34,6 @@ export class BuscarComponent implements OnInit {
   public alergenosPlatos:any=[]
 
   public racionesPlato:any=[]
-  public carrito:any=[]
-  public carritoCerrado:any=[]
   public showModal:boolean=false
   public racionesDisponibles:number[];
 
@@ -72,6 +73,17 @@ export class BuscarComponent implements OnInit {
     })
   }
 
+  racionesOferta(id:number):number {
+    let raciones:number=0
+    this._donarService.readDonationsByIdo(id).subscribe({
+      next : data => {
+        console.log("data",data[0].raciones)
+        raciones = data[0].raciones
+      }
+    })
+    return raciones
+  }
+
   readActualUserDonations(id:any):void {
     this._donarService.readDonationsByIdu(id).subscribe({
       next : data => {
@@ -84,17 +96,26 @@ export class BuscarComponent implements OnInit {
     this._demandarService.readDemandasByIdu(id).subscribe({
       next : data => {
         for (let index = 0; index < data.length; index++) {
-          this.demandasTotales.push(data[index].id_oferta)
+          this.demandas.push(data[index])
         }
       }
     })
   }
 
-  existeDemanda(idOferta:any):boolean {
-    if (this.demandasTotales.indexOf(idOferta)===-1) {
-      return false
-    } else {
-      return true
+  existeDemanda(idOferta:any):any {
+    let existe:boolean = false
+    if(this.demandas.length > 0) {
+      for (let index = 0; index < this.demandas.length; index++) {
+        if (this.demandas[index].id_oferta.indexOf(idOferta)===-1) {
+          existe = false
+        } else {
+          this.idDemanda = this.demandas[index].id_demanda
+          this.nRacionesActuales = this.demandas[index].n_raciones
+          existe = true
+          break
+        }
+      }
+      return existe
     }
   }
 
@@ -127,6 +148,9 @@ export class BuscarComponent implements OnInit {
               }
               let racionesDisponiblesPlato = racionesTotales - racionesReservadas;
               this.racionesDisponibles[plato.id_oferta] = racionesDisponiblesPlato;
+              if(this.racionesDisponibles[plato.id_oferta]===0) {
+                this.donacionesTotales -= 1
+              }
             }
           });
 
@@ -155,35 +179,21 @@ export class BuscarComponent implements OnInit {
     }
   }
 
-  // Controlar el numero de raciones demandadas
-  isChecked(radio:string):void {
-    let checkbox=document.getElementById(radio) as HTMLInputElement | null;
-    if (checkbox!=null) {
-      if (checkbox.checked) {
-        this.count++
-        this.carrito.push(checkbox.value)
-      } else {
-        this.count--
-        const index = this.carrito.indexOf(checkbox.value, 0);
-        if (index > -1) {
-          this.carrito.splice(index, 1);
-        }
-      }
-    }
-  }
-
   // Cerrar ventana modal
   closeModal():void {
     this.showModal=false
-    this.carritoCerrado=[]
   }
 
   // Solicitar raciones
   solicitar(id_oferta:number){
     if(this.existeDemanda(id_oferta)) {
       let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
-      let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), raciones.toString(), "", 0, "");
-      this._demandarService.update(demanda).subscribe({
+      raciones += Number(this.nRacionesActuales)
+      let updateDemanda = ({
+        "id_demanda": this.idDemanda.toString(),
+        "n_raciones": raciones.toString()
+      })
+      this._demandarService.update(updateDemanda).subscribe({
         next:data => {
           window.location.reload();
         }
@@ -198,4 +208,11 @@ export class BuscarComponent implements OnInit {
       });
     }
   }
+
+  // Solicitar raciones
+  solicitarRedirigir(id_oferta:number){
+    this.solicitar(id_oferta)
+    this.router.navigate(['/pedidos'])
+  }
+
 }

@@ -108,6 +108,7 @@ html {
 
 body {
   background-color: $lightgrey;
+  padding-right: 0px !important;
 }
 
 a {
@@ -214,6 +215,10 @@ h5 {
 
 // HEADER
 header {
+  .container-fluid {
+    padding-right: 0px !important;
+  }
+
   .logo img, .logo-img img {
     height: $logoWidth;
   }
@@ -525,7 +530,6 @@ section {
         font-size: 16px;
         background-color: $grey;
         text-align: right;
-
         display: flex;
         justify-content: right;
         // align-items: center;
@@ -546,6 +550,8 @@ section {
           justify-content: center;
           align-items: center;
           text-align: center;
+          margin-top: 5px;
+          margin-bottom: -3px;
 
           svg{
             display: block;
@@ -721,20 +727,25 @@ footer {
 }
 
 button {
-
   align-items: center;
+
+  svg {
+    margin-top: -5px;
+  }
+
   span{
-  font-size: 0.9em;
-  margin-left: 0.8em;
+    font-size: 0.9em;
+    margin-left: 0.6em;
   }
 
   &.solicitar{
-    background-color: rgb(4, 130, 255);
-    color: white;
+    background-color: rgb(69, 108, 194);
+    color: $white;
+    border-radius: $borderRadiusM;
 
     &:hover{
-      background-color: rgb(6, 115, 225);
-      color: #fff;
+      background-color: rgb(56, 89, 160);
+      color: $white;
     }
   }
 
