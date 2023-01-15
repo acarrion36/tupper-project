@@ -48,63 +48,70 @@ class demanda{
 
             echo $var;
         }else{
-                $sql="SELECT * FROM demanda WHERE id_demanda='".$idd."'";
-                $resultado=$bd->seleccionar($sql);
-                while ($dem = mysqli_fetch_assoc($resultado)) {
-                        $data[]=$dem;
-                    }
-                $var= json_encode($data);
-                echo $var;
+            $sql="SELECT * FROM demanda WHERE id_demanda='".$idd."'";
+            $resultado=$bd->seleccionar($sql);
+            while ($dem = mysqli_fetch_assoc($resultado)) {
+                    $data[]=$dem;
+                }
+            $var= json_encode($data);
+            echo $var;
+        }
+    }
+    public static function obtenerDemandaO($ido){
+        global $bd;
+        $data=[];
+        $sql="SELECT * FROM demanda WHERE id_oferta='".$ido."'";
+        $resultado=$bd->seleccionar($sql);
+            while ($ofer = mysqli_fetch_assoc($resultado)) {
+                $data[]=$ofer;
             }
-        }
-        public static function obtenerDemandaO($ido){
-            global $bd;
-            $data=[];
-                $sql="SELECT * FROM demanda WHERE id_oferta='".$ido."'";
-                $resultado=$bd->seleccionar($sql);
-                    while ($ofer = mysqli_fetch_assoc($resultado)) {
-                        $data[]=$ofer;
-                    }
-                $var= json_encode($data);
-                echo $var;
+        $var= json_encode($data);
+        echo $var;
 
-        }
-    
-        public static function obtenerDemandaUsuario($idu){
-            global $bd;
-            $data=[];
-                $sql="SELECT * FROM demanda WHERE id_usuario='".$idu."'";
-                $resultado=$bd->seleccionar($sql);
-                    while ($ofer = mysqli_fetch_assoc($resultado)) {
-                        $data[]=$ofer;
-                    }
-                $var= json_encode($data);
-                echo $var;
+    }
 
-        }
+    public static function obtenerDemandaUsuario($idu){
+        global $bd;
+        $data=[];
+        $sql="SELECT * FROM demanda WHERE id_usuario='".$idu."'";
+        $resultado=$bd->seleccionar($sql);
+            while ($ofer = mysqli_fetch_assoc($resultado)) {
+                $data[]=$ofer;
+            }
+        $var= json_encode($data);
+        echo $var;
 
-        public static function obtenerRacionesDemandaO($ido){
-            global $bd;
-            $data=[];
-                $sql="SELECT SUM(n_raciones) as raciones FROM demanda WHERE id_oferta='".$ido."'";
-                $resultado=$bd->seleccionar($sql);
-                    while ($ofer = mysqli_fetch_assoc($resultado)) {
-                        $data[]=$ofer;
-                    }
-                $var= json_encode($data);
-                echo $var;
+    }
 
-        }
+    public static function obtenerRacionesDemandaO($ido){
+        global $bd;
+        $data=[];
+        $sql="SELECT SUM(n_raciones) as raciones FROM demanda WHERE id_oferta='".$ido."'";
+        $resultado=$bd->seleccionar($sql);
+            while ($ofer = mysqli_fetch_assoc($resultado)) {
+                $data[]=$ofer;
+            }
+        $var= json_encode($data);
+        echo $var;
 
-        public static function eliminarDemanda($id){
-            global $bd;
-            $sql=" SET FOREIGN_KEY_CHECKS = 0";
-            $bd->eliminar($sql);
-            $sql="DELETE FROM demanda where id_demanda='$id'";
-            $bd->eliminar($sql);
-            $sql=" SET FOREIGN_KEY_CHECKS = 1";
-            $bd->eliminar($sql);
-        }
+    }
+
+    public static function eliminarDemanda($id){
+        global $bd;
+        $sql=" SET FOREIGN_KEY_CHECKS = 0";
+        $bd->eliminar($sql);
+        $sql="DELETE FROM demanda where id_demanda='$id'";
+        $bd->eliminar($sql);
+        $sql=" SET FOREIGN_KEY_CHECKS = 1";
+        $bd->eliminar($sql);
+    }
+
+    public static function updateRacionesDemanda($id_demanda,$raciones){
+        global $bd;
+        $sql="UPDATE demanda SET n_raciones='$raciones' WHERE id_demanda='$id_demanda'";
+        $resultado=$bd->update($sql);
+        
+    }
     
 
 }
