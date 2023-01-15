@@ -162,9 +162,7 @@ export class DonarFormularioComponent implements OnInit {
       this.alertCPEntrega=false
       if(this.createDonation.nombre&&this.createDonation.descripcion&&this.createDonation.direccion&&this.createDonation.cp&&this.createDonation.f_recogida&&this.createDonation.h_recogida){
         this.createDonation.alergenos = JSON.stringify(this.alergenosChecked);
-
         this.createDonation.id_usuario = this.idUsuario;
-
         if(!this.donando){  // Se está creando una oferta nueva
           this._donarService.register(this.createDonation).subscribe({
             next:data => {

@@ -726,7 +726,8 @@ footer {
 
 }
 
-button {
+.div_editar, .div_borrar, .div_solicitar {
+
   align-items: center;
 
   svg {
@@ -738,7 +739,7 @@ button {
     margin-left: 0.6em;
   }
 
-  &.solicitar{
+  .solicitar{
     background-color: rgb(69, 108, 194);
     color: $white;
     border-radius: $borderRadiusM;

@@ -641,22 +641,22 @@ footer .nav-bottom .bi:focus {
     min-width: 100% !important;
   }
 }
-button {
+.div_editar, .div_borrar, .div_solicitar {
   align-items: center;
 }
-button svg {
+.div_editar svg, .div_borrar svg, .div_solicitar svg {
   margin-top: -5px;
 }
-button span {
+.div_editar span, .div_borrar span, .div_solicitar span {
   font-size: 0.9em;
   margin-left: 0.6em;
 }
-button.solicitar {
+.div_editar .solicitar, .div_borrar .solicitar, .div_solicitar .solicitar {
   background-color: rgb(69, 108, 194);
   color: rgb(255, 255, 255);
   border-radius: 14px;
 }
-button.solicitar:hover {
+.div_editar .solicitar:hover, .div_borrar .solicitar:hover, .div_solicitar .solicitar:hover {
   background-color: rgb(56, 89, 160);
   color: rgb(255, 255, 255);
 }/*# sourceMappingURL=styles.css.map */

@@ -22,6 +22,7 @@ export class BuscarComponent implements OnInit {
   public nDemandas:number=0
   public nRacionesActuales:number=0
   public solicitarBtn:boolean=false
+  public raciones:any
 
   // Variables | Login Status
   public loginStatus$:any
@@ -184,14 +185,20 @@ export class BuscarComponent implements OnInit {
     this.showModal=false
   }
 
+  // Comprobar raciones
+  comprobarRaciones(id_oferta:number){
+    this.raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
+  }
+
   // Solicitar raciones
   solicitar(id_oferta:number){
+    this.raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
+    console.log(this.raciones)
     if(this.existeDemanda(id_oferta)) {
-      let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
-      raciones += Number(this.nRacionesActuales)
+      this.raciones += Number(this.nRacionesActuales)
       let updateDemanda = ({
         "id_demanda": this.idDemanda.toString(),
-        "n_raciones": raciones.toString()
+        "n_raciones": this.raciones.toString()
       })
       this._demandarService.update(updateDemanda).subscribe({
         next:data => {
@@ -199,8 +206,7 @@ export class BuscarComponent implements OnInit {
         }
       });
     } else {
-      let raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
-      let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), raciones.toString(), "", 0, "");
+      let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), this.raciones.toString(), "", 0, "");
       this._demandarService.post(demanda).subscribe({
         next:data => {
           window.location.reload();
