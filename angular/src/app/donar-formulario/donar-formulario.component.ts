@@ -63,6 +63,7 @@ export class DonarFormularioComponent implements OnInit {
   public alertCPEntrega:boolean=false
   public alertFechaEntrega:boolean=false
   public alertHoraEntrega:boolean=false
+  public alertHoraNoValida:boolean=false
   public alertMsg:string=""
   public showModal:boolean=false
 
@@ -152,6 +153,34 @@ export class DonarFormularioComponent implements OnInit {
     } else {
       this.alertDireccionEntrega=false
     }
+    if(!this.createDonation.f_recogida){
+      this.alertFechaEntrega=true
+    } else {
+      this.alertFechaEntrega=false
+    }
+    if(!this.createDonation.h_recogida){
+      this.alertHoraEntrega=true
+    } else {
+      this.alertHoraEntrega=false
+      this.alertHoraNoValida=false
+
+      let horaActual = new Date() // Fecha actual
+      let horaSeleccionada = new Date() // Creo una fecha nueva
+
+      let horaMinuto = this.createDonation.h_recogida.toString().split(":") // Split de la hora actual
+      let anioMesDia = this.createDonation.f_recogida.toString().split("-")
+
+      horaSeleccionada.setFullYear(Number(anioMesDia[0])) // Le añado el año...
+      horaSeleccionada.setMonth(Number(anioMesDia[1]) - 1) // ...el mes... (se resta 1 porque enero es el mes 0)
+      horaSeleccionada.setDate(Number(anioMesDia[2])) // ...el día...
+      horaSeleccionada.setHours(Number(horaMinuto[0])) // ...la hora...
+      horaSeleccionada.setMinutes(Number(horaMinuto[1])) // ...y los minutos
+
+      if(horaSeleccionada < horaActual){
+        this.alertHoraEntrega=false
+        this.alertHoraNoValida=true
+      }
+    }
     if(!this.createDonation.cp){
       this.alertCPEntrega=true;
       this.alertMsg="Campo obligatorio."
@@ -160,7 +189,7 @@ export class DonarFormularioComponent implements OnInit {
       this.alertMsg="Formato no válido."
     } else {
       this.alertCPEntrega=false
-      if(this.createDonation.nombre&&this.createDonation.descripcion&&this.createDonation.direccion&&this.createDonation.cp&&this.createDonation.f_recogida&&this.createDonation.h_recogida){
+      if(!this.alertHoraNoValida&&this.createDonation.nombre&&this.createDonation.descripcion&&this.createDonation.direccion&&this.createDonation.cp&&this.createDonation.f_recogida&&this.createDonation.h_recogida){
         this.createDonation.alergenos = JSON.stringify(this.alergenosChecked);
         this.createDonation.id_usuario = this.idUsuario;
         if(!this.donando){  // Se está creando una oferta nueva
@@ -180,16 +209,6 @@ export class DonarFormularioComponent implements OnInit {
         }
         this.showModal=true
       }
-    }
-    if(!this.createDonation.f_recogida){
-      this.alertFechaEntrega=true
-    } else {
-      this.alertFechaEntrega=false
-    }
-    if(!this.createDonation.h_recogida){ // COMPROBAR HORA NO ANTERIOR A LA HORA ACTUAL
-      this.alertHoraEntrega=true
-    } else {
-      this.alertHoraEntrega=false
     }
   }
 

@@ -4,7 +4,7 @@
     <div class="col-md-9 p-5 d-flex justify-content-center">
       <div class="section-section">
         <h5>Donaciones</h5>
-        <p>Cuéntanos que quieres donar, así como donde y cuando vas a entregarlo.</p>
+        <p>Revisa tus donaciones en curso. Editalas o borrarlas si lo ves necesario.</p>
         <div class="section-section-buttons">
           <button [routerLink]="['/donar']" class="btn btn-light shadow-sm">Nueva</button>
           <button class="btn btn-dark shadow-sm">En curso</button>
@@ -32,7 +32,7 @@
                 <p class="p-0 m-0">Donación Nº{{donacion.id_oferta}}</p>
               </div>
               <div class="card-body">
-                <h5 class="card-title mt-4 mb-1 titulo_oferta" [routerLink]="['/donar/editar', donacion.id_oferta]">{{donacion.nombre}}</h5>
+                <h5 class="card-title mt-4 mb-1">{{donacion.nombre}}</h5>
                 <p class="card-text mb-1">{{donacion.descripcion}}</p>
                 <div *ngIf="donacion.anotacion!=''">
                   <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.anotacion}}</figcaption>
@@ -72,7 +72,7 @@
               </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal fade2" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">

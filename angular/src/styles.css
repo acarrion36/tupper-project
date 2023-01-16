@@ -38,6 +38,34 @@ h5 {
     transform: rotate(360deg);
   }
 }
+.fade2 {
+  -webkit-animation-name: fadeopacity;
+          animation-name: fadeopacity;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+
+@-webkit-keyframes fadeopacity {
+  from {
+    opacity: 0.75;
+    top: 45%;
+  }
+  to {
+    opacity: 1;
+    top: 50%;
+  }
+}
+
+@keyframes fadeopacity {
+  from {
+    opacity: 0.75;
+    top: 45%;
+  }
+  to {
+    opacity: 1;
+    top: 50%;
+  }
+}
 .btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
@@ -342,7 +370,7 @@ section .section-section .unregister:hover {
   font-weight: 500;
 }
 section .section-section .alergeno {
-  min-width: 130px;
+  min-width: 125px;
 }
 section .section-section .alergenos {
   height: 25px;

@@ -132,6 +132,22 @@ h5 {
   }
 }
 
+.fade2 {
+  animation-name: fadeopacity;
+  animation-duration: 0.5s;
+}
+
+@keyframes fadeopacity {
+  from {
+    opacity: 0.75;
+    top: 45%;
+  }
+  to {
+    opacity: 1;
+    top: 50%;
+  }
+}
+
 .btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
@@ -398,7 +414,7 @@ section {
     }
 
     .alergeno { // son los alergenos que se muestran en el formulario de nuevo donación
-      min-width: 130px;
+      min-width: 125px;
     }
 
     .alergenos {  // son los alergenos que se muestran en las donaciones en curso/finalizadas

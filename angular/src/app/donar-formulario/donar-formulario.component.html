@@ -1,7 +1,8 @@
 <div class="mt-4 p-4 bg-light border shadow-sm">
     <form class="row g-3" id="donationForm" #formDonation="ngForm">
-      <div class="col-md-12 d-flex flex-wrap justify-content-start">
+      <div class="col-md-12 d-flex flex-wrap justify-content-between align-items-center">
         <p class="col-form-label"><strong>Información del plato</strong></p>
+        <p class="col-form-label fs-7">Los campos con * son obligatorios</p>
       </div>
       <!-- NOMBRE -->
       <div class="col-md-12">
@@ -9,20 +10,17 @@
         <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="this.createDonation.nombre">
         <div *ngIf="this.alertNombrePlato" class="alert alert-danger">Campo obligatorio.</div>
       </div>
-
       <!-- DESCRIPCIÓN -->
       <div class="col-md-6">
         <label for="descripcion" class="form-label">Descripcion*</label>
         <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Es importante ser lo más preciso posible al describir el plato." id="descripcion" name="descripcion" rows="3" [(ngModel)]="this.createDonation.descripcion"></textarea>
         <div *ngIf="this.alertDescripcionPlato" class="alert alert-danger">Campo obligatorio.</div>
       </div>
-
       <!-- NOTAS ADICIONALES -->
       <div class="col-md-6">
         <label for="anotacion" class="form-label">Notas adicionales</label>
         <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="right" id="anotacion" name="anotacion" rows="3" [(ngModel)]="this.createDonation.anotacion"></textarea>
       </div>
-
       <!-- ALÉRGENOS -->
       <div class="col-md-12">
         <label for="platoAlergenos" class="form-label">Alérgenos</label>
@@ -34,19 +32,16 @@
           </div>
         </div>
       </div>
-
       <!-- RACIONES -->
       <div class="col-md-2">
         <label for="raciones" class="form-label">Raciones*</label>
         <input (change)="checkRation()" type="number" class="form-control" id="raciones" name="raciones" [(ngModel)]="this.createDonation.raciones">
       </div>
-
       <!-- FOTO -->
       <div class="col-md-5">
         <label for="platoFoto" class="form-label">Foto del plato</label>
         <input class="form-control" type="file" id="platoFoto" name="platoFoto" [(ngModel)]="this.fotoPlato">
       </div>
-
       <!-- INFORMACIÓN DE LA ENTREGA -->
       <div class="col-md-12 d-flex justify-content-between align-items-center">
         <p class="col-form-label"><strong>Información de la entrega</strong></p>
@@ -71,11 +66,13 @@
         <input type="time" class="form-control" id="h_recogida" name="h_recogida" [(ngModel)]="this.createDonation.h_recogida">
         <div *ngIf="this.alertHoraEntrega" class="alert alert-danger">Campo obligatorio.</div>
       </div>
+      <div class="col-md-12 m-0">
+        <div *ngIf="this.alertHoraNoValida" class="alert alert-danger">La fecha no puede ser inferior a la actual.</div>
+      </div>
       <div class="col-md-12">
         <label for="notas" class="form-label">Notas</label>
         <textarea class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip" data-bs-title="Usa esta campo para anotar cualquier cosa. Por ejemplo, otras franjas de entrega." id="notas" name="notas" rows="3" [(ngModel)]="this.createDonation.notas"></textarea>
       </div>
-
       <!-- SUBMIT -->
       <div class="col-md-12 d-flex justify-content-end">
         <div class="d-flex align-items-center gap-4">
@@ -83,7 +80,7 @@
         </div>
         <!-- Modal -->
         <div (click)="closeModal(formDonation)" *ngIf="this.showModal" class="veil" id="veil"></div>
-        <div *ngIf="this.showModal" class="modal text-center show" style="display: block;">
+        <div *ngIf="this.showModal" class="modal text-center show fade2" style="display: block;">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
