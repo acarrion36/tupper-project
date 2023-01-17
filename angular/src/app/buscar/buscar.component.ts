@@ -52,7 +52,7 @@ export class BuscarComponent implements OnInit {
     this.authGuard()
     setTimeout(()=>{
       this.loading=true
-    }, 400);
+    }, 500);
   }
 
   // Leer los datos del usuario logeado
@@ -174,6 +174,8 @@ export class BuscarComponent implements OnInit {
     if(!this._cookie.check("token")) {
       this.router.navigate(['/'])
       this._loginService.setloginWindowStatus(true)
+    } else if (this._cookie.check("token") && this.alertInfo$) {
+      this.router.navigate(['/perfil'])
     } else {
       this._loginService.setloginStatus(true)
       this._loginService.setalertInfoStatus(false)

@@ -544,10 +544,10 @@ section .section-section .card .card-footer div.div_borrar:hover {
   cursor: pointer;
 }
 section .section-section .card .card-footer div.div_borrar:hover .bi-trash {
-  fill: rgb(144, 1, 1);
+  fill: rgb(168, 47, 47);
 }
 section .section-section .card .card-footer div.div_borrar:hover p {
-  color: rgb(144, 1, 1);
+  color: rgb(163, 27, 27);
 }
 section .section-section .form-control {
   background-color: #ebebeb;
@@ -680,11 +680,11 @@ footer .nav-bottom .bi:focus {
   margin-left: 0.6em;
 }
 .div_editar .solicitar, .div_borrar .solicitar, .div_solicitar .solicitar {
-  background-color: rgb(69, 108, 194);
+  background-color: rgb(83, 127, 221);
   color: rgb(255, 255, 255);
   border-radius: 14px;
 }
 .div_editar .solicitar:hover, .div_borrar .solicitar:hover, .div_solicitar .solicitar:hover {
-  background-color: rgb(56, 89, 160);
+  background-color: rgb(69, 109, 194);
   color: rgb(255, 255, 255);
 }/*# sourceMappingURL=styles.css.map */

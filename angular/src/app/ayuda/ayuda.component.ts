@@ -12,12 +12,11 @@ declare var bootstrap:any;
 })
 export class AyudaComponent implements OnInit {
 
-  constructor(private _loginService:LoginService, private router:Router, private _cookie:CookieService) {
+  constructor(private router:Router, private _cookie:CookieService) {
   }
 
   ngOnInit(): void {
     this.tooltipInit()
-    this.authGuard()
   }
 
   // Inicializr bootstrap tooltip
@@ -26,17 +25,6 @@ export class AyudaComponent implements OnInit {
     tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl)
     })
-  }
-
-  // Si no esta logueado, redirigimos a la home y mostramos la ventana de login
-  authGuard():void {
-    if(!this._cookie.check("token")) {
-      this.router.navigate(['/'])
-      this._loginService.setloginWindowStatus(true)
-    } else {
-      this._loginService.setloginStatus(true)
-      this._loginService.setalertInfoStatus(false)
-    }
   }
 
 }

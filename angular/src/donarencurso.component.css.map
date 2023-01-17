@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAIA,AAAA,cAAc,AAAC,CACX,MAAM,CAAE,OAAO,CAKlB,AAND,AAGI,cAHU,AAGT,MAAM,AAAA,CACH,eAAe,CAAE,SAAS,CAC7B",
-    "sources": [
-        "app/donarencurso/donarencurso.component.scss"
-    ],
-    "names": [],
-    "file": "donarencurso.component.css"
-}

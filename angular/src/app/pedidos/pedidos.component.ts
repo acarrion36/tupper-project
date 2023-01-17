@@ -21,6 +21,7 @@ export class PedidosComponent implements OnInit {
 
   // Variables | Login Status
   public loginStatus$:any
+  public alertInfo$:any
   public idUsuario:any
 
   public demandas : Demand[]
@@ -37,6 +38,7 @@ export class PedidosComponent implements OnInit {
 
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
+    this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
     this.readUserLogged()
     this.tooltipInit()
     this.authGuard()
@@ -70,6 +72,8 @@ export class PedidosComponent implements OnInit {
     if(!this._cookie.check("token")) {
       this.router.navigate(['/'])
       this._loginService.setloginWindowStatus(true)
+    } else if (this._cookie.check("token") && this.alertInfo$) {
+      this.router.navigate(['/perfil'])
     } else {
       this._loginService.setloginStatus(true)
       this._loginService.setalertInfoStatus(false)

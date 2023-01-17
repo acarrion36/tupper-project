@@ -600,10 +600,10 @@ section {
           &.div_borrar:hover{
             cursor: pointer;
             .bi-trash {
-              fill: rgb(144, 1, 1);
+              fill: rgb(168, 47, 47);
             }
             p {
-              color: rgb(144, 1, 1);
+              color: rgb(163, 27, 27);
 
             }
           }
@@ -756,12 +756,12 @@ footer {
   }
 
   .solicitar{
-    background-color: rgb(69, 108, 194);
+    background-color: rgb(83, 127, 221);
     color: $white;
     border-radius: $borderRadiusM;
 
     &:hover{
-      background-color: rgb(56, 89, 160);
+      background-color: rgb(69, 109, 194);
       color: $white;
     }
   }

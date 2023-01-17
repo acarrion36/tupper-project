@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
 
   // Variables
   public loginStatus$:any
+  public alertInfo$:any
 
   // Constructor | _loginService: Controla si esta logueado
   constructor(private _loginService:LoginService) {}
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   // OnInit | Checkeo del estado de la sesión de usuario
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
+    this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
   }
 
   // Metodo | Mostrar el componente de login

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "app/perfil/perfil.component.scss"
-    ],
-    "names": [],
-    "file": "perfil.component.css"
-}

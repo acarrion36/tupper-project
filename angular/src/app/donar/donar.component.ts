@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { DonarService } from '../services/donar.service';
 import { CookieService } from 'ngx-cookie-service';
-import { Donation } from '../models/Donation';
 
 declare var bootstrap:any;
 
@@ -18,15 +16,17 @@ export class DonarComponent implements OnInit {
 
   // Variables | Login Status
   public loginStatus$:any
+  public alertInfo$:any
   public idUsuario:any
 
   constructor(private _loginService:LoginService, private _donarService:DonarService, private router:Router, private _cookie:CookieService) { }
 
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
+    this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
+    this.authGuard()
     this.readUserLogged()
     this.tooltipInit()
-    this.authGuard()
   }
 
   // Leer los datos del usuario logeado
@@ -35,6 +35,12 @@ export class DonarComponent implements OnInit {
       next : data => {
         if(data!=0) {
           this.idUsuario=data[0].id_usuario
+          // Controlar el mensaje de alerta si no esta rellenados direccion y CP
+          if(data[0].direccion!='' && data[0].cp!=null){
+            this._loginService.setalertInfoStatus(false)
+          } else {
+            this._loginService.setalertInfoStatus(true)
+          }
         }
       }
     })
@@ -53,6 +59,8 @@ export class DonarComponent implements OnInit {
     if(!this._cookie.check("token")) {
       this.router.navigate(['/'])
       this._loginService.setloginWindowStatus(true)
+    } else if (this._cookie.check("token") && this.alertInfo$) {
+      this.router.navigate(['/perfil'])
     } else {
       this._loginService.setloginStatus(true)
       this._loginService.setalertInfoStatus(false)

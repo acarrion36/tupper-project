@@ -16,16 +16,15 @@ import { DatePipe } from '@angular/common';
 })
 export class EditarEntregaComponent implements OnInit {
   constructor(
-    private _loginService:LoginService, 
-    private _donarService:DonarService, 
+    private _loginService:LoginService,
+    private _donarService:DonarService,
     public donarFormularioComponente:DonarFormularioComponent,
-    private router:Router, 
+    private router:Router,
     private _cookie:CookieService
   ) {
   }
 
   ngOnInit(): void {
-
   }
 
 }

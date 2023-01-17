@@ -53,11 +53,10 @@ export class PerfilComponent implements OnInit {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
     this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
     // Llamadas a metodos
+    this.authGuard()
     this.readUserLogged()
     this.tooltipInit()
-    this.authGuard()
     this.visibleNickname()
-    
   }
 
   // Leer los datos del usuario logeado
@@ -87,7 +86,7 @@ export class PerfilComponent implements OnInit {
           if(data[0].direccion!='' && data[0].cp!=null){
             this._loginService.setalertInfoStatus(false)
           } else {
-            this.alertInfo$=true
+            this._loginService.setalertInfoStatus(true)
           }
         } else {
           this.logout()
@@ -118,6 +117,11 @@ export class PerfilComponent implements OnInit {
     if(!this._cookie.check("token")) {
       this.router.navigate(['/'])
       this._loginService.setloginWindowStatus(true)
+    } else if (this._cookie.check("token") && this.alertInfo$) {
+      this.router.navigate(['/perfil'])
+    } else {
+      this._loginService.setloginStatus(true)
+      this._loginService.setalertInfoStatus(false)
     }
   }
 

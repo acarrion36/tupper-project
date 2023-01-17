@@ -13,11 +13,16 @@ export class NavsmComponent implements OnInit {
   constructor(private _loginService:LoginService) { }
 
   ngOnInit(): void {
-    // Bootstrap tooltip initialization
+    this.tooltipInit()
+  }
+
+  // Inicializr bootstrap tooltip
+  tooltipInit():void {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl)
     })
   }
+
 
 }

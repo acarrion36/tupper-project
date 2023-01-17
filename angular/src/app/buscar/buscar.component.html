@@ -125,7 +125,7 @@
                       Tus raciones de "{{donacion.nombre}}" han sido correctamente solicitadas. Revisa y finaliza tu pedido.
                     </div>
                     <div *ngIf="this.raciones === 0" class="modal-body text-center fs-6">
-                      No has seleccionado ninguna racion.
+                      No has solicitado ninguna racion.
                     </div>
                     <div *ngIf="this.raciones > 0" class="modal-footer">
                       <button (click)="solicitarRedirigir(donacion.id_oferta)" type="button" class="btn btn-dark close" data-bs-dismiss="modal" aria-label="Close">Ir a mis pedidos</button>

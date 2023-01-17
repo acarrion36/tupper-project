@@ -6,12 +6,9 @@ import { DonarService } from '../services/donar.service';
 //import { EditarEntregaComponent } from '../editar-entrega/editar-entrega.component';
 import { CookieService } from 'ngx-cookie-service';
 import { Donation } from '../models/Donation';
-
-import { DatePipe, TitleCasePipe } from '@angular/common';
-
+import { DatePipe } from '@angular/common';
 
 declare var bootstrap:any;
-
 
 @Component({
   selector: 'app-donar-formulario',
@@ -24,9 +21,8 @@ export class DonarFormularioComponent implements OnInit {
   private alerstring:string ="";
   private alerjson:any = {};
 
-
   public hoy:string | null;
-  private donando : boolean;
+  private donando:boolean;
 
   // Variables | Modelo Donation
   public createDonation:Donation = new Donation('','','','','','','','',1,'','', '');
@@ -36,6 +32,7 @@ export class DonarFormularioComponent implements OnInit {
   // Variables | Login Status
   public loginStatus$:any
   public idUsuario:any
+  public alertInfo$:any
 
   // Variables | Informacion del plato
   /*
@@ -102,6 +99,7 @@ export class DonarFormularioComponent implements OnInit {
 
   ngOnInit(): void {
     this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
+    this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
     this.readUserLogged()
     this.tooltipInit()
     this.authGuard();
@@ -113,6 +111,12 @@ export class DonarFormularioComponent implements OnInit {
       next : data => {
         if(data!=0) {
           this.idUsuario=data[0].id_usuario;
+          // Controlar el mensaje de alerta si no esta rellenados direccion y CP
+          if(data[0].direccion!='' && data[0].cp!=null){
+            this._loginService.setalertInfoStatus(false)
+          } else {
+            this._loginService.setalertInfoStatus(true)
+          }
         }
       }
     })
@@ -131,6 +135,8 @@ export class DonarFormularioComponent implements OnInit {
     if(!this._cookie.check("token")) {
       this.router.navigate(['/'])
       this._loginService.setloginWindowStatus(true)
+    } else if (this._cookie.check("token") && this.alertInfo$) {
+      this.router.navigate(['/perfil'])
     } else {
       this._loginService.setloginStatus(true)
       this._loginService.setalertInfoStatus(false)
@@ -166,7 +172,6 @@ export class DonarFormularioComponent implements OnInit {
 
       let horaActual = new Date() // Fecha actual
       let horaSeleccionada = new Date() // Creo una fecha nueva
-
       let horaMinuto = this.createDonation.h_recogida.toString().split(":") // Split de la hora actual
       let anioMesDia = this.createDonation.f_recogida.toString().split("-")
 
