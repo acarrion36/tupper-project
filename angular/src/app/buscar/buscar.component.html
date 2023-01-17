@@ -27,29 +27,7 @@
             </span>
           </button>-->
         </div>
-        <!-- Modal -->
-        <div (click)="closeModal()" *ngIf="this.showModal" class="veil" id="veil"></div>
-        <div *ngIf="this.showModal" class="modal text-center show" style="display: block;">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="yellowgreen" class="bi bi-info-circle p-1" viewBox="0 0 16 16">
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                </svg>
-                <h1 class="modal-title fs-5">Continuar con el pedido</h1>
-                <svg (click)="closeModal()" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="30px" data-bs-dismiss="modal" aria-label="Close" viewBox="0 0 16 16" class="bi bi-x-lg close p-1">
-                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
-                </svg>
-              </div>
-              <div class="modal-body">Tu pedido aun no ha sido finalizado. Revisa tus pedidos pendientes y finalizalos.</div>
-              <div class="modal-footer">
-                <button [routerLink]="['/pedidos']" type="button" class="btn btn-success mt-2">Ver mis pedidos pendientes</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="(this.donacionesTotales)===0 && this.loading">
+        <div *ngIf="this.donacionesTotales===0 && this.loading">
           <div class="d-flex flex-column justify-content-center align-items-center taper-div">
             <img class="m-0 p-0 taper-vacio" src="../../assets/img/tapper-vacio.webp">
             <p class="m-0 p-0 fs-2">:(</p>
@@ -128,7 +106,7 @@
                       No has solicitado ninguna racion.
                     </div>
                     <div *ngIf="this.raciones > 0" class="modal-footer">
-                      <button (click)="solicitarRedirigir(donacion.id_oferta)" type="button" class="btn btn-dark close" data-bs-dismiss="modal" aria-label="Close">Ir a mis pedidos</button>
+                      <button (click)="solicitar(donacion.id_oferta)" [routerLink]="['/pedidos']" type="button" class="btn btn-dark close" data-bs-dismiss="modal" aria-label="Close">Ir a mis pedidos</button>
                     </div>
                     <div *ngIf="this.raciones === 0" class="modal-footer">
                       <button type="button" class="btn btn-dark close" data-bs-dismiss="modal" aria-label="Close">Volver</button>

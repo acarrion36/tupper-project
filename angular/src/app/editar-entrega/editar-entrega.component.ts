@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { DonarService } from '../services/donar.service';
 import { CookieService } from 'ngx-cookie-service';
 import { DonarFormularioComponent } from '../donar-formulario/donar-formulario.component';
-import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -14,6 +12,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./editar-entrega.component.scss'],
   providers: [DonarFormularioComponent, DatePipe]
 })
+
 export class EditarEntregaComponent implements OnInit {
   constructor(
     private _loginService:LoginService,

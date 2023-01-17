@@ -117,8 +117,6 @@ export class PerfilComponent implements OnInit {
     if(!this._cookie.check("token")) {
       this.router.navigate(['/'])
       this._loginService.setloginWindowStatus(true)
-    } else if (this._cookie.check("token") && this.alertInfo$) {
-      this.router.navigate(['/perfil'])
     } else {
       this._loginService.setloginStatus(true)
       this._loginService.setalertInfoStatus(false)

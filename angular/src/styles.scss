@@ -686,7 +686,8 @@ footer {
   }
   .nav-bottom {
     display: flex !important;
-    justify-content: space-evenly;
+    justify-content: center;
+    column-gap: 7%;
     padding: 0 5%;
 
     .bi {

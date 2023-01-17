@@ -24,16 +24,16 @@ export class PedidosComponent implements OnInit {
   public alertInfo$:any
   public idUsuario:any
 
-  public demandas : Demand[]
+  public demandas:Demand[]
   public totalDemandas:number;
-  public platos : Donation[]
-  public alergenosPlatos : any[];
+  public platos:Donation[]
+  public alergenosPlatos:any[];
 
   constructor(private _loginService:LoginService, private router:Router, private _cookie:CookieService, private _demandarService: DemandarService, private _donarServicio:DonarService) {
-    this.demandas = [];
-    this.totalDemandas = 0;
-    this.platos = [];
-    this.alergenosPlatos = []
+    this.demandas=[];
+    this.totalDemandas=0;
+    this.platos=[];
+    this.alergenosPlatos=[]
   }
 
   ngOnInit(): void {
@@ -54,6 +54,12 @@ export class PedidosComponent implements OnInit {
         if(data!=0) {
           this.idUsuario=data[0].id_usuario
           this.readDemandasByIdu(this.idUsuario)
+          // Controlar el mensaje de alerta si no esta rellenados direccion y CP
+          if(data[0].direccion!='' && data[0].cp!=null){
+            this._loginService.setalertInfoStatus(false)
+          } else {
+            this._loginService.setalertInfoStatus(true)
+          }
         }
       }
     })
@@ -72,8 +78,6 @@ export class PedidosComponent implements OnInit {
     if(!this._cookie.check("token")) {
       this.router.navigate(['/'])
       this._loginService.setloginWindowStatus(true)
-    } else if (this._cookie.check("token") && this.alertInfo$) {
-      this.router.navigate(['/perfil'])
     } else {
       this._loginService.setloginStatus(true)
       this._loginService.setalertInfoStatus(false)

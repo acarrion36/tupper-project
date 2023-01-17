@@ -10,9 +10,14 @@ declare var bootstrap:any;
 })
 export class NavsmComponent implements OnInit {
 
+  public loginStatus$:any
+  public alertInfo$:any
+
   constructor(private _loginService:LoginService) { }
 
   ngOnInit(): void {
+    this._loginService.loginStatus$.subscribe((status:boolean) => this.loginStatus$ = status)
+    this._loginService.alertInfoStatus$.subscribe((status:boolean) => this.alertInfo$ = status)
     this.tooltipInit()
   }
 

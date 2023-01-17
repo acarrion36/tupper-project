@@ -174,14 +174,11 @@ export class BuscarComponent implements OnInit {
     if(!this._cookie.check("token")) {
       this.router.navigate(['/'])
       this._loginService.setloginWindowStatus(true)
-    } else if (this._cookie.check("token") && this.alertInfo$) {
-      this.router.navigate(['/perfil'])
     } else {
       this._loginService.setloginStatus(true)
       this._loginService.setalertInfoStatus(false)
     }
   }
-
   // Cerrar ventana modal
   closeModal():void {
     this.showModal=false
@@ -202,25 +199,11 @@ export class BuscarComponent implements OnInit {
         "id_demanda": this.idDemanda.toString(),
         "n_raciones": this.raciones.toString()
       })
-      this._demandarService.update(updateDemanda).subscribe({
-        next:data => {
-          window.location.reload();
-        }
-      });
+      this._demandarService.update(updateDemanda).subscribe()
     } else {
       let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), this.raciones.toString(), "", 0, "");
-      this._demandarService.post(demanda).subscribe({
-        next:data => {
-          window.location.reload();
-        }
-      });
+      this._demandarService.post(demanda).subscribe()
     }
-  }
-
-  // Solicitar raciones
-  solicitarRedirigir(id_oferta:number){
-    this.solicitar(id_oferta)
-    this.router.navigate(['/pedidos'])
   }
 
 }

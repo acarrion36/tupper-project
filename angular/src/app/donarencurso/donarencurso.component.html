@@ -14,7 +14,7 @@
           <p class="fs-1 m-0"><strong>{{this.donaciones.length}}</strong></p>
           <p><strong>En curso</strong></p>
         </div>
-        <div *ngIf="this.donaciones.length<=0">
+        <div *ngIf="this.donaciones.length<=0 && this.loading">
           <div class="d-flex flex-column justify-content-center align-items-center taper-div">
             <img class="m-0 p-0 taper-vacio" src="../../assets/img/tapper-vacio.webp">
             <p class="m-0 p-0 fs-2">:(</p>
