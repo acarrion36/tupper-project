@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
             } else if(this.loginPassword===atob(data[0].pass)) {
               //...se validan los datos, cerramos la ventana de login, seteamos las cookies y redirigimos al perfil
               this._loginService.setloginWindowStatus(false)
-              this._loginService.setToken(btoa(data[0].email))
+              this._loginService.setToken("token",btoa(data[0].email))
               this._loginService.setloginStatus(true)
               this.router.navigate(['perfil'])
             } else {
@@ -160,7 +160,7 @@ export class LoginComponent implements OnInit {
               // ...POST de usuario registrado
               this._loginService.register(new User(this.registroApellido1,this.registroApellido2,'','',this.registroMail,this.registroNombre,'',btoa(this.registroPassword))).subscribe({
                 next:data => {
-                  this._loginService.setToken(btoa(data[0].email))
+                  this._loginService.setToken("token",btoa(data[0].email))
                 }
               })
               this.mostrarRegistro=false

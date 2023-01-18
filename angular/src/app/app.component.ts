@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   ngOnInit():void {
     this._loginService.loginWindowStatus$.subscribe((status:boolean) => this.loginWindowStatus$ = status)
     if(this._cookies.check("token")) {
-      this._loginService.readUserLogged().subscribe({
+      this._loginService.readUserLogged("token").subscribe({
         next : data => {
           if(data!=0) {
             this._loginService.setloginStatus(true)

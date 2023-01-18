@@ -65,12 +65,12 @@ export class LoginService {
 
   // COOKIES
 
-  getToken() {
-    return this._cookie.get("token")
+  getToken(id:string) {
+    return this._cookie.get(id)
   }
 
-  setToken(token:string) {
-    this._cookie.set("token",token,{expires:365})
+  setToken(id:string,token:string) {
+    this._cookie.set(id,token,{expires:365})
   }
 
   // HTTP
@@ -88,8 +88,8 @@ export class LoginService {
       return this._http.post(this.url$,mail,httpOptions)
     }
 
-    readUserLogged():Observable<any> {
-      const token = {emx:atob(this.getToken())}
+    readUserLogged(id:string):Observable<any> {
+      const token = {emx:atob(this.getToken(id))}
       return this._http.post(this.url$,token,httpOptions)
     }
 

@@ -29,5 +29,20 @@ export class NavsmComponent implements OnInit {
     })
   }
 
+  accessControl():void {
+    this._loginService.readUserLogged("token").subscribe({
+      next : data => {
+        if(data!=0) {
+          // Controlar si no esta rellenados direccion y CP
+          if(data[0].direccion!='' && data[0].cp!=null){ // Si estan rellenados
+            this._loginService.setalertInfoStatus(false)
+            this._loginService.setToken("info",btoa(this.alertInfo$))
+          } else {
+            this._loginService.setalertInfoStatus(true)
+          }
+        }
+      }
+    })
+  }
 
 }

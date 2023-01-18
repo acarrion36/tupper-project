@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
 
 declare var bootstrap:any;
 
@@ -12,11 +11,16 @@ declare var bootstrap:any;
 })
 export class AyudaComponent implements OnInit {
 
+  public loading:boolean=false
+
   constructor(private router:Router, private _cookie:CookieService) {
   }
 
   ngOnInit(): void {
     this.tooltipInit()
+    setTimeout(()=>{
+      this.loading=true
+    }, 400);
   }
 
   // Inicializr bootstrap tooltip

@@ -16,6 +16,8 @@ declare var bootstrap:any;
 
 export class PerfilComponent implements OnInit {
 
+  public loading:boolean=false
+
   // Variables | Modelo User
   public updateUser:User = new User('','','','','','','','')
   public userData:any
@@ -57,11 +59,14 @@ export class PerfilComponent implements OnInit {
     this.readUserLogged()
     this.tooltipInit()
     this.visibleNickname()
+    setTimeout(()=>{
+      this.loading=true
+    }, 300);
   }
 
   // Leer los datos del usuario logeado
   readUserLogged():void {
-    this._loginService.readUserLogged().subscribe({
+    this._loginService.readUserLogged("token").subscribe({
       next : data => {
         if(data!=0) {
           this.userData=data
@@ -117,9 +122,8 @@ export class PerfilComponent implements OnInit {
     if(!this._cookie.check("token")) {
       this.router.navigate(['/'])
       this._loginService.setloginWindowStatus(true)
-    } else {
-      this._loginService.setloginStatus(true)
-      this._loginService.setalertInfoStatus(false)
+    } else if (this._cookie.check("token") && !this._cookie.check("info")) {
+      this.router.navigate(['/perfil'])
     }
   }
 
@@ -142,6 +146,7 @@ export class PerfilComponent implements OnInit {
     if(!this.alertDireccion && !this.alertCP){
       this._loginService.update(this.userData[0].id_usuario,new User(this.perfilApellido1,this.perfilApellido2,this.perfilCP,this.perfilDireccion,this.perfilMail,this.perfilNombre,this.perfilNickname,this.userData[0].pass)).subscribe()
       this._loginService.setalertInfoStatus(false)
+      this._loginService.setToken("info",btoa(this.alertInfo$))
       this.infPerChecked=true
       this.infPerBtn=false
     }

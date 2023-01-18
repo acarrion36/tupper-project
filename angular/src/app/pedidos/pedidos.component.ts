@@ -49,7 +49,7 @@ export class PedidosComponent implements OnInit {
 
   // Leer los datos del usuario logeado
   readUserLogged():void {
-    this._loginService.readUserLogged().subscribe({
+    this._loginService.readUserLogged("token").subscribe({
       next : data => {
         if(data!=0) {
           this.idUsuario=data[0].id_usuario
@@ -78,9 +78,8 @@ export class PedidosComponent implements OnInit {
     if(!this._cookie.check("token")) {
       this.router.navigate(['/'])
       this._loginService.setloginWindowStatus(true)
-    } else {
-      this._loginService.setloginStatus(true)
-      this._loginService.setalertInfoStatus(false)
+    } else if (this._cookie.check("token") && !this._cookie.check("info")) {
+      this.router.navigate(['/perfil'])
     }
   }
 

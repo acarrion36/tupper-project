@@ -2,7 +2,7 @@
   <div class="row flex-nowrap main-height">
     <app-aside class="col-md-3 bg-light d-none d-md-block shadow-sm aside-section"></app-aside>
     <div class="col-md-9 p-5 d-flex justify-content-center">
-      <div class="section-section">
+      <div *ngIf="this.loading" class="section-section">
         <div class="d-flex justify-content-start align-items-center">
           <h5>Este es tu perfil, {{this.userName}}.</h5>
         </div>
