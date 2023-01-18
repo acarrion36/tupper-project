@@ -175,7 +175,6 @@ export class PerfilComponent implements OnInit {
       })
       this._fileService.post(formularioDeDatos).subscribe({
         next : data => {
-          console.log(data)
           this.perfilFoto=data.data.image.url
         }
       })

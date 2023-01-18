@@ -7,6 +7,8 @@ import { DonarService } from '../services/donar.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Donation } from '../models/Donation';
 import { DatePipe } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
+import { FilesService } from '../services/files.service';
 
 declare var bootstrap:any;
 
@@ -20,7 +22,8 @@ export class DonarFormularioComponent implements OnInit {
 
   private alerstring:string ="";
   private alerjson:any = {};
-
+  public selectedFile:any=[]
+  public previewFile:string=""
   public hoy:string | null;
   private donando:boolean;
 
@@ -45,7 +48,6 @@ export class DonarFormularioComponent implements OnInit {
   public alergenosPlato:string[];
   public alergenosLista:string[];
   public alergenosChecked:any;
-
   public alertNombrePlato:boolean=false
   public alertDescripcionPlato:boolean=false
   public alertRacionesPlato:boolean=false
@@ -71,7 +73,9 @@ export class DonarFormularioComponent implements OnInit {
     private router:Router,
     private _cookie:CookieService,
     private ruta:ActivatedRoute,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private sanitizer:DomSanitizer,
+    private _fileService:FilesService
   ) {
 
     this.hoy = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
@@ -80,13 +84,10 @@ export class DonarFormularioComponent implements OnInit {
     this.alergenosPlato = []
     this.alergenosChecked = {}
     this.alergenosLista = ["gluten", "crustaceos", "huevos", "pescado", "cacahuetes", "soja", "lacteos", "frutos_secos", "apio", "mostaza", "sesamo", "sulfitos", "moluscos", "altramuces"].sort();
-
     this.ruta.params.subscribe(params=>{
       this.idDonacion = params['id_entrega'];
-
       if(params['id_entrega']) {
         this.donando = true;
-
         this._donarService.readDonationsByIdo(this.idDonacion).subscribe({
           next : data => {
             this.createDonation = data[0];
@@ -139,6 +140,56 @@ export class DonarFormularioComponent implements OnInit {
       this.router.navigate(['/perfil'])
     }
   }
+
+  onFileSelected(event:any):void {
+    const capturedFile = event.target.files[0]
+    this.selectedFile.push(capturedFile)
+    this.extraerBase64(capturedFile).then((imagen:any) => {
+      this.previewFile = imagen.base
+    })
+  }
+
+  fileUpload():void {
+    try {
+      const formularioDeDatos = new FormData()
+      this.selectedFile.forEach((archivo:any) => {
+        formularioDeDatos.append('image',archivo)
+      })
+      this._fileService.post(formularioDeDatos).subscribe({
+        next : data => {
+          this.fotoPlato=data.data.image.url
+        }
+      })
+    } catch (e) {
+      console.log("error",e)
+    }
+  }
+
+  fileDelete():void {
+    this.fotoPlato=""
+    this.previewFile=""
+  }
+
+  extraerBase64 = async ($event:any) => new Promise((resolve):any => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg)
+      const reader = new FileReader()
+      reader.readAsDataURL($event)
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        })
+      }
+      reader.onerror = error => {
+        resolve({
+          base: null
+        })
+      }
+    } catch (e) {
+      return null
+    }
+  })
 
   publicar():void {
     if(!this.createDonation.nombre){

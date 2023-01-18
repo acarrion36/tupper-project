@@ -16,7 +16,7 @@
         </svg>
       </div>
     </li>
-    <li *ngIf="this.loginStatus$ && !this.alertInfo$">
+    <li>
       <div (mousedown)="accessControl()" [routerLink]="['/buscar']" class="nav-item" [ngClass]="this.activo==='buscar' ? 'activo':''">
         <a class="nav-link">Buscar</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

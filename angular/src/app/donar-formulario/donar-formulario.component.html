@@ -40,7 +40,15 @@
       <!-- FOTO -->
       <div class="col-md-5">
         <label for="platoFoto" class="form-label">Foto del plato</label>
-        <input class="form-control" type="file" id="platoFoto" name="platoFoto" [(ngModel)]="this.fotoPlato">
+        <div *ngIf="this.fotoPlato===''" class="d-flex gap-2">
+          <input (change)="onFileSelected($event)" class="form-control" type="file" accept="image/*"/>
+          <img *ngIf="this.previewFile" [src]="this.previewFile" class="perfil-img m-0 p-0">
+          <button *ngIf="this.previewFile" (click)="fileUpload()" class="btn btn-light">Subir</button>
+        </div>
+        <div *ngIf="this.fotoPlato" class="d-flex gap-2">
+          <img [src]="this.fotoPlato" class="perfil-img m-0 p-0">
+          <button (click)="fileDelete()" class="btn btn-light">Eliminar</button>
+        </div>
       </div>
       <!-- INFORMACIÓN DE LA ENTREGA -->
       <div class="col-md-12 d-flex justify-content-between align-items-center">

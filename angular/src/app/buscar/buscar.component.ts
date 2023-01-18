@@ -49,7 +49,6 @@ export class BuscarComponent implements OnInit {
     this.readUserLogged()
     this.readAllDonations()
     this.tooltipInit()
-    this.authGuard()
     setTimeout(()=>{
       this.loading=true
     }, 500);
@@ -69,6 +68,8 @@ export class BuscarComponent implements OnInit {
           } else {
             this._loginService.setalertInfoStatus(true)
           }
+        } else {
+          this._loginService.setalertInfoStatus(true)
         }
       }
     })
@@ -169,16 +170,6 @@ export class BuscarComponent implements OnInit {
     })
   }
 
-  // Si no esta logueado, redirigimos a la home y mostramos la ventana de login
-  authGuard():void {
-    if(!this._cookie.check("token")) {
-      this.router.navigate(['/'])
-      this._loginService.setloginWindowStatus(true)
-    } else if (this._cookie.check("token") && !this._cookie.check("info")) {
-      this.router.navigate(['/perfil'])
-    }
-  }
-
   // Cerrar ventana modal
   closeModal():void {
     this.showModal=false
@@ -203,6 +194,17 @@ export class BuscarComponent implements OnInit {
     } else {
       let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), this.raciones.toString(), "", 0, "");
       this._demandarService.post(demanda).subscribe()
+    }
+  }
+
+  // Metodo | Mostrar el componente de login
+  mostrar():void {
+    if(this.loginStatus$) {
+      this._loginService.setloginWindowStatus(false)
+      this._loginService.setlogoutWindowStatus(true)
+    } else {
+      this._loginService.setlogoutWindowStatus(false)
+      this._loginService.setloginWindowStatus(true)
     }
   }
 

@@ -19,9 +19,9 @@ export class LogoutComponent implements OnInit {
   // Cerrar sesión de usuario | Borramos cookies y redirigimos a la página de inicio
   cerrarSesion():void {
     this._cookie.delete("token");
+    this._cookie.delete("info");
     this.router.navigate(['/'])
     this._loginService.setloginStatus(false)
-    this._loginService.setalertInfoStatus(true)
   }
 
 }

@@ -49,6 +49,12 @@ export class DonarencursoComponent implements OnInit {
         if(data!=0) {
           this.idUsuario=data[0].id_usuario
           this.readDonationsByIdu(this.idUsuario)
+          // Controlar el mensaje de alerta si no esta rellenados direccion y CP
+          if(data[0].direccion!='' && data[0].cp!=null){ // Si estan rellenados
+            this._loginService.setalertInfoStatus(false)
+          } else {
+            this._loginService.setalertInfoStatus(true)
+          }
         }
       }
     })

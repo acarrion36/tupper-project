@@ -148,6 +148,10 @@ h5 {
   }
 }
 
+.form-control-disabled {
+  color: rgb(201, 201, 201) !important;
+}
+
 .btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
@@ -500,6 +504,10 @@ section {
       border-radius: $borderRadiusM;
     }
 
+    .text-success {
+      color: rgb(29, 95, 172) !important;
+    }
+
     .card {
       border-radius: $borderRadiusM;
       font-size: 14px;
@@ -760,6 +768,7 @@ footer {
     background-color: rgb(83, 127, 221);
     color: $white;
     border-radius: $borderRadiusM;
+    border: 0px;
 
     &:hover{
       background-color: rgb(69, 109, 194);

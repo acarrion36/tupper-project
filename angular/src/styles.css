@@ -66,6 +66,10 @@ h5 {
     top: 50%;
   }
 }
+.form-control-disabled {
+  color: rgb(201, 201, 201) !important;
+}
+
 .btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
@@ -457,6 +461,9 @@ section .section-section .alert-danger {
 section .section-section .alert-info, section .section-section .alert-primary {
   border-radius: 14px;
 }
+section .section-section .text-success {
+  color: rgb(29, 95, 172) !important;
+}
 section .section-section .card {
   border-radius: 14px;
   font-size: 14px;
@@ -627,7 +634,9 @@ footer .align-footer .socials div {
 }
 footer .nav-bottom {
   display: flex !important;
-  justify-content: space-evenly;
+  justify-content: center;
+  -moz-column-gap: 7%;
+       column-gap: 7%;
   padding: 0 5%;
 }
 footer .nav-bottom .bi {
@@ -683,6 +692,7 @@ footer .nav-bottom .bi:focus {
   background-color: rgb(83, 127, 221);
   color: rgb(255, 255, 255);
   border-radius: 14px;
+  border: 0px;
 }
 .div_editar .solicitar:hover, .div_borrar .solicitar:hover, .div_solicitar .solicitar:hover {
   background-color: rgb(69, 109, 194);

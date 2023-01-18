@@ -33,9 +33,7 @@
       <img src="../../assets/img/aguacate.png" width="150px" alt="">
       <h2>MÁS DE 1.500 DONACIONES DIARIAS</h2>
       <p>HAZTE CON LA TUYA</p>
-      <button *ngIf="!this.loginStatus$" (click)="mostrar()" class="btn btn-outline-success">BUSCAR DONACIONES</button>
-      <button *ngIf="this.loginStatus$ && !this.alertInfo$" [routerLink]="['/buscar']" class="btn btn-outline-success">BUSCAR DONACIONES</button>
-      <button *ngIf="this.loginStatus$ && this.alertInfo$" [routerLink]="['/perfil']" class="btn btn-outline-success">BUSCAR DONACIONES</button>
+      <button [routerLink]="['/buscar']" class="btn btn-outline-success">BUSCAR DONACIONES</button>
     </div>
   </div>
 </div>
