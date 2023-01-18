@@ -36,30 +36,33 @@
                     </div>
                     <p class="p-0 m-0">Demanda Nº{{indice}}</p>
                   </div>
-                  <div class="card-body">
-                    <h5 class="card-title mt-4 mb-1">{{plato.nombre}}</h5>
-                    <p class="card-text mb-1">{{plato.descripcion}}</p>
-                    <div *ngIf="plato.notas!=''">
-                      <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{plato.notas}}</figcaption>
+                  <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                      <h5 class="card-title mt-4 mb-1">{{plato.nombre}}</h5>
+                      <p class="card-text mb-1">{{plato.descripcion}}</p>
+                      <div *ngIf="plato.notas!=''">
+                        <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{plato.notas}}</figcaption>
+                      </div>
+                      <h6 class="card-title mb-1">Alérgenos</h6>
+                      <div class="d-flex flex-wrap mb-0 gap-1">
+                          <app-pintaalergenos [alergenosPlato]=alergenosPlatos[indice]></app-pintaalergenos>
+                      </div>
+                      <h6 class="card-title mt-0 mb-1">Datos de entrega</h6>
+                      <p class="card-text mb-0">{{plato.direccion}}, 0{{plato.cp}}</p>
+                      <p class="card-text mb-1">{{plato.f_recogida}} a las {{plato.h_recogida}}</p>
+                      <div *ngIf="plato.anotacion!=''">
+                        <figcaption class="blockquote-footer ms-2 mt-1 mb-1">{{plato.anotacion}}</figcaption>
+                      </div>
                     </div>
-                    <h6 class="card-title mb-1">Alérgenos</h6>
-                    <div class="d-flex flex-wrap mb-0 gap-1">
-                        <app-pintaalergenos [alergenosPlato]=alergenosPlatos[indice]></app-pintaalergenos>
-                    </div>
-                    <h6 class="card-title mt-0 mb-1">Datos de entrega</h6>
-                    <p class="card-text mb-0">{{plato.direccion}}, 0{{plato.cp}}</p>
-                    <p class="card-text mb-1">{{plato.f_recogida}} a las {{plato.h_recogida}}</p>
-                    <div *ngIf="plato.anotacion!=''">
-                      <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{plato.anotacion}}</figcaption>
-                    </div>
-                    <h6 class="card-title mt-2">Raciones: {{this.plato.raciones}}</h6>
-                    <div class="d-flex flex-wrap gap-2" id="plato_{{indice}}">
-                      <div *ngFor="let racion of [].constructor(this.plato.raciones); index as u">
-                        <div class="racion"></div>
+                    <div class="mb-3">
+                      <h6 class="card-title mb-1 mt-2">Raciones: {{this.plato.raciones}}</h6>
+                      <div class="d-flex flex-wrap gap-2" id="plato_{{indice}}">
+                        <div *ngFor="let racion of [].constructor(this.plato.raciones); index as u">
+                          <div class="racion"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
-
                   <div class="card-footer border-0">
                     <div class="div_borrar" data-bs-toggle="modal" data-bs-target="#borrarPedido">
                       <svg xmlns="http://www.w3.org/2000/svg" title="Eliminar pedido" height="25" class="bi bi-trash btn_eliminar_entrega" viewBox="0 0 16 16">

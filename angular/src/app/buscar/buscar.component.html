@@ -45,26 +45,30 @@
                   </div>
                   <p class="p-0 m-0">Donación Nº{{donacion.id_oferta}}</p>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title mt-4 mb-1">{{donacion.nombre}}</h5>
-                  <p class="card-text mb-1">{{donacion.descripcion}}</p>
-                  <div *ngIf="donacion.anotacion!=''">
-                    <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.anotacion}}</figcaption>
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div>
+                    <h5 class="card-title mt-4 mb-1">{{donacion.nombre}}</h5>
+                    <p class="card-text mb-1">{{donacion.descripcion}}</p>
+                    <div *ngIf="donacion.anotacion!=''">
+                      <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.anotacion}}</figcaption>
+                    </div>
+                    <h6 class="card-title mb-1">Alérgenos</h6>
+                    <div class="d-flex flex-wrap mb-0 gap-1">
+                        <app-pintaalergenos [alergenosPlato]=alergenosPlatos[i]></app-pintaalergenos>
+                    </div>
+                    <h6 class="card-title mt-0 mb-1">Datos de entrega</h6>
+                    <p class="card-text mb-0">{{donacion.direccion}}, 0{{donacion.cp}}</p>
+                    <p class="card-text mb-1">{{donacion.f_recogida}} a las {{donacion.h_recogida}}</p>
+                    <div *ngIf="donacion.notas!=''">
+                      <figcaption class="blockquote-footer ms-2 mb-1 mt-1">{{donacion.notas}}</figcaption>
+                    </div>
                   </div>
-                  <h6 class="card-title mb-1">Alérgenos</h6>
-                  <div class="d-flex flex-wrap mb-0 gap-1">
-                      <app-pintaalergenos [alergenosPlato]=alergenosPlatos[i]></app-pintaalergenos>
-                  </div>
-                  <h6 class="card-title mt-0 mb-1">Datos de entrega</h6>
-                  <p class="card-text mb-0">{{donacion.direccion}}, 0{{donacion.cp}}</p>
-                  <p class="card-text mb-1">{{donacion.f_recogida}} a las {{donacion.h_recogida}}</p>
-                  <div *ngIf="donacion.notas!=''">
-                    <figcaption class="blockquote-footer ms-2 mt-1 mb-2">{{donacion.notas}}</figcaption>
-                  </div>
-                  <h6 class="card-title mt-2">Raciones: {{this.racionesDisponibles[donacion.id_oferta]}}</h6>
-                  <div class="d-flex flex-wrap gap-2" id="plato_{{donacion.id_oferta}}">
-                    <div *ngFor="let racion of [].constructor(this.racionesDisponibles[donacion.id_oferta]); index as u">
-                      <input *ngIf="!this.alertInfo$" class="form-check-input m-0" type="checkbox" name="{{donacion.id_oferta}}" value="{{donacion.id_oferta}}">
+                  <div class="mb-2">
+                    <h6 class="card-title mb-1 mt-2">Raciones: {{this.racionesDisponibles[donacion.id_oferta]}}</h6>
+                    <div class="d-flex flex-wrap gap-2" id="plato_{{donacion.id_oferta}}">
+                      <div *ngFor="let racion of [].constructor(this.racionesDisponibles[donacion.id_oferta]); index as u">
+                        <input *ngIf="!this.alertInfo$" class="form-check-input m-0" type="checkbox" name="{{donacion.id_oferta}}" value="{{donacion.id_oferta}}">
+                      </div>
                     </div>
                   </div>
                 </div>
