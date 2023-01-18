@@ -84,10 +84,11 @@
       <!-- SUBMIT -->
       <div class="col-md-12 d-flex justify-content-end">
         <div class="d-flex align-items-center gap-4">
-          <button (click)="publicar()" class="btn btn-dark" id="btnGuardarDonacion" type="submit">Publicar</button>
+          <button *ngIf="!this.donando" (click)="publicar()" class="btn btn-dark" id="btnGuardarDonacion" type="submit">Publicar</button>
+          <button *ngIf="this.donando" (click)="publicar()" class="btn btn-dark" id="btnGuardarDonacion" type="submit">Guardar</button>
         </div>
         <!-- Modal -->
-        <div (click)="closeModal(formDonation)" *ngIf="this.showModal" class="veil" id="veil"></div>
+        <div *ngIf="this.showModal" class="veil" id="veil"></div>
         <div *ngIf="this.showModal" class="modal text-center show fade2" style="display: block;">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -104,6 +105,28 @@
               <div class="modal-body">¡Perfecto! La donación Nº{{this.idDonacion}} se ha publicado correctamente. Gracias por tu aportación.</div>
               <div class="modal-footer">
                 <button [routerLink]="['/donar/en-curso']" type="button" class="btn btn-success">Donaciones en curso</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal B -->
+        <div *ngIf="this.showModalB" class="veil" id="veil"></div>
+        <div *ngIf="this.showModalB" class="modal text-center show fade2" style="display: block;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="green" viewBox="0 0 16 16" class="bi bi-check-circle p-1">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                  <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+                </svg>
+                <h1 class="modal-title fs-5">Editar donación</h1>
+                <svg [routerLink]="['/donar/en-curso']" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="30px" data-bs-dismiss="modal" aria-label="Close" viewBox="0 0 16 16" class="bi bi-x-lg close p-1">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+                </svg>
+              </div>
+              <div class="modal-body">La donación Nº{{this.idDonacion}} se ha editado correctamente.</div>
+              <div class="modal-footer">
+                <button [routerLink]="['/donar/en-curso']" type="button" class="btn btn-success">Continuar</button>
               </div>
             </div>
           </div>

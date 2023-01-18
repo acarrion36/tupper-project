@@ -8,10 +8,10 @@
     </div>
     <div class="col align-self-center">
       <button *ngIf="!this.loginStatus$" (click)="mostrar()" type="button" id="dropdownLogin" class="btn btn-secondary">
-        <img src="../assets/img/dropdown.png" width="40px" alt="menu">
+        <img src="../assets/img/dropdown.png" width="36px" alt="menu">
       </button>
       <button *ngIf="this.loginStatus$" [routerLink]="['/perfil']" type="button" id="dropdownLogin" class="btn btn-secondary">
-        <img src="../assets/img/dropdown.png" width="40px" alt="menu">
+        <img src="../assets/img/dropdown.png" width="36px" alt="menu">
       </button>
     </div>
   </div>

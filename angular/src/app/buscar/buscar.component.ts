@@ -124,13 +124,10 @@ export class BuscarComponent implements OnInit {
   readAllDonations():void {
     this._donarService.readAllDonations().subscribe({
       next : data => {
-
         this.donaciones=data.reverse()
         this.donacionesTotales=data.length
-
         for (const [i,plato] of this.donaciones.entries()) {
           let alergenosTrue:string[] = [];
-
           // Alérgenos
           let alergenos = JSON.parse(data[i].alergenos);
           for(const alergeno in alergenos){
@@ -139,10 +136,9 @@ export class BuscarComponent implements OnInit {
             }
           }
           this.alergenosPlatos.push(alergenosTrue.sort());
-
           // Raciones
           let racionesTotales = plato.raciones;
-          let racionesReservadas = 0; // PENDIENTE!!
+          let racionesReservadas = 0;
           this._demandarService.readRacionesByIdo(plato.id_oferta).subscribe({
             next:data => {
               if(data[0]["raciones"] != null){
@@ -155,9 +151,7 @@ export class BuscarComponent implements OnInit {
               }
             }
           });
-
         }
-
       }
     })
   }

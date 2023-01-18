@@ -25,7 +25,7 @@ export class DonarFormularioComponent implements OnInit {
   public selectedFile:any=[]
   public previewFile:string=""
   public hoy:string | null;
-  private donando:boolean;
+  public donando:boolean;
 
   // Variables | Modelo Donation
   public createDonation:Donation = new Donation('','','','','','','','',1,'','', '');
@@ -65,6 +65,7 @@ export class DonarFormularioComponent implements OnInit {
   public alertHoraNoValida:boolean=false
   public alertMsg:string=""
   public showModal:boolean=false
+  public showModalB:boolean=false
 
   constructor(
     private _loginService:LoginService,
@@ -251,6 +252,7 @@ export class DonarFormularioComponent implements OnInit {
               this.idDonacion=data[0].id_oferta
             }
           })
+          this.showModal=true
         } else {
           this._donarService.updateOferta(
               this.createDonation
@@ -259,8 +261,8 @@ export class DonarFormularioComponent implements OnInit {
               this.idDonacion=data[0].id_oferta
             }
           })
+          this.showModalB=true
         }
-        this.showModal=true
       }
     }
   }
@@ -285,6 +287,7 @@ export class DonarFormularioComponent implements OnInit {
   // Cerrar ventana modal
   closeModal(form:NgForm):void {
     this.showModal=false
+    this.showModalB=false
     // Vaciado de campos
     form.resetForm();
     window.scrollTo(0, 0);
