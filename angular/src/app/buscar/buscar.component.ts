@@ -184,14 +184,14 @@ export class BuscarComponent implements OnInit {
       })
       this._demandarService.update(updateDemanda).subscribe({
         next : data => {
-          window.location.reload();
+          this.readAllDonations()
         }
       })
     } else {
       let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), this.raciones.toString(), "", 0, "");
       this._demandarService.post(demanda).subscribe({
         next : data => {
-          window.location.reload();
+          this.readAllDonations()
         }
       })
     }
