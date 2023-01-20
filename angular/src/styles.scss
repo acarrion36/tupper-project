@@ -152,7 +152,7 @@ h5 {
   color: rgb(201, 201, 201) !important;
 }
 
-.btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-danger, .btn-outline-success {
+.btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-warning, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
   border-radius: $borderRadiusM;
@@ -564,7 +564,7 @@ section {
           vertical-align: middle;
         }
 
-        .btn_editar_entrega{
+        .btn_editar_entrega, .btn_confirmar_entrega{
           fill: grey;
         }
 
@@ -606,6 +606,16 @@ section {
             }
           }
 
+          &.div_confirmar:hover{
+            cursor: pointer;
+            .btn_confirmar_entrega{
+              fill: rgb(45, 145, 42);
+            }
+            p {
+              color: rgb(45, 145, 42);
+            }
+          }
+
           &.div_borrar:hover{
             cursor: pointer;
             .bi-trash {
@@ -613,7 +623,6 @@ section {
             }
             p {
               color: rgb(163, 27, 27);
-
             }
           }
         }

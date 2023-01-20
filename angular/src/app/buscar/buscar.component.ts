@@ -79,7 +79,6 @@ export class BuscarComponent implements OnInit {
     let raciones:number=0
     this._donarService.readDonationsByIdo(id).subscribe({
       next : data => {
-        console.log("data",data[0].raciones)
         raciones = data[0].raciones
       }
     })
@@ -177,17 +176,24 @@ export class BuscarComponent implements OnInit {
   // Solicitar raciones
   solicitar(id_oferta:number){
     this.raciones = document.querySelectorAll("#plato_"+id_oferta + ' input[type="checkbox"]:checked').length;
-    console.log(this.raciones)
     if(this.existeDemanda(id_oferta)) {
       this.raciones += Number(this.nRacionesActuales)
       let updateDemanda = ({
         "id_demanda": this.idDemanda.toString(),
         "n_raciones": this.raciones.toString()
       })
-      this._demandarService.update(updateDemanda).subscribe()
+      this._demandarService.update(updateDemanda).subscribe({
+        next : data => {
+          window.location.reload();
+        }
+      })
     } else {
       let demanda = new Demand(0, this.idUsuario, id_oferta.toString(), this.raciones.toString(), "", 0, "");
-      this._demandarService.post(demanda).subscribe()
+      this._demandarService.post(demanda).subscribe({
+        next : data => {
+          window.location.reload();
+        }
+      })
     }
   }
 

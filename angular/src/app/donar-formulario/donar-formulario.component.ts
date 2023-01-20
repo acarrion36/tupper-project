@@ -254,9 +254,7 @@ export class DonarFormularioComponent implements OnInit {
           })
           this.showModal=true
         } else {
-          this._donarService.updateOferta(
-              this.createDonation
-          ).subscribe({
+          this._donarService.updateOferta(this.createDonation).subscribe({
             next:data => {
               this.idDonacion=data[0].id_oferta
             }

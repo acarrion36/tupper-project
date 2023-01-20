@@ -13,7 +13,6 @@ export class Donation {
       public h_recogida:string,
       public f_recogida:string,
       public id_menu:string,
-      
   ){}
 
 }
