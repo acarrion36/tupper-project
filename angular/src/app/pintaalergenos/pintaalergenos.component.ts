@@ -14,8 +14,4 @@ export class PintaalergenosComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  pintarAlergenos(listaAlergenos:string[]){
-    this.alergenosPlato = listaAlergenos;
-  }
-
 }
