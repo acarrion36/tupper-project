@@ -391,7 +391,7 @@ section .section-section .alergeno_bloque {
   display: grid;
   font-size: 0.8em;
   text-align: center;
-  margin-bottom: 0;
+  margin-bottom: 5px;
   margin-top: 4px;
 }
 section .section-section .alergeno_bloque img {
@@ -500,6 +500,11 @@ section .section-section .card .card-header .cardimg img {
 }
 section .section-section .card .card-body {
   padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+section .section-section .card .card-body .div-raciones {
+  margin-top: auto;
 }
 section .section-section .card .card-footer {
   border-bottom-left-radius: 14px;

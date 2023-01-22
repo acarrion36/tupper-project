@@ -46,9 +46,9 @@
                   </div>
                   <p class="p-0 m-0">Donación Nº{{donacion.id_oferta}}</p>
                 </div>
-                <div class="card-body d-flex flex-column justify-content-between">
-                  <div class="div-raciones">
-                    <h5 class="card-title mt-3 mb-1">{{donacion.nombre}}</h5>
+                <div class="card-body">
+                  <div>
+                    <h5 class="card-title mt-4 mb-1">{{donacion.nombre}}</h5>
                     <div>
                       <p class="card-text mb-1">{{donacion.descripcion}}</p>
                       <div *ngIf="donacion.anotacion!=''">
@@ -63,7 +63,7 @@
                       <div *ngIf="this.alergenosPlatos[i].length===0" class="mb-3 text-secondary">Sin alérgenos</div>
                     </div>
                   </div>
-                  <div class="div-entrega">
+                  <div>
                     <h6 class="card-title mt-0 mb-1">Datos de entrega</h6>
                     <div>
                       <p class="card-text mb-0">{{donacion.direccion}}, 0{{donacion.cp}}</p>
@@ -73,7 +73,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="mb-3 div-entrega">
+                  <div class="mb-3 div-raciones">
                     <h6 class="card-title mb-1 mt-2">Raciones: {{this.racionesDisponibles[donacion.id_oferta]}}</h6>
                     <div class="d-flex flex-wrap gap-2" id="plato_{{donacion.id_oferta}}">
                       <div *ngFor="let racion of [].constructor(this.racionesDisponibles[donacion.id_oferta]); index as u">

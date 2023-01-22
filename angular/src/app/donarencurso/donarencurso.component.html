@@ -31,7 +31,7 @@
                 </div>
                 <p class="p-0 m-0">Donación Nº{{donacion.id_oferta}}</p>
               </div>
-              <div class="card-body  d-flex flex-column justify-content-between">
+              <div class="card-body">
                 <div>
                   <h5 class="card-title mt-4 mb-1">{{donacion.nombre}}</h5>
                   <p class="card-text mb-1">{{donacion.descripcion}}</p>
@@ -49,7 +49,7 @@
                     <figcaption class="blockquote-footer ms-2 mt-1 mb-1">{{donacion.notas}}</figcaption>
                   </div>
                 </div>
-                <div>
+                <div class="div-raciones">
                   <h6 class="card-title mb-1 mt-2">Raciones: {{this.racionesPlato[i].length}}</h6>
                   <div class="d-flex flex-wrap gap-2 mb-3">
                     <div *ngFor="let racion of this.racionesPlato[i]; index as u">
