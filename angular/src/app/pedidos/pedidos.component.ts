@@ -126,10 +126,8 @@ export class PedidosComponent implements OnInit {
   confirmarDemanda(id_demanda:number):void{
     this._demandarService.readDemandasByIdd(id_demanda).subscribe({
       next : data1 => {
-        console.log("demanda",data1)
         this._donarServicio.readDonationsByIdo(data1[0].id_oferta).subscribe({
           next : data => {
-            console.log("oferta",data)
             let updateDonation = ({
               "alergenos": data[0].alergenos,
               "anotacion": data[0].anotacion,
@@ -146,12 +144,12 @@ export class PedidosComponent implements OnInit {
               "notas": data[0].notas,
               "raciones": data[0].raciones - data1[0].n_raciones
             })
-            /*this._donarServicio.updateOferta(updateDonation).subscribe({
+            this._donarServicio.updateOferta(updateDonation).subscribe({
               next : data => {
                 this.readDemandasByIdu(this.idUsuario)
               }
             })
-            this.borrarDemanda(id_demanda)*/
+            this.borrarDemanda(id_demanda)
           }
         })
       }

@@ -115,6 +115,11 @@ export class PerfilComponent implements OnInit {
     } else {
       this.userName=this.perfilNickname
     }
+    if(!this.perfilNombre && this.userData) {
+      this.userName=this.userData[0].nombre
+    } else {
+      this.userName=this.perfilNombre
+    }
   }
 
   // Si no esta logueado, redirigimos a la home y mostramos la ventana de login
@@ -149,6 +154,7 @@ export class PerfilComponent implements OnInit {
       this._loginService.setToken("info",btoa(this.alertInfo$))
       this.infPerChecked=true
       this.infPerBtn=false
+      this.readUserLogged()
     }
   }
 
@@ -157,6 +163,7 @@ export class PerfilComponent implements OnInit {
     this._loginService.update(this.userData[0].id_usuario,new User(this.userData[0].apellido1,this.userData[0].apellido2,this.userData[0].cp,this.userData[0].direccion,this.userData[0].email,this.userData[0].nombre,this.perfilNickname,this.userData[0].pass)).subscribe()
     this.cnfPerChecked=true
     this.cnfPerBtn=false
+    this.readUserLogged()
   }
 
   onFileSelected(event:any):void {

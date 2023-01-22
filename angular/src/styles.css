@@ -70,7 +70,7 @@ h5 {
   color: rgb(201, 201, 201) !important;
 }
 
-.btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-danger, .btn-outline-success {
+.btn-dark, .btn-light, .btn-secondary, .btn-success, .btn-warning, .btn-danger, .btn-outline-success {
   font-size: 14px;
   padding: 5px 15px;
   border-radius: 14px;
@@ -391,6 +391,8 @@ section .section-section .alergeno_bloque {
   display: grid;
   font-size: 0.8em;
   text-align: center;
+  margin-bottom: 0;
+  margin-top: 4px;
 }
 section .section-section .alergeno_bloque img {
   width: 30px;
@@ -512,7 +514,7 @@ section .section-section .card .card-footer {
 section .section-section .card .card-footer small {
   vertical-align: middle;
 }
-section .section-section .card .card-footer .btn_editar_entrega {
+section .section-section .card .card-footer .btn_editar_entrega, section .section-section .card .card-footer .btn_confirmar_entrega {
   fill: grey;
 }
 section .section-section .card .card-footer div {
@@ -546,6 +548,15 @@ section .section-section .card .card-footer div.div_editar:hover .btn_editar_ent
 }
 section .section-section .card .card-footer div.div_editar:hover p {
   color: rgb(87, 87, 87);
+}
+section .section-section .card .card-footer div.div_confirmar:hover {
+  cursor: pointer;
+}
+section .section-section .card .card-footer div.div_confirmar:hover .btn_confirmar_entrega {
+  fill: rgb(45, 145, 42);
+}
+section .section-section .card .card-footer div.div_confirmar:hover p {
+  color: rgb(45, 145, 42);
 }
 section .section-section .card .card-footer div.div_borrar:hover {
   cursor: pointer;

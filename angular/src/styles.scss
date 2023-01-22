@@ -439,6 +439,8 @@ section {
       display: grid;
       font-size: 0.8em;
       text-align: center;
+      margin-bottom: 0;
+      margin-top: 4px;
 
       & img{
           width: 30px;
@@ -557,7 +559,6 @@ section {
         text-align: right;
         display: flex;
         justify-content: right;
-        // align-items: center;
         gap: 1.2em;
 
         small {

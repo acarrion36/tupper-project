@@ -35,7 +35,7 @@
               </div>
               <div class="col-md-4">
                 <label for="perfilNombre" class="form-label">Nombre*</label>
-                <input type="text" class="form-control" name="perfilNombre" [(ngModel)]="this.perfilNombre">
+                <input (input)="visibleNickname()" type="text" class="form-control" name="perfilNombre" [(ngModel)]="this.perfilNombre">
               </div>
               <div class="col-md-4">
                 <label for="perfilApellido1" class="form-label">Primer apellido*</label>

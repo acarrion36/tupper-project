@@ -135,6 +135,7 @@ export class BuscarComponent implements OnInit {
             }
           }
           this.alergenosPlatos.push(alergenosTrue.sort());
+          console.log(this.alergenosPlatos)
           // Raciones
           let racionesTotales = plato.raciones;
           let racionesReservadas = 0;

@@ -7,7 +7,7 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class PintaalergenosComponent implements OnInit {
   @Input() alergenosPlato:string[];
-  constructor() { 
+  constructor() {
     this.alergenosPlato = []
   }
 
